@@ -6,38 +6,13 @@
         <description>Recent content in Categories on gucheNg</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>gucheNg</copyright>
-        <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://gucheng.me/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Syntax</title>
-        <link>http://gucheng.me/categories/syntax/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-        
-        <guid>http://gucheng.me/categories/syntax/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Themes</title>
-        <link>http://gucheng.me/categories/themes/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-        
-        <guid>http://gucheng.me/categories/themes/</guid>
-        <description></description>
-        </item>
-        <item>
+        <copyright>gucheNg</copyright><atom:link href="http://gucheng.me/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Test</title>
         <link>http://gucheng.me/categories/test/</link>
-        <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>http://gucheng.me/categories/test/</guid>
         <description>&lt;img src="http://gucheng.me/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
-        </item>
-        <item>
-        <title>Test With Whitespaces</title>
-        <link>http://gucheng.me/categories/test-with-whitespaces/</link>
-        <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-        
-        <guid>http://gucheng.me/categories/test-with-whitespaces/</guid>
-        <description></description>
         </item>
         
     </channel>
