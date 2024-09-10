@@ -2,43 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>gucheNg</title>
-        <link>https://2477231995.github.io/</link>
+        <link>https://gucheng.me/</link>
         <description>Recent content on gucheNg</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>gucheNg</copyright>
-        <lastBuildDate>Tue, 10 Sep 2024 16:58:28 +0800</lastBuildDate><atom:link href="https://2477231995.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>New</title>
-        <link>https://2477231995.github.io/p/new/</link>
-        <pubDate>Tue, 10 Sep 2024 16:58:28 +0800</pubDate>
-        
-        <guid>https://2477231995.github.io/p/new/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Tue, 10 Sep 2024 15:25:42 +0800</lastBuildDate><atom:link href="https://gucheng.me/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>BaseCTF招新赛-Misc-wp</title>
-        <link>https://2477231995.github.io/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</link>
+        <link>https://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</link>
         <pubDate>Tue, 10 Sep 2024 15:25:42 +0800</pubDate>
         
-        <guid>https://2477231995.github.io/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</guid>
+        <guid>https://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</guid>
         <description>&lt;h3 id=&#34;123&#34;&gt;123
 &lt;/h3&gt;</description>
         </item>
         <item>
         <title>归档</title>
-        <link>https://2477231995.github.io/archives/</link>
+        <link>https://gucheng.me/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://2477231995.github.io/archives/</guid>
+        <guid>https://gucheng.me/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Markdown Syntax Guide</title>
-        <link>https://2477231995.github.io/p/markdown-syntax-guide/</link>
+        <link>https://gucheng.me/p/markdown-syntax-guide/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://2477231995.github.io/p/markdown-syntax-guide/</guid>
-        <description>&lt;img src="https://2477231995.github.io/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+        <guid>https://gucheng.me/p/markdown-syntax-guide/</guid>
+        <description>&lt;img src="https://gucheng.me/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
 &lt;h2 id=&#34;headings&#34;&gt;Headings
 &lt;/h2&gt;&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
 &lt;h1 id=&#34;h1&#34;&gt;H1
@@ -264,11 +256,11 @@
         </item>
         <item>
         <title>Placeholder Text</title>
-        <link>https://2477231995.github.io/p/placeholder-text/</link>
+        <link>https://gucheng.me/p/placeholder-text/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://2477231995.github.io/p/placeholder-text/</guid>
-        <description>&lt;img src="https://2477231995.github.io/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
+        <guid>https://gucheng.me/p/placeholder-text/</guid>
+        <description>&lt;img src="https://gucheng.me/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
 &lt;p&gt;Redit teque digerit hominumque toris verebor lumina non cervice subde tollit usus habet Arctonque, furores quas nec ferunt. Quoque montibus nunc caluere tempus inhospita parcite confusaque translucet patri vestro qui optatis lumine cognoscere flos nubis! Fronde ipsamque patulos Dryopen deorum.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Exierant elisi ambit vivere dedere&lt;/li&gt;
@@ -295,27 +287,27 @@
         </item>
         <item>
         <title>关于</title>
-        <link>https://2477231995.github.io/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://gucheng.me/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://2477231995.github.io/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://gucheng.me/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>搜索</title>
-        <link>https://2477231995.github.io/search/</link>
+        <link>https://gucheng.me/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://2477231995.github.io/search/</guid>
+        <guid>https://gucheng.me/search/</guid>
         <description></description>
         </item>
         <item>
         <title>友情链接</title>
-        <link>https://2477231995.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
+        <link>https://gucheng.me/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://2477231995.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://gucheng.me/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
         <description></description>
         </item>
         
