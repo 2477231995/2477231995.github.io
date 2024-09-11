@@ -164,15 +164,298 @@
         <pubDate>Tue, 10 Sep 2024 15:25:42 +0800</pubDate>
         
         <guid>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</guid>
-        <description>&lt;h3 id=&#34;week1-base&#34;&gt;[Week1] Base
-&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;base32&lt;/strong&gt;解码一次,再&lt;strong&gt;base64&lt;/strong&gt;解码一次即可得到&lt;code&gt;BaseCTF{we1c0me_to_b4sectf}&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&#34;week1-人生苦短我用python&#34;&gt;[Week1] 人生苦短，我用Python
-&lt;/h3&gt;&lt;p&gt;按着python代码反着调试写脚本即可打印出flag&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/%e4%ba%91%e9%be%99.jpg&#34;
+        <description>&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;这里我就只写一些有价值点的和我当时不会的题目的wp了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;week1-捂住x只耳&#34;&gt;[Week1] 捂住X只耳
+&lt;/h4&gt;&lt;p&gt;下载音频后未发现频谱和音频波异常，听了下在音乐后半段有摩斯电码声音，所以我们需要将摩斯电码从音乐中分离出来以便识别&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先点击三个点分离立体声到单音道&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911201353232.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911201353232&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;点击左上角文件-&amp;gt;导出音频-&amp;gt;多个文件-&amp;gt;导出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202120041.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911202120041&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;成功导出两个wav&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202202257.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911202202257&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;打开Adobe Audition，左上角依次点击文件——新建——多轨会话——确定&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将刚才生成的两个wav拖入进多轨会话，然后双击未命名混音项目，再将两个wav拖入右边轨道&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202600399.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911202600399&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202902190.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911202902190&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;双击一个轨道进入后上面工具栏点击——效果——反相&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911203031552.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911203031552&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;双击左侧未命名混音项目后点击左上角，选择导出，多轨混音，整个会话，选择导出位置后直接导出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911204313875.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911204313875&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;将生成的mp3拖入audacity，点击三个点，频谱图。然后按住ctrl滑动滚轮放大可以看到明显的摩斯码，抄下来解密即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911204653922.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911204653922&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911204903856.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911204903856&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;week2-base&#34;&gt;[Week2] Base?!
+&lt;/h4&gt;&lt;p&gt;这是一段xx-encode码，开始真没想到，随波逐流一把嗦即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911205308922.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911205308922&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;week3-base-revenge&#34;&gt;[Week3] Base revenge
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911211205019.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911211205019&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;将以上文本base64隐写解密得到&lt;code&gt;JnUaAFMFImgANSEuAWYuBE9SyaYpC2ldBrU9&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将hint一键解码发现是atbash加密&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911211435511.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911211435511&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因为编码器解出来大小写有问题直接用[cyberchef](&lt;a class=&#34;link&#34; href=&#34;https://cyberchef.org/#recipe=Atbash_Cipher%28%29&amp;amp;input=Sm5VYUFGTUZJbWdBTlNFdUFXWXVCRTlTeWFZcEMybGRCclU5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Atbash Cipher - CyberChef&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911212400039.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911212400039&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;再base64解码即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911212445891.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911212445891&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;week3-brokenmp4&#34;&gt;[Week3] broken.mp4
+&lt;/h4&gt;&lt;p&gt;这道题挺简单的，两个视频用untrunc工具修复即可&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;week3-外星信号&#34;&gt;[Week3] 外星信号
+&lt;/h4&gt;&lt;p&gt;音频播放就有莫斯码，先丢[在线网站](&lt;a class=&#34;link&#34; href=&#34;https://morsecode.world/international/decoder/audio-decoder-adaptive.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Morse Code Adaptive Audio Decoder | Morse Code World&lt;/a&gt;)听一下,前半部分flag在这里面，要转换小写&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911213518068.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240911213518068&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;音频使用foremost提取出压缩包里面有另一个音频，一听就知道是sstv，sstv我只推荐使用[这个脚本](&lt;a class=&#34;link&#34; href=&#34;https://github.com/colaclanth/sstv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;colaclanth/sstv: SSTV Decoder (github.com)&lt;/a&gt;)，软件又拉又麻烦,下面是用法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sstv -d flag.mp3 -o result.png
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;提取出摩斯码图片如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/5bd2ebc5cd942d0ec16c41637a47bdcc_720.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;5bd2ebc5cd942d0ec16c41637a47bdcc_720&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/252798e7859a90919304b706d1787ba2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;252798e7859a90919304b706d1787ba2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;和前面半段flag组合转换小写即可&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;week3-这是一个压缩包&#34;&gt;[Week3] 这是一个压缩包
+&lt;/h4&gt;&lt;p&gt;这道题利用archpr工具的掩码破解，花了我n小时，感觉脚本会更快&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;week4-webshell&#34;&gt;[Week4] Webshell
+&lt;/h4&gt;&lt;p&gt;这道题先用wireshark提取出rar压缩包，解压发现是一套WordPress程序，这种博客没啥上传点吧，ai回答&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;WordPress作为一款广泛使用的内容管理系统（CMS），其安全性一直备受关注。关于WordPress中容易被上传webshell的文件路径，可以从以下几个方面进行归纳：
+主题文件夹：
+路径示例：/wp-content/themes/[主题名称]/
+说明：WordPress允许用户通过后台上传和安装主题。黑客可能会将恶意代码（如webshell）嵌入到自定义主题中，并通过上传主题的方式将其部署到目标网站上。一旦主题被安装，webshell就可以被用来执行恶意命令或操纵网站。
+插件文件夹：&lt;/p&gt;
+&lt;p&gt;虽然问题中主要询问的是关于webshell上传的文件路径，但值得注意的是，插件文件夹也是潜在的安全风险点。
+路径示例：/wp-content/plugins/[插件名称]/
+说明：与主题类似，插件也是WordPress扩展功能的重要方式。黑客可能会利用漏洞或恶意插件来上传webshell，从而控制网站。
+上传文件夹：&lt;/p&gt;
+&lt;p&gt;路径示例：/wp-content/uploads/
+说明：这是WordPress默认的媒体文件上传目录。虽然直接在这个文件夹中上传webshell可能受到WordPress的限制，但黑客可能会通过绕过安全检查或将webshell与合法文件捆绑上传的方式来达到目的。
+自定义上传目录：&lt;/p&gt;
+&lt;p&gt;路径示例：根据用户设置而定（如/wp-content/uploads/custom-directory/）
+说明：WordPress允许用户通过修改配置或安装特定插件来更改默认的上传目录。如果这些自定义目录的安全设置不当，就可能成为黑客上传webshell的潜在目标。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;然后再插件目录下确实发现了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/721257c325af60c1fad3c3bb319d6ec9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;721257c325af60c1fad3c3bb319d6ec9&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;转字符串后发现读取ui.js文件的内容&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/d6179359916dfe6f25ba6ed27fea91bb.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;d6179359916dfe6f25ba6ed27fea91bb&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;目录下搜索ui.js，解码后发现很像@eval($_POST[&amp;rsquo;&amp;rsquo;])这种，但是传webshell的都使用了自定义函数和各种函数加编码，还是相当有水平的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/fc1ba6fdd9631dea0b018b6c4ba6d907.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fc1ba6fdd9631dea0b018b6c4ba6d907&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;连接密码提交不对？再回去一看原来还有层rot13，解密提交即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/8b45958918ed738b3cd27d15422d81b5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8b45958918ed738b3cd27d15422d81b5&#34;
 	
 	
 &gt;&lt;/p&gt;

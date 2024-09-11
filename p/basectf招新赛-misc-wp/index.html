@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="[Week1] Base base32解码一次,再base64解码一次即可得到BaseCTF{we1c0me_to_b4sectf}\n[Week1] 人生苦短，我用Python 按着python代码反着调试写脚本即可打印出flag\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" [!NOTE]\n这里我就只写一些有价值点的和我当时不会的题目的wp了\n[Week1] 捂住X只耳 下载音频后未发现频谱和音频波异常，听了下在音乐后半段有摩斯电码声音，所以我们需要将摩斯电码从音乐中分离出来以便识别\n">
 <title>BaseCTF招新赛-Misc-wp</title>
 
 <link rel='canonical' href='http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="BaseCTF招新赛-Misc-wp">
-<meta property='og:description' content="[Week1] Base base32解码一次,再base64解码一次即可得到BaseCTF{we1c0me_to_b4sectf}\n[Week1] 人生苦短，我用Python 按着python代码反着调试写脚本即可打印出flag\n">
+<meta property='og:description' content=" [!NOTE]\n这里我就只写一些有价值点的和我当时不会的题目的wp了\n[Week1] 捂住X只耳 下载音频后未发现频谱和音频波异常，听了下在音乐后半段有摩斯电码声音，所以我们需要将摩斯电码从音乐中分离出来以便识别\n">
 <meta property='og:url' content='http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/'>
 <meta property='og:site_name' content='gucheNg'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-10T15:25:42&#43;08:00'/><meta property='article:modified_time' content='2024-09-10T15:25:42&#43;08:00'/>
 <meta name="twitter:title" content="BaseCTF招新赛-Misc-wp">
-<meta name="twitter:description" content="[Week1] Base base32解码一次,再base64解码一次即可得到BaseCTF{we1c0me_to_b4sectf}\n[Week1] 人生苦短，我用Python 按着python代码反着调试写脚本即可打印出flag\n">
+<meta name="twitter:description" content=" [!NOTE]\n这里我就只写一些有价值点的和我当时不会的题目的wp了\n[Week1] 捂住X只耳 下载音频后未发现频谱和音频波异常，听了下在音乐后半段有摩斯电码声音，所以我们需要将摩斯电码从音乐中分离出来以便识别\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -70,7 +70,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">gucheNg</a></h1>
-            <h2 class="site-description">欢迎来到我的博客，偶尔会分享一些关于CTF和渗透的东西，摸鱼选手.</h2>
+            <h2 class="site-description">欢迎来到我的博客，偶尔会分享一些关于CTF和渗透的东西，摸鱼选手一枚.</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -275,8 +275,17 @@
   <ol>
     <li>
       <ol>
-        <li><a href="#week1-base">[Week1] Base</a></li>
-        <li><a href="#week1-人生苦短我用python">[Week1] 人生苦短，我用Python</a></li>
+        <li>
+          <ol>
+            <li><a href="#week1-捂住x只耳">[Week1] 捂住X只耳</a></li>
+            <li><a href="#week2-base">[Week2] Base?!</a></li>
+            <li><a href="#week3-base-revenge">[Week3] Base revenge</a></li>
+            <li><a href="#week3-brokenmp4">[Week3] broken.mp4</a></li>
+            <li><a href="#week3-外星信号">[Week3] 外星信号</a></li>
+            <li><a href="#week3-这是一个压缩包">[Week3] 这是一个压缩包</a></li>
+            <li><a href="#week4-webshell">[Week4] Webshell</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -336,15 +345,298 @@
     <section class="article-content">
     
     
-    <h3 id="week1-base">[Week1] Base
-</h3><p><strong>base32</strong>解码一次,再<strong>base64</strong>解码一次即可得到<code>BaseCTF{we1c0me_to_b4sectf}</code></p>
-<h3 id="week1-人生苦短我用python">[Week1] 人生苦短，我用Python
-</h3><p>按着python代码反着调试写脚本即可打印出flag</p>
-<p><img src="/img/%e4%ba%91%e9%be%99.jpg"
+    <blockquote>
+<p>[!NOTE]</p>
+<p>这里我就只写一些有价值点的和我当时不会的题目的wp了</p>
+</blockquote>
+<h4 id="week1-捂住x只耳">[Week1] 捂住X只耳
+</h4><p>下载音频后未发现频谱和音频波异常，听了下在音乐后半段有摩斯电码声音，所以我们需要将摩斯电码从音乐中分离出来以便识别</p>
+<ol>
+<li>先点击三个点分离立体声到单音道</li>
+</ol>
+<p><img src="/img/image-20240911201353232.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="image-20240911201353232"
+	
+	
+></p>
+<ol start="2">
+<li>点击左上角文件-&gt;导出音频-&gt;多个文件-&gt;导出</li>
+</ol>
+<p><img src="/img/image-20240911202120041.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911202120041"
+	
+	
+></p>
+<p>成功导出两个wav</p>
+<p><img src="/img/image-20240911202202257.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911202202257"
+	
+	
+></p>
+<ol start="3">
+<li>
+<p>打开Adobe Audition，左上角依次点击文件——新建——多轨会话——确定</p>
+</li>
+<li>
+<p>将刚才生成的两个wav拖入进多轨会话，然后双击未命名混音项目，再将两个wav拖入右边轨道</p>
+</li>
+</ol>
+<p><img src="/img/image-20240911202600399.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911202600399"
+	
+	
+></p>
+<p><img src="/img/image-20240911202902190.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911202902190"
+	
+	
+></p>
+<ol start="5">
+<li>双击一个轨道进入后上面工具栏点击——效果——反相</li>
+</ol>
+<p><img src="/img/image-20240911203031552.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911203031552"
+	
+	
+></p>
+<ol start="6">
+<li>双击左侧未命名混音项目后点击左上角，选择导出，多轨混音，整个会话，选择导出位置后直接导出</li>
+</ol>
+<p><img src="/img/image-20240911204313875.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911204313875"
+	
+	
+></p>
+<ol start="7">
+<li>将生成的mp3拖入audacity，点击三个点，频谱图。然后按住ctrl滑动滚轮放大可以看到明显的摩斯码，抄下来解密即可</li>
+</ol>
+<p><img src="/img/image-20240911204653922.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911204653922"
+	
+	
+></p>
+<p><img src="/img/image-20240911204903856.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911204903856"
+	
+	
+></p>
+<hr>
+<h4 id="week2-base">[Week2] Base?!
+</h4><p>这是一段xx-encode码，开始真没想到，随波逐流一把嗦即可</p>
+<p><img src="/img/image-20240911205308922.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911205308922"
+	
+	
+></p>
+<hr>
+<h4 id="week3-base-revenge">[Week3] Base revenge
+</h4><p><img src="/img/image-20240911211205019.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911211205019"
+	
+	
+></p>
+<p>将以上文本base64隐写解密得到<code>JnUaAFMFImgANSEuAWYuBE9SyaYpC2ldBrU9</code></p>
+<p>将hint一键解码发现是atbash加密</p>
+<p><img src="/img/image-20240911211435511.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911211435511"
+	
+	
+></p>
+<p>因为编码器解出来大小写有问题直接用[cyberchef](<a class="link" href="https://cyberchef.org/#recipe=Atbash_Cipher%28%29&amp;input=Sm5VYUFGTUZJbWdBTlNFdUFXWXVCRTlTeWFZcEMybGRCclU5"  target="_blank" rel="noopener"
+    >Atbash Cipher - CyberChef</a>)</p>
+<p><img src="/img/image-20240911212400039.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911212400039"
+	
+	
+></p>
+<p>再base64解码即可</p>
+<p><img src="/img/image-20240911212445891.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911212445891"
+	
+	
+></p>
+<hr>
+<h4 id="week3-brokenmp4">[Week3] broken.mp4
+</h4><p>这道题挺简单的，两个视频用untrunc工具修复即可</p>
+<hr>
+<h4 id="week3-外星信号">[Week3] 外星信号
+</h4><p>音频播放就有莫斯码，先丢[在线网站](<a class="link" href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html"  target="_blank" rel="noopener"
+    >Morse Code Adaptive Audio Decoder | Morse Code World</a>)听一下,前半部分flag在这里面，要转换小写</p>
+<p><img src="/img/image-20240911213518068.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240911213518068"
+	
+	
+></p>
+<p>音频使用foremost提取出压缩包里面有另一个音频，一听就知道是sstv，sstv我只推荐使用[这个脚本](<a class="link" href="https://github.com/colaclanth/sstv"  target="_blank" rel="noopener"
+    >colaclanth/sstv: SSTV Decoder (github.com)</a>)，软件又拉又麻烦,下面是用法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sstv -d flag.mp3 -o result.png
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提取出摩斯码图片如下</p>
+<p><img src="/img/5bd2ebc5cd942d0ec16c41637a47bdcc_720.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="5bd2ebc5cd942d0ec16c41637a47bdcc_720"
+	
+	
+></p>
+<p><img src="/img/252798e7859a90919304b706d1787ba2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="252798e7859a90919304b706d1787ba2"
+	
+	
+></p>
+<p>和前面半段flag组合转换小写即可</p>
+<hr>
+<h4 id="week3-这是一个压缩包">[Week3] 这是一个压缩包
+</h4><p>这道题利用archpr工具的掩码破解，花了我n小时，感觉脚本会更快</p>
+<hr>
+<h4 id="week4-webshell">[Week4] Webshell
+</h4><p>这道题先用wireshark提取出rar压缩包，解压发现是一套WordPress程序，这种博客没啥上传点吧，ai回答</p>
+<blockquote>
+<p>WordPress作为一款广泛使用的内容管理系统（CMS），其安全性一直备受关注。关于WordPress中容易被上传webshell的文件路径，可以从以下几个方面进行归纳：
+主题文件夹：
+路径示例：/wp-content/themes/[主题名称]/
+说明：WordPress允许用户通过后台上传和安装主题。黑客可能会将恶意代码（如webshell）嵌入到自定义主题中，并通过上传主题的方式将其部署到目标网站上。一旦主题被安装，webshell就可以被用来执行恶意命令或操纵网站。
+插件文件夹：</p>
+<p>虽然问题中主要询问的是关于webshell上传的文件路径，但值得注意的是，插件文件夹也是潜在的安全风险点。
+路径示例：/wp-content/plugins/[插件名称]/
+说明：与主题类似，插件也是WordPress扩展功能的重要方式。黑客可能会利用漏洞或恶意插件来上传webshell，从而控制网站。
+上传文件夹：</p>
+<p>路径示例：/wp-content/uploads/
+说明：这是WordPress默认的媒体文件上传目录。虽然直接在这个文件夹中上传webshell可能受到WordPress的限制，但黑客可能会通过绕过安全检查或将webshell与合法文件捆绑上传的方式来达到目的。
+自定义上传目录：</p>
+<p>路径示例：根据用户设置而定（如/wp-content/uploads/custom-directory/）
+说明：WordPress允许用户通过修改配置或安装特定插件来更改默认的上传目录。如果这些自定义目录的安全设置不当，就可能成为黑客上传webshell的潜在目标。</p>
+</blockquote>
+<p>然后再插件目录下确实发现了</p>
+<p><img src="/img/721257c325af60c1fad3c3bb319d6ec9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="721257c325af60c1fad3c3bb319d6ec9"
+	
+	
+></p>
+<p>转字符串后发现读取ui.js文件的内容</p>
+<p><img src="/img/d6179359916dfe6f25ba6ed27fea91bb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="d6179359916dfe6f25ba6ed27fea91bb"
+	
+	
+></p>
+<p>目录下搜索ui.js，解码后发现很像@eval($_POST[&rsquo;&rsquo;])这种，但是传webshell的都使用了自定义函数和各种函数加编码，还是相当有水平的</p>
+<p><img src="/img/fc1ba6fdd9631dea0b018b6c4ba6d907.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fc1ba6fdd9631dea0b018b6c4ba6d907"
+	
+	
+></p>
+<p>连接密码提交不对？再回去一看原来还有层rot13，解密提交即可</p>
+<p><img src="/img/8b45958918ed738b3cd27d15422d81b5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="8b45958918ed738b3cd27d15422d81b5"
 	
 	
 ></p>
