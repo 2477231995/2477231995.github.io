@@ -14,7 +14,7 @@
         
         <guid>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/</guid>
         <description>&lt;h4 id=&#34;week2-really-ez-pop&#34;&gt;[Week2] Really EZ POP
-&lt;/h4&gt;&lt;p&gt;这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性可以使用在类内部写入构造方法来构造链子&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性但可以使用在类内部写入构造方法来构造链子&lt;/p&gt;
 &lt;p&gt;wp如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -841,7 +841,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    app.run(debug=True)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;发现/flag和/flag两个路由，先去login路由查看一下&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;发现/login和/flag两个路由，先去login路由查看一下&lt;/p&gt;
 &lt;p&gt;post方式访问，修改为json请求并传递json数据发现一串token&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912213928943.png&#34;
 	
@@ -892,7 +892,7 @@
 &lt;p&gt;总的来说，&lt;code&gt;Bearer&lt;/code&gt;前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;所以我们构造出如下数据包即可获得flag&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20240912214738658.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912214738658.png&#34;
 	
 	
 	
