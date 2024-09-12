@@ -284,6 +284,8 @@
             <li><a href="#week3-外星信号">[Week3] 外星信号</a></li>
             <li><a href="#week3-这是一个压缩包">[Week3] 这是一个压缩包</a></li>
             <li><a href="#week4-webshell">[Week4] Webshell</a></li>
+            <li><a href="#week4-二维码2-阿喀琉斯之踵">[Week4] 二维码2-阿喀琉斯之踵</a></li>
+            <li><a href="#week4-小cheny的社交">[Week4] 小cheny的社交</a></li>
           </ol>
         </li>
       </ol>
@@ -640,6 +642,99 @@
 	
 	
 ></p>
+<hr>
+<h4 id="week4-二维码2-阿喀琉斯之踵">[Week4] 二维码2-阿喀琉斯之踵
+</h4><p>这道题用CQR纠错是不行的，里面二维码被添加了东西格式不对，用这个[项目](<a class="link" href="https://merri.cx/qrazybox/"  target="_blank" rel="noopener"
+    >QRazyBox - QR Code Analysis and Recovery Toolkit (merri.cx)</a>)可以尝试爆破所有格式</p>
+<ol>
+<li>从图片导入qrcode-2.png</li>
+</ol>
+<p><img src="/img/image-20240912161010793.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912161010793"
+	
+	
+></p>
+<ol start="2">
+<li>点击右上角tools</li>
+</ol>
+<p><img src="/img/image-20240912161119087.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912161119087"
+	
+	
+></p>
+<ol start="3">
+<li>先选择爆破格式模式，然后再点击最上面提取信息</li>
+</ol>
+<p><img src="/img/image-20240912161254572.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912161254572"
+	
+	
+></p>
+<p>over</p>
+<p><img src="/img/image-20240912161333714.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912161333714"
+	
+	
+></p>
+<hr>
+<h4 id="week4-小cheny的社交">[Week4] 小cheny的社交
+</h4><p>这道题，嗯&hellip;会了后有点没啥讲的了，我大体说下过程</p>
+<p>stegsolve看到一串字符，base64解码后再转16进制ascii得到一个QQ</p>
+<p><img src="/img/image-20240912161642245.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912161642245"
+	
+	
+></p>
+<p>搜索QQ在她空间发现尊嘟假嘟编码，用[](<a class="link" href="https://www.zdjd.asia/"  target="_blank" rel="noopener"
+    >尊嘟假嘟O.o (zdjd.asia)</a>)解码得到前半flag，然后还有个视频到b站搜评论下@了一个人点进去看到另外一串密文</p>
+<p><img src="/img/image-20240912162116753.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912162116753"
+	
+	
+></p>
+<p>看着很像链接，用随波逐流梭哈搜索https发现链接</p>
+<p><img src="/img/image-20240912162213814.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912162213814"
+	
+	
+></p>
+<p>进入链接博客又发现尊嘟假嘟编码，这里解码得到后半flag[](<a class="link" href="https://www.zdjd.asia/"  target="_blank" rel="noopener"
+    >尊嘟假嘟O.o (zdjd.asia)</a>)</p>
 
 </section>
 

