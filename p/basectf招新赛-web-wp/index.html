@@ -284,6 +284,8 @@
             <li><a href="#week3-复读机">[Week3] 复读机</a></li>
             <li><a href="#week3-滤个不停">[Week3] 滤个不停</a></li>
             <li><a href="#week4-no-jwt">[Week4] No JWT</a></li>
+            <li><a href="#week3-ez_php_jail">[Week3] ez_php_jail</a></li>
+            <li><a href="#week3-玩原神玩的">[Week3] 玩原神玩的</a></li>
           </ol>
         </li>
       </ol>
@@ -1230,6 +1232,305 @@
 	loading="lazy"
 	
 		alt="image-20240912214738658"
+	
+	
+></p>
+<hr>
+<h4 id="week3-ez_php_jail">[Week3] ez_php_jail
+</h4><p>源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"><span class="n">highlight_file</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">include</span><span class="p">(</span><span class="s2">&#34;hint.html&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">Jail</span> <span class="o">=</span> <span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;Jail_by.Happy&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="o">$</span><span class="n">Jail</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span> <span class="n">die</span><span class="p">(</span><span class="s2">&#34;Do You Like My Jail?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="n">Like_Jail</span><span class="p">(</span><span class="o">$</span><span class="k">var</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">preg_match</span><span class="p">(</span><span class="s1">&#39;/(`|\$|a|c|s|require|include)/i&#39;</span><span class="p">,</span> <span class="o">$</span><span class="k">var</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">Like_Jail</span><span class="p">(</span><span class="o">$</span><span class="n">Jail</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">Jail</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">echo</span> <span class="s2">&#34;Yes! you escaped from the jail! LOL!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">echo</span> <span class="s2">&#34;You will Jail in your life!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">在</span><span class="n">HTML解析后再输出PHP源代码</span>
+</span></span><span class="line"><span class="cl"><span class="err">?</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先解决传参的问题，数据包中发现本题是php7，我们可以利用PHP的字符串解析特性Bypass</p>
+<blockquote>
+<p>当 php 版本⼩于 8 时，GET 请求的参数名含有 . ，会被转为 _ ，但是如果参数名中有 [ ，这个 [ 会被直接转为 _ ，但是后⾯如果有 . ，这个 . 就不会被转为 _</p>
+<p>例子：?Jail[by.Happy==?Jail_by.Happy</p>
+</blockquote>
+<p>接着定义了一个函数Like_Jail过滤了`,$,a,c,s,require,include，并且忽略大小写。</p>
+<p>后面就是想办法绕过过滤打印flag，我想了下能够执行系统命令的system,shell_exec,exec都过不了过滤，只能尝试用php函数来进行读取。</p>
+<p>在源码中注释提示// 在HTML解析后再输出PHP源代码。找了找有这几个函数highlight_file()，highlight_string()，show_source()可以直接输出到浏览器。但是后两个过不了过滤，第一个可以</p>
+<p>又因为highlight_file函数需要指定准确的文件路径和flag的a被过滤，所以我们无法直接利用。先利用glob函数获取flag的文件名(没过滤的话就用scandir了！)</p>
+<p>glob函数返回一个包含有匹配文件或目录的数组</p>
+<p><img src="/img/image-20240918193557204.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918193557204"
+	
+	
+></p>
+<p>print_r打印出匹配到以fl开头的文件只有flag一个</p>
+<p><img src="/img/image-20240918193546159.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918193546159"
+	
+	
+></p>
+<p>构造payload<code>highlight_file(glob('/fl*')[0]);</code></p>
+<p><img src="/img/image-20240918195147853.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918195147853"
+	
+	
+></p>
+<hr>
+<h4 id="week3-玩原神玩的">[Week3] 玩原神玩的
+</h4><p>源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">error_reporting(0);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">include &#39;flag.php&#39;;
+</span></span><span class="line"><span class="cl">if (sizeof($_POST[&#39;len&#39;]) == sizeof($array)) {
+</span></span><span class="line"><span class="cl">  ys_open($_GET[&#39;tip&#39;]);
+</span></span><span class="line"><span class="cl">} else {
+</span></span><span class="line"><span class="cl">  die(&#34;错了！就你还想玩原神？❌❌❌&#34;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">function ys_open($tip) {
+</span></span><span class="line"><span class="cl">  if ($tip != &#34;我要玩原神&#34;) {
+</span></span><span class="line"><span class="cl">    die(&#34;我不管，我要玩原神！😭😭😭&#34;);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  dumpFlag();
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">function dumpFlag() {
+</span></span><span class="line"><span class="cl">  if (!isset($_POST[&#39;m&#39;]) || sizeof($_POST[&#39;m&#39;]) != 2) {
+</span></span><span class="line"><span class="cl">    die(&#34;可恶的QQ人！😡😡😡&#34;);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  $a = $_POST[&#39;m&#39;][0];
+</span></span><span class="line"><span class="cl">  $b = $_POST[&#39;m&#39;][1];
+</span></span><span class="line"><span class="cl">  if(empty($a) || empty($b) || $a != &#34;100%&#34; || $b != &#34;love100%&#34; . md5($a)) {
+</span></span><span class="line"><span class="cl">    die(&#34;某站崩了？肯定是某忽悠干的！😡😡😡&#34;);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  include &#39;flag.php&#39;;
+</span></span><span class="line"><span class="cl">  $flag[] = array();
+</span></span><span class="line"><span class="cl">  for ($ii = 0;$ii &lt; sizeof($array);$ii++) {
+</span></span><span class="line"><span class="cl">    $flag[$ii] = md5(ord($array[$ii]) ^ $ii);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  echo json_encode($flag);
+</span></span><span class="line"><span class="cl">} 错了！就你还想玩原神？❌❌❌
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解决思路</strong></p>
+<ol>
+<li>
+<p><strong>满足len的长度检查</strong>：我们需要提交一个len数组，使其长度与$array相同。</p>
+</li>
+<li>
+<p><strong>正确的tip参数</strong>：在GET请求中传递tip=&ldquo;我要玩原神&rdquo;，以通过ys_open的检查。</p>
+</li>
+<li>
+<p><strong>构造正确的m参数</strong>：m[0]必须为&quot;100%&quot;，而m[1]则为&quot;love100%&ldquo;加上m[0]的MD5哈希。</p>
+</li>
+<li>
+<p>先来猜出$array的元素个数吧</p>
+</li>
+</ol>
+<p>用下面脚本生成字典</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">s = &#34;&#34;
+</span></span><span class="line"><span class="cl">with open(&#34;./2.txt&#34;, &#34;w&#34;) as file:
+</span></span><span class="line"><span class="cl">    for i in range(100):
+</span></span><span class="line"><span class="cl">        s = s + &#34;len[&#34; + str(i) + &#34;]=1&amp;&#34;
+</span></span><span class="line"><span class="cl">        file.write(s[:-1] + &#34;\n&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240918203804582.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918203804582"
+	
+	
+></p>
+<p>burp爆破得出$array数组元素个数为45</p>
+<p><img src="/img/image-20240918210435300.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918210435300"
+	
+	
+></p>
+<p>payload为<code>len[0]=1&amp;len[1]=1&amp;len[2]=1&amp;len[3]=1&amp;len[4]=1&amp;len[5]=1&amp;len[6]=1&amp;len[7]=1&amp;len[8]=1&amp;len[9]=1&amp;len[10]=1&amp;len[11]=1&amp;len[12]=1&amp;len[13]=1&amp;len[14]=1&amp;len[15]=1&amp;len[16]=1&amp;len[17]=1&amp;len[18]=1&amp;len[19]=1&amp;len[20]=1&amp;len[21]=1&amp;len[22]=1&amp;len[23]=1&amp;len[24]=1&amp;len[25]=1&amp;len[26]=1&amp;len[27]=1&amp;len[28]=1&amp;len[29]=1&amp;len[30]=1&amp;len[31]=1&amp;len[32]=1&amp;len[33]=1&amp;len[34]=1&amp;len[35]=1&amp;len[36]=1&amp;len[37]=1&amp;len[38]=1&amp;len[39]=1&amp;len[40]=1&amp;len[41]=1&amp;len[42]=1&amp;len[43]=1&amp;len[44]=1</code></p>
+<p>绕过接下来两个</p>
+<p><img src="/img/image-20240918214031594.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918214031594"
+	
+	
+></p>
+<p>最后这一步中因为PHP中ord函数只取一个字符串的首字母的ascii值，这个值肯定在0-255之间。我们可以通过爆破的方式来通过md5值的比较找出正确的字符</p>
+<p><img src="/img/image-20240918214105653.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918214105653"
+	
+	
+></p>
+<p>脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$md5 = [&#34;3295c76acbf4caaed33c36b1b5fc2cb1&#34;,&#34;26657d5ff9020d2abefe558796b99584&#34;,&#34;73278a4a86960eeb576a8fd4c9ec6997&#34;,&#34;ec8956637a99787bd197eacd77acce5e&#34;,&#34;e2c420d928d4bf8ce0ff2ec19b371514&#34;,&#34;43ec517d68b6edd3015b3edc9a11367b&#34;,&#34;ea5d2f1c4608232e07d3aa3d998e5135&#34;,&#34;c8ffe9a587b126f152ed3d89a146b445&#34;,&#34;66f041e16a60928b05a7e228a89c3799&#34;,&#34;642e92efb79421734881b53e1e1b18b6&#34;,&#34;a3c65c2974270fd093ee8a9bf8ae7d0b&#34;,&#34;9f61408e3afb633e50cdf1b20de6f466&#34;,&#34;72b32a1f754ba1c09b3695e0cb6cde7f&#34;,&#34;093f65e080a295f8076b1c5722a46aa2&#34;,&#34;a97da629b098b75c294dffdc3e463904&#34;,&#34;093f65e080a295f8076b1c5722a46aa2&#34;,&#34;7f39f8317fbdb1988ef4c628eba02591&#34;,&#34;e369853df766fa44e1ed0ff613f563bd&#34;,&#34;c45147dee729311ef5b5c3003946c48f&#34;,&#34;eb160de1de89d9058fcb0b968dbbbd68&#34;,&#34;a5771bce93e200c36f7cd9dfd0e5deaa&#34;,&#34;9f61408e3afb633e50cdf1b20de6f466&#34;,&#34;e369853df766fa44e1ed0ff613f563bd&#34;,&#34;eb160de1de89d9058fcb0b968dbbbd68&#34;,&#34;d645920e395fedad7bbbed0eca3fe2e0&#34;,&#34;a0a080f42e6f13b3a2df133f073095dd&#34;,&#34;b53b3a3d6ab90ce0268229151c9bde11&#34;,&#34;a0a080f42e6f13b3a2df133f073095dd&#34;,&#34;da4fb5c6e93e74d3df8527599fa62642&#34;,&#34;d9d4f495e875a2e075a1a4a6e1b9770f&#34;,&#34;d9d4f495e875a2e075a1a4a6e1b9770f&#34;,&#34;c0c7c76d30bd3dcaefc96f40275bdc0a&#34;,&#34;c74d97b01eae257e44aa9d5bade97baf&#34;,&#34;735b90b4568125ed6c3f678819b6e058&#34;,&#34;7cbbc409ec990f19c78c75bd1e06f215&#34;,&#34;6f4922f45568161a8cdf4ad2299f6d23&#34;,&#34;6ea9ab1baa0efb9e19094440c317e21b&#34;,&#34;e2c420d928d4bf8ce0ff2ec19b371514&#34;,&#34;a3f390d88e4c41f2747bfa2f1b5f87db&#34;,&#34;c16a5320fa475530d9583c34fd356ef5&#34;,&#34;c16a5320fa475530d9583c34fd356ef5&#34;,&#34;28dd2c7955ce926456240b2ff0100bde&#34;,&#34;d2ddea18f00665ce8623e36bd4e3c7c5&#34;,&#34;6ea9ab1baa0efb9e19094440c317e21b&#34;,&#34;43ec517d68b6edd3015b3edc9a11367b&#34;];
+</span></span><span class="line"><span class="cl">$flag = &#34;&#34;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for ($i=0;$i&lt;count($md5);$i++){
+</span></span><span class="line"><span class="cl">    for ($j=0;$j&lt;256;$j++){
+</span></span><span class="line"><span class="cl">        $xor_result = $j ^ $i;
+</span></span><span class="line"><span class="cl">        $cal_md5 = md5($xor_result);
+</span></span><span class="line"><span class="cl">        if ($cal_md5 === $md5[$i]){
+</span></span><span class="line"><span class="cl">            $flag .= chr($j);
+</span></span><span class="line"><span class="cl">            break;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">echo &#34;得到flag为:&#34;.$flag;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240918214306766.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240918214306766"
 	
 	
 ></p>
