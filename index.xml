@@ -17,11 +17,11 @@
 &lt;p&gt;复现地址:&amp;lt;[&lt;a class=&#34;link&#34; href=&#34;https://www.nssctf.cn/problem/308&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;陇剑杯 2021]机密内存（问1） | NSSCTF&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;h1 id=&#34;vmware虚拟机文件类型&#34;&gt;vmware虚拟机文件类型
-&lt;/h1&gt;&lt;img src=&#34;./../../../static/img/1732942376871-186a304c-32a3-412a-bc67-bb7f291745fc.webp&#34; alt=&#34;image.png&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;/h1&gt;&lt;img src=&#34;img/1732942376871-186a304c-32a3-412a-bc67-bb7f291745fc.webp&#34; alt=&#34;image.png&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;思考过程&#34;&gt;思考过程
 &lt;/h1&gt;&lt;p&gt;解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚.  先尝试提取发现果然是不行的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130133414469.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130133414469.png&#34;
 	
 	
 	
@@ -33,23 +33,23 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;接下来看看另外两个文件&lt;/p&gt;
 &lt;p&gt;打开Encryption.bin01发现为一个二进制文件&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130133722979.png&#34; alt=&#34;image-20241130133722979&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130133722979.png&#34; alt=&#34;image-20241130133722979&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;根据文件大小数千kb和本地的vmss文件(虚拟机挂起时记录状态的文件)进行对比判断Encryption.bin01为vmss文件&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/83d5e0ba8465f93a76289c74a5028e89.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/83d5e0ba8465f93a76289c74a5028e89.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;将Encryption.bin01文件重命名为mem_secret-963a4663.vmss，vmss文件的文件名一定要和vmem文件名对应，否则无法读取挂起的状态&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130135035014.png&#34; alt=&#34;image-20241130135035014&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130135035014.png&#34; alt=&#34;image-20241130135035014&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;然后打开Encryption.bin02文件发现一半是某种加密可见字符串,另一半出现较多乱码&lt;/p&gt;
 &lt;p&gt;将后半中的未加密字符串进行搜索发现提到加密和vmx文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;./../../../static/img/image-20241130135307618.png&#34; alt=&#34;image-20241130135307618&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;img src=&#34;./../../../static/img/image-20241130135625867.png&#34; alt=&#34;image-20241130135625867&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/image-20241130135307618.png&#34; alt=&#34;image-20241130135307618&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;img src=&#34;img/image-20241130135625867.png&#34; alt=&#34;image-20241130135625867&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;打开本地kali的vmx文件发现是一些配置,由此看来是对配置信息进行了加密&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130135758426.png&#34; alt=&#34;image-20241130135758426&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130135758426.png&#34; alt=&#34;image-20241130135758426&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;拿我本地另一台机器加密实验一下&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130132801295.png&#34; alt=&#34;image-20241130132801295&#34; style=&#34;zoom: 67%;&#34; /&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130133104839.png&#34; alt=&#34;image-20241130133104839&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130132801295.png&#34; alt=&#34;image-20241130132801295&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130133104839.png&#34; alt=&#34;image-20241130133104839&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;加密后打开确实发现大量加密字符串,但是头部发现了一些信息是bin02文件没有的,判断部分关键信息被出题人删了,我们需要进行修复. 还有在vmx加密文件中未发现不可见字符串,所以判断bin02文件后半部分是另外一个文件&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130135954089.png&#34; alt=&#34;image-20241130135954089&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130135954089.png&#34; alt=&#34;image-20241130135954089&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;使用010将后半段单独提出来到一个16进制文本,&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130140322514.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130140322514.png&#34;
 	
 	
 	
@@ -60,17 +60,17 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;将关键字lsilogic丢入gpt,因为我们已经判断出前半部分为vmx文件,所以我们与vmdk文件作对比看看&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130140424485.png&#34; alt=&#34;image-20241130140424485&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130140424485.png&#34; alt=&#34;image-20241130140424485&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;经过比对发现大量相似特征,010导出后命名为vmem文件名+vmdk&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130140812402.png&#34; alt=&#34;image-20241130140812402&#34; style=&#34;zoom:80%;&#34; /&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130140923564.png&#34; alt=&#34;image-20241130140923564&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130140812402.png&#34; alt=&#34;image-20241130140812402&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130140923564.png&#34; alt=&#34;image-20241130140923564&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;注意: 这里一定要摆脱刻板印象,不是所有vmdk文件都很大!&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130140648544.png&#34; alt=&#34;image-20241130140648544&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130140648544.png&#34; alt=&#34;image-20241130140648544&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;接下来就是修复vmx文件然后尝试挂载该虚拟机然后解除加密即可得到明文文件进行内存取证&lt;/p&gt;
 &lt;p&gt;以下地方需要进行修复, 按照本地加密的样本来进行修复bin02文件&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130142218655.png&#34; alt=&#34;image-20241130142218655&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130142218655.png&#34; alt=&#34;image-20241130142218655&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;上面已经将后半部分提取出去, 直接改为vmx文件, 至此完成修复工作&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130142515684.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130142515684.png&#34;
 	
 	
 	
@@ -100,54 +100,55 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;提示虚拟机加密, 可以使用这个项目来尝试破解密码&lt;a class=&#34;link&#34; href=&#34;https://github.com/axcheron/pyvmx-cracker&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/axcheron/pyvmx-cracker&lt;/a&gt;&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130155034648.png&#34; alt=&#34;image-20241130155034648&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130155034648.png&#34; alt=&#34;image-20241130155034648&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;命令:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;python39 .\pyvmx-cracker.py -v mem_secret.vmx -d wordlist.txt&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;得到密码:1q2w3e4r&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130155726294.png&#34; alt=&#34;image-20241130155726294&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130155726294.png&#34; alt=&#34;image-20241130155726294&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;接下来就是移除加密&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130160050217.png&#34; alt=&#34;image-20241130160050217&#34; style=&#34;zoom: 80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130160050217.png&#34; alt=&#34;image-20241130160050217&#34; style=&#34;zoom: 80%;&#34; /&gt;
 &lt;p&gt;结果却发现无法移除加密,磁盘问题,说明vmdk文件仍然存在问题&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130160251730.png&#34; alt=&#34;image-20241130160251730&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130160251730.png&#34; alt=&#34;image-20241130160251730&#34; style=&#34;zoom: 67%;&#34; /&gt;
 &lt;h1 id=&#34;恢复vmdk&#34;&gt;恢复vmdk
 &lt;/h1&gt;&lt;p&gt;这个界面很明显是win10&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130160418192.png&#34; alt=&#34;image-20241130160418192&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130160418192.png&#34; alt=&#34;image-20241130160418192&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;blockquote&gt;
 &lt;p&gt;通过之前的比对我们现在需要一个合法的文件头与填充。所以重新创建一个win10虚拟机，此时并不需要去安装win10系统（因为我们的目的只是获取到正确的vmdk文件，VMware在我们安装系统前便已经为我们生成），再用任意的密码加密这个win10虚拟机得到同一密码加密后的完整的vmdk文件，试着用得到的完整的vmdk文件修复原来那个分离出来的残缺vmdk&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;win10 iso镜像下载点&lt;a class=&#34;link&#34; href=&#34;https://www.microsoft.com/zh-cn/software-download/windows10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.microsoft.com/zh-cn/software-download/windows10&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;下载步骤如下:&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130161500948.png&#34; alt=&#34;image-20241130161500948&#34; style=&#34;zoom: 33%;&#34; /&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130161001135.png&#34; alt=&#34;image-20241130161001135&#34; style=&#34;zoom: 50%;&#34; /&gt;
-&lt;p&gt;&lt;img src=&#34;./../../../static/img/image-20241130161041811.png&#34; alt=&#34;image-20241130161041811&#34; style=&#34;zoom: 50%;&#34; /&gt;&lt;img src=&#34;./../../../static/img/image-20241130161102852.png&#34; alt=&#34;image-20241130161102852&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;img/image-20241130161500948.png&#34; alt=&#34;image-20241130161500948&#34; style=&#34;zoom: 33%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130161001135.png&#34; alt=&#34;image-20241130161001135&#34; style=&#34;zoom: 50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130161041811.png&#34; alt=&#34;image-20241130161041811&#34; style=&#34;zoom: 50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130161102852.png&#34; alt=&#34;image-20241130161102852&#34; style=&#34;zoom:50%;&#34; /&gt;
 &lt;h2 id=&#34;坑1&#34;&gt;坑1
 &lt;/h2&gt;&lt;p&gt;新建一个Win10虚拟机,&lt;strong&gt;这里有个坑，记录一下&lt;/strong&gt;：我们发现这里不能选择拆分成多个文件，否则会导致有多个vmdk，同时内部格式也会与单个vmdk有所不同，最后也试过无法移除加密。&lt;/p&gt;
 &lt;p&gt;除了下面这个其他全部默认就好, 磁盘不够的话给个30就行,不用装系统&lt;/p&gt;
 &lt;p&gt;选择15系的&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130172832480.png&#34; alt=&#34;image-20241130172832480&#34; style=&#34;zoom: 80%;&#34; /&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130163108870.png&#34; alt=&#34;image-20241130163108870&#34; style=&#34;zoom:80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130172832480.png&#34; alt=&#34;image-20241130172832480&#34; style=&#34;zoom: 80%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130163108870.png&#34; alt=&#34;image-20241130163108870&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;p&gt;进行加密,我还是用的相同的密码:1q2w3e4r&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130163359185.png&#34; alt=&#34;image-20241130163359185&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130163359185.png&#34; alt=&#34;image-20241130163359185&#34; style=&#34;zoom:50%;&#34; /&gt;
 &lt;p&gt;打开题目附件里的损坏vmdk将0x18前的部分全部删除&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130164247141.png&#34; alt=&#34;image-20241130164247141&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130164247141.png&#34; alt=&#34;image-20241130164247141&#34; style=&#34;zoom:50%;&#34; /&gt;
 &lt;p&gt;接下来找到本地的win10 vmdk文件拖入010&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130164743486.png&#34; alt=&#34;image-20241130164743486&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130164743486.png&#34; alt=&#34;image-20241130164743486&#34; style=&#34;zoom: 67%;&#34; /&gt;
 &lt;p&gt;找到偏移地址0x200处, 将光标移到0x18前面, 然后通过左上角 “编辑-插入/覆盖-覆盖文件&amp;quot;选取破损vmdk覆盖&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130164854463.png&#34; alt=&#34;image-20241130164854463&#34; style=&#34;zoom: 50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130164854463.png&#34; alt=&#34;image-20241130164854463&#34; style=&#34;zoom: 50%;&#34; /&gt;
 &lt;p&gt;覆盖后在偏移地址0x220处覆盖字节为vmware达成格式&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130165716377.png&#34; alt=&#34;image-20241130165716377&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130165716377.png&#34; alt=&#34;image-20241130165716377&#34; style=&#34;zoom:50%;&#34; /&gt;
 &lt;p&gt;覆盖后:&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130170032769.png&#34; alt=&#34;image-20241130170032769&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130170032769.png&#34; alt=&#34;image-20241130170032769&#34; style=&#34;zoom:50%;&#34; /&gt;
 &lt;p&gt;接着重命名此vmdk文件，此时虚拟机修复完成，将其放到被加密的虚拟机目录下。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;这里还有个坑：修复完成后不要试图开启虚拟机，否则vmem文件会被删除。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;在访问控制中移除加密成功&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/46d6132b8ef28e6b59e812553d2eb0cb.png&#34; alt=&#34;46d6132b8ef28e6b59e812553d2eb0cb&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;img src=&#34;img/46d6132b8ef28e6b59e812553d2eb0cb.png&#34; alt=&#34;46d6132b8ef28e6b59e812553d2eb0cb&#34; style=&#34;zoom: 67%;&#34; /&gt;
 &lt;h1 id=&#34;内存取证&#34;&gt;内存取证
 &lt;/h1&gt;&lt;p&gt;终于成功加载了!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130174142755.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130174142755.png&#34;
 	
 	
 	
@@ -161,9 +162,9 @@
 &lt;h2 id=&#34;问1&#34;&gt;问1
 &lt;/h2&gt;&lt;p&gt;取证人员首先对容器的基本信息进行核实，经过确定该容器的基本信息为________。（答案为32位小写md5(容器操作系统系统的版本号+容器主机名+系统用户名），例如：操作系统的版本号为10.0.22449，容器主机名为DESKTOP-0521,系统登录用户名为admin，则该题答案为32位小写md5(10.0.22449DESKTOP-0521admin) 的值ae278d9bc4aa5ee84a4aed858d17d52a)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;利用一把梭工具得到主机名和用户&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130182044412.png&#34; alt=&#34;image-20241130182044412&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130182044412.png&#34; alt=&#34;image-20241130182044412&#34; style=&#34;zoom: 67%;&#34; /&gt;
 &lt;p&gt;还是导出注册表然后使用wrr工具分析注册表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130185855947.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130185855947.png&#34;
 	
 	
 	
@@ -175,22 +176,22 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;将&lt;code&gt;10.0.18363DESKTOP-4N21ET2Ado&lt;/code&gt;md5加密后得到flag&lt;/p&gt;
 &lt;p&gt;然而提交不对,看官方wp里面是6.3.18362 , 不知道哪出了问题&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/20210919203338-d093492e-1945-1.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;img src=&#34;img/20210919203338-d093492e-1945-1.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34; /&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;问2&#34;&gt;问2
 &lt;/h2&gt;&lt;p&gt;黑客入侵容器后曾通过木马控制端使用Messagebox发送过一段信息，该信息的内容是____________。（答案为Messagebox信息框内内容）。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;挂起页面已经显示出来了, Best_hacker&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130191502956.png&#34; alt=&#34;image-20241130191502956&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130191502956.png&#34; alt=&#34;image-20241130191502956&#34; style=&#34;zoom:67%;&#34; /&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;问3&#34;&gt;问3
 &lt;/h2&gt;&lt;p&gt;经过入侵分析发现该容器受到入侵的原因为容器使用人的违规进行游戏的行为，该使用人进行游戏程序的信息是__________。（答案为“32位小写md5(游戏程序注册邮箱+游戏程序登录用户名+游戏程序登录密码)，例如：注册邮箱为adol@163.com,登录用户名为user,密码为user1234，则该题答案为” &lt;a class=&#34;link&#34; href=&#34;mailto:adol@163.comuseruser1234&#34; &gt;adol@163.comuseruser1234&lt;/a&gt;”的小写md5值5f4505b7734467bfed3b16d5d6e75c16)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;从快照和安装软件可以看到使用了steam&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130192418200.png&#34; alt=&#34;image-20241130192418200&#34; style=&#34;zoom:67%;&#34; /&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130192436684.png&#34; alt=&#34;image-20241130192436684&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130192418200.png&#34; alt=&#34;image-20241130192418200&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130192436684.png&#34; alt=&#34;image-20241130192436684&#34; style=&#34;zoom:67%;&#34; /&gt;
 &lt;p&gt;拖到kali用正则搜索镜像中的邮箱&lt;/p&gt;
 &lt;p&gt;命令:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;strings mem_secret-963a4663.vmem | grep -E &amp;quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130195337722.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130195337722.png&#34;
 	
 	
 	
@@ -203,15 +204,15 @@
 &lt;p&gt;发现邮箱john@uuf.me多次在路径中出现而且存在该邮箱命名的文件夹,多半为用户邮箱&lt;/p&gt;
 &lt;p&gt;使用命令查找账号密码,拿到notepad++搜一下找到账号密码请求&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;strings mem_secret-963a4663.vmem -n 10 |grep -C 3 &amp;quot;password&amp;quot;&amp;gt;mem_secret-963a4663_output.txt&lt;/code&gt;&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130201542556.png&#34; alt=&#34;image-20241130201542556&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;img src=&#34;img/image-20241130201542556.png&#34; alt=&#34;image-20241130201542556&#34; style=&#34;zoom:67%;&#34; /&gt;
 &lt;p&gt;将john@uuf.mejock_you1jock.2021 md5加密即可得到flag&lt;/p&gt;
 &lt;h2 id=&#34;问4&#34;&gt;问4
 &lt;/h2&gt;&lt;p&gt;经过入侵分析发现该容器曾被黑客植入木马控制的信息是_________。（答案为“32位小写md5(木马程序进程名+木马回连ip地址+木马回连ip端口）”，例如：木马程序进程名为svhost.exe，木马回连ip为1.1.1.1，木马回连端口为1234，则该题答案为“svhost.exe1.1.1.11234”的32位小写md5值f02da74a0d78a13e7944277c3531bbea)。得到的flag请使用NSSCTF{}格式提交&lt;/p&gt;
 &lt;p&gt;根据第三题可以判断是攻击者通过映像劫持等技术造成机主在启动steam的时候马儿也生效了,我就直接先看异常对外连接再看进程了,因为进程多半伪装了没那么好找&lt;/p&gt;
 &lt;p&gt;发现异常对外连接,确定ip为192.168.241.147,回连端口为8808&lt;/p&gt;
-&lt;img src=&#34;./../../../static/img/image-20241130210436029.png&#34; alt=&#34;image-20241130210436029&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;img src=&#34;image-20241130210436029.png&#34; alt=&#34;image-20241130210436029&#34; style=&#34;zoom:67%;&#34; /&gt;
 &lt;p&gt;进程列表搜索steam,玩过steam的都知道steam.exe还有很多其他服务比如steamhelper&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130203611397.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130203611397.png&#34;
 	
 	
 	
@@ -222,7 +223,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;第二个steam.exe单一个进程, 判断此进程为异常进程&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241130203707366.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130203707366.png&#34;
 	
 	
 	
@@ -244,7 +245,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python2 vol.py -f mem_secret-963a4663.vmem --profile=Win10x64_18362 userassist
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;./../../../static/img/20210919203608-29becd02-1946-1.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;img/20210919203608-29becd02-1946-1.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34; /&gt;
 &lt;p&gt;答案为md5(Wywz.exe2021-09-1021:10:13)&lt;/p&gt;
 &lt;p&gt;d46586ca847e6be1004037bc288bf60c&lt;/p&gt;
 </description>
