@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\n知识了解之vmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
+<title>[陇剑杯2021]机密内存复现</title>
+
+<link rel='canonical' href='http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="[陇剑杯2021]机密内存复现">
+<meta property='og:description' content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\n知识了解之vmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
+<meta property='og:url' content='http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/'>
+<meta property='og:site_name' content='gucheNg'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-30T12:56:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-30T12:56:25&#43;08:00'/>
+<meta name="twitter:title" content="[陇剑杯2021]机密内存复现">
+<meta name="twitter:description" content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\n知识了解之vmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu16238301693240277511.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">gucheNg</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，偶尔会分享一些关于CTF和渗透的东西，摸鱼选手一枚.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1778687393'
+                        target="_blank"
+                        title="bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/weixin_73399382'
+                        target="_blank"
+                        title="csdn"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1725886844926" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4556" width="32" height="32" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M530.9293681 431.99298667c12.69089853-1.39850077 32.17241993-2.81598184 58.96997255-2.81598184 44.75202505 0 80.92755642 7.8957922 103.33549032 24.51560657 20.13547797 15.48790009 33.52519552 40.55565997 29.81627827 76.89597458-3.43197786 33.81076231-20.74198383 57.48864879-45.99437 72.12071127C653.95861373 616.52261991 624.87825229 622.43066023 581.11147578 622.43066023c-25.78555916 0-50.402969-1.41748106-69.11147578-4.22397275l18.9293681-186.21370082z m36.98564379 149.2013121c4.29730562 0.85583762 9.97499448 1.70218509 21.16558896 1.7021851 44.76151521 0 76.3265665-22.32511089 79.51007536-53.69690853 4.60098993-45.34127616-23.40180983-61.20619343-70.57468202-60.93011679-6.10129397 0-14.59496468 0-19.09501409 0.83685734L567.90552174 581.20378891h0.0086274z m192.82056016-142.09665206c181.99921821-34.39915066 197.70797962 27.4144114 192.08550608 82.12331343L942.21024461 622.43066023h-57.75523531l9.67131017-92.30191443c2.08955515-20.32786888 15.10225553-60.09239669-47.74228028-58.59209265-21.7272324 0.52454563-32.53131957 3.50617346-32.53131957 3.50617347s-1.88594862 24.56133176-4.16875743 42.71768524L798.70560163 622.43066023h-56.64143855l11.23631967-103.16035419" fill="#231916" p-id="4557"></path><path d="M265.80433314 616.11799508c-10.67553898 3.74515232-32.81688637 6.31266516-63.76507889 6.31266515C113.06923991 622.43066023 65.05951037 580.09861956 70.72857184 524.15600002c6.80960313-66.67251112 77.93643846-104.18183779 155.82628898-104.18183779 30.17517791 0 47.92690654 2.46657234 64.58381871 6.58960456l-5.35588702 44.91767104c-11.06118355-3.78225011-37.00289858-7.25218852-58.00370429-7.25218852-45.84684153 0-84.76415912 13.84093033-89.22797347 57.59907945-3.97550376 39.12955153 23.3465945 57.8380583 74.89959531 57.8380583 17.94498229 0 44.41124294-2.60461066 56.64143856-6.35839035l-4.30679575 42.79188083 0.01898028 0.01725479z" fill="#C92027" p-id="4558"></path><path d="M305.55937083 570.68440578c16.63793189 5.83470746 51.32264935 11.65043465 79.37203705 11.65043465 30.2209031 0 47.04346126-8.05194806 48.39623685-20.53061266 1.22336465-11.39247553-11.15349668-12.92987738-45.28606084-20.71437619-47.16338205-11.12675175-77.25573697-28.3349545-74.3103442-55.82356149C317.17270769 453.32508436 361.6115583 429.17700483 429.80249098 429.17700483c33.26723639 0 65.49487164 2.25433839 82.19750902 7.51877503l-5.74239433 40.26060304c-10.84032224-3.62523151-52.34413295-8.65931669-80.41163819-8.65931669-28.46350268 0-43.19736842 8.60410136-44.21885202 18.04592281-1.28807011 11.94549158 13.50963835 12.49764488 50.49441939 21.95758387 50.06218689 12.2120781 71.95506527 29.41079069 69.09335825 56.07116773C497.85538535 595.77977332 457.87085896 622.43066023 378.02949161 622.43066023c-33.23962873 0-61.89638506-5.83470746-77.68796948-11.66855218l5.21784869-40.07770228z" fill="#231916" p-id="4559"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/2477231995/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#坑1">坑1</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#问1">问1</a></li>
+    <li><a href="#问2">问2</a></li>
+    <li><a href="#问3">问3</a></li>
+    <li><a href="#问4">问4</a></li>
+    <li><a href="#问5">问5</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/">[陇剑杯2021]机密内存复现</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-11-30</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照</p>
+<p>复现地址:&lt;[<a class="link" href="https://www.nssctf.cn/problem/308"  target="_blank" rel="noopener"
+    >陇剑杯 2021]机密内存（问1） | NSSCTF</a>&gt;</p>
+<h1 id="知识了解之vmware虚拟机文件类型">知识了解之vmware虚拟机文件类型
+</h1><img src="./../../../static/img/1732942376871-186a304c-32a3-412a-bc67-bb7f291745fc.webp" alt="image.png" style="zoom:80%;" />
+<hr>
+<h1 id="思考过程">思考过程
+</h1><p>解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚.  先尝试提取发现果然是不行的</p>
+<p><img src="/static/img/image-20241130133414469.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130133414469"
+	
+	
+></p>
+<p>接下来看看另外两个文件</p>
+<p>打开Encryption.bin01发现为一个二进制文件</p>
+<img src="./../../../static/img/image-20241130133722979.png" alt="image-20241130133722979" style="zoom:80%;" />
+<p>根据文件大小数千kb和本地的vmss文件(虚拟机挂起时记录状态的文件)进行对比判断Encryption.bin01为vmss文件</p>
+<img src="./../../../static/img/83d5e0ba8465f93a76289c74a5028e89.png" alt="img" style="zoom:80%;" />
+<p>将Encryption.bin01文件重命名为mem_secret-963a4663.vmss，vmss文件的文件名一定要和vmem文件名对应，否则无法读取挂起的状态</p>
+<img src="./../../../static/img/image-20241130135035014.png" alt="image-20241130135035014" style="zoom:80%;" />
+<p>然后打开Encryption.bin02文件发现一半是某种加密可见字符串,另一半出现较多乱码</p>
+<p>将后半中的未加密字符串进行搜索发现提到加密和vmx文件</p>
+<p><img src="./../../../static/img/image-20241130135307618.png" alt="image-20241130135307618" style="zoom:80%;" /><img src="./../../../static/img/image-20241130135625867.png" alt="image-20241130135625867" style="zoom:80%;" /></p>
+<p>打开本地kali的vmx文件发现是一些配置,由此看来是对配置信息进行了加密</p>
+<img src="./../../../static/img/image-20241130135758426.png" alt="image-20241130135758426" style="zoom:80%;" />
+<p>拿我本地另一台机器加密实验一下</p>
+<img src="./../../../static/img/image-20241130132801295.png" alt="image-20241130132801295" style="zoom: 67%;" />
+<img src="./../../../static/img/image-20241130133104839.png" alt="image-20241130133104839" style="zoom:80%;" />
+<p>加密后打开确实发现大量加密字符串,但是头部发现了一些信息是bin02文件没有的,判断部分关键信息被出题人删了,我们需要进行修复. 还有在vmx加密文件中未发现不可见字符串,所以判断bin02文件后半部分是另外一个文件</p>
+<img src="./../../../static/img/image-20241130135954089.png" alt="image-20241130135954089" style="zoom:80%;" />
+<p>使用010将后半段单独提出来到一个16进制文本,</p>
+<p><img src="/static/img/image-20241130140322514.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130140322514"
+	
+	
+></p>
+<p>将关键字lsilogic丢入gpt,因为我们已经判断出前半部分为vmx文件,所以我们与vmdk文件作对比看看</p>
+<img src="./../../../static/img/image-20241130140424485.png" alt="image-20241130140424485" style="zoom:80%;" />
+<p>经过比对发现大量相似特征,010导出后命名为vmem文件名+vmdk</p>
+<img src="./../../../static/img/image-20241130140812402.png" alt="image-20241130140812402" style="zoom:80%;" />
+<img src="./../../../static/img/image-20241130140923564.png" alt="image-20241130140923564" style="zoom:80%;" />
+<p>注意: 这里一定要摆脱刻板印象,不是所有vmdk文件都很大!</p>
+<img src="./../../../static/img/image-20241130140648544.png" alt="image-20241130140648544" style="zoom:80%;" />
+<p>接下来就是修复vmx文件然后尝试挂载该虚拟机然后解除加密即可得到明文文件进行内存取证</p>
+<p>以下地方需要进行修复, 按照本地加密的样本来进行修复bin02文件</p>
+<img src="./../../../static/img/image-20241130142218655.png" alt="image-20241130142218655" style="zoom:80%;" />
+<p>上面已经将后半部分提取出去, 直接改为vmx文件, 至此完成修复工作</p>
+<p><img src="/static/img/image-20241130142515684.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130142515684"
+	
+	
+></p>
+<hr>
+<h1 id="解除密码保护">解除密码保护
+</h1><p>吐了这里,开始少打了一个空格一直导不进去md</p>
+<p>vmx文件内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.encoding = &#34;GBK&#34;
+</span></span><span class="line"><span class="cl">displayName = &#34;buzhidao&#34;
+</span></span><span class="line"><span class="cl">encryption.keySafe = &#34;vmware:key/list/(pair/(phrase/Dg7Se8rqkNI%3d/pass2key%3dPBKDF2%2dHMAC%2dSHA%2d1%3acipher%3dAES%2d256%3arounds%3d10000%3asalt%3d%2b21PdYUqEQd1wdT2AoPEQw%253d%253d,HMAC%2dSHA%2d1,CgKwC5U7lfLjpVohwbpxufC11yU4a0%2byrP08oY0KDDcP1NL%2fRiLojwTz2JnYqm7baAhtgENYUeFUHXwODjSClaJ%2bSRBhKw6UwET6p3AYK8vs4T0cBrvTjYSrs0baLgG7dozcvL5JxA%2fKYJvriz4Mf%2bMmVvE%3d))&#34;
+</span></span><span class="line"><span class="cl">encryption.data =&#34;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&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提示虚拟机加密, 可以使用这个项目来尝试破解密码<a class="link" href="https://github.com/axcheron/pyvmx-cracker"  target="_blank" rel="noopener"
+    >https://github.com/axcheron/pyvmx-cracker</a></p>
+<img src="./../../../static/img/image-20241130155034648.png" alt="image-20241130155034648" style="zoom:80%;" />
+<p>命令:</p>
+<p><code>python39 .\pyvmx-cracker.py -v mem_secret.vmx -d wordlist.txt</code></p>
+<p>得到密码:1q2w3e4r</p>
+<img src="./../../../static/img/image-20241130155726294.png" alt="image-20241130155726294" style="zoom:80%;" />
+<p>接下来就是移除加密</p>
+<img src="./../../../static/img/image-20241130160050217.png" alt="image-20241130160050217" style="zoom: 80%;" />
+<p>结果却发现无法移除加密,磁盘问题,说明vmdk文件仍然存在问题</p>
+<img src="./../../../static/img/image-20241130160251730.png" alt="image-20241130160251730" style="zoom: 67%;" />
+<h1 id="恢复vmdk">恢复vmdk
+</h1><p>这个界面很明显是win10</p>
+<img src="./../../../static/img/image-20241130160418192.png" alt="image-20241130160418192" style="zoom:80%;" />
+<blockquote>
+<p>通过之前的比对我们现在需要一个合法的文件头与填充。所以重新创建一个win10虚拟机，此时并不需要去安装win10系统（因为我们的目的只是获取到正确的vmdk文件，VMware在我们安装系统前便已经为我们生成），再用任意的密码加密这个win10虚拟机得到同一密码加密后的完整的vmdk文件，试着用得到的完整的vmdk文件修复原来那个分离出来的残缺vmdk</p>
+</blockquote>
+<p>win10 iso镜像下载点<a class="link" href="https://www.microsoft.com/zh-cn/software-download/windows10"  target="_blank" rel="noopener"
+    >https://www.microsoft.com/zh-cn/software-download/windows10</a></p>
+<p>下载步骤如下:</p>
+<img src="./../../../static/img/image-20241130161500948.png" alt="image-20241130161500948" style="zoom: 33%;" />
+<img src="./../../../static/img/image-20241130161001135.png" alt="image-20241130161001135" style="zoom: 50%;" />
+<p><img src="./../../../static/img/image-20241130161041811.png" alt="image-20241130161041811" style="zoom: 50%;" /><img src="./../../../static/img/image-20241130161102852.png" alt="image-20241130161102852" style="zoom:50%;" /></p>
+<h2 id="坑1">坑1
+</h2><p>新建一个Win10虚拟机,<strong>这里有个坑，记录一下</strong>：我们发现这里不能选择拆分成多个文件，否则会导致有多个vmdk，同时内部格式也会与单个vmdk有所不同，最后也试过无法移除加密。</p>
+<p>除了下面这个其他全部默认就好, 磁盘不够的话给个30就行,不用装系统</p>
+<p>选择15系的</p>
+<img src="./../../../static/img/image-20241130172832480.png" alt="image-20241130172832480" style="zoom: 80%;" />
+<img src="./../../../static/img/image-20241130163108870.png" alt="image-20241130163108870" style="zoom:80%;" />
+<p>进行加密,我还是用的相同的密码:1q2w3e4r</p>
+<img src="./../../../static/img/image-20241130163359185.png" alt="image-20241130163359185" style="zoom:50%;" />
+<p>打开题目附件里的损坏vmdk将0x18前的部分全部删除</p>
+<img src="./../../../static/img/image-20241130164247141.png" alt="image-20241130164247141" style="zoom:50%;" />
+<p>接下来找到本地的win10 vmdk文件拖入010</p>
+<img src="./../../../static/img/image-20241130164743486.png" alt="image-20241130164743486" style="zoom: 67%;" />
+<p>找到偏移地址0x200处, 将光标移到0x18前面, 然后通过左上角 “编辑-插入/覆盖-覆盖文件&quot;选取破损vmdk覆盖</p>
+<img src="./../../../static/img/image-20241130164854463.png" alt="image-20241130164854463" style="zoom: 50%;" />
+<p>覆盖后在偏移地址0x220处覆盖字节为vmware达成格式</p>
+<img src="./../../../static/img/image-20241130165716377.png" alt="image-20241130165716377" style="zoom:50%;" />
+<p>覆盖后:</p>
+<img src="./../../../static/img/image-20241130170032769.png" alt="image-20241130170032769" style="zoom:50%;" />
+<p>接着重命名此vmdk文件，此时虚拟机修复完成，将其放到被加密的虚拟机目录下。</p>
+<blockquote>
+<p>这里还有个坑：修复完成后不要试图开启虚拟机，否则vmem文件会被删除。</p>
+</blockquote>
+<p>在访问控制中移除加密成功</p>
+<img src="./../../../static/img/46d6132b8ef28e6b59e812553d2eb0cb.png" alt="46d6132b8ef28e6b59e812553d2eb0cb" style="zoom: 67%;" />
+<h1 id="内存取证">内存取证
+</h1><p>终于成功加载了!</p>
+<p><img src="/static/img/image-20241130174142755.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130174142755"
+	
+	
+></p>
+<p>这道题好像只能用vol3,vol2不行</p>
+<h2 id="问1">问1
+</h2><p>取证人员首先对容器的基本信息进行核实，经过确定该容器的基本信息为________。（答案为32位小写md5(容器操作系统系统的版本号+容器主机名+系统用户名），例如：操作系统的版本号为10.0.22449，容器主机名为DESKTOP-0521,系统登录用户名为admin，则该题答案为32位小写md5(10.0.22449DESKTOP-0521admin) 的值ae278d9bc4aa5ee84a4aed858d17d52a)。得到的flag请使用NSSCTF{}格式提交。</p>
+<p>利用一把梭工具得到主机名和用户</p>
+<img src="./../../../static/img/image-20241130182044412.png" alt="image-20241130182044412" style="zoom: 67%;" />
+<p>还是导出注册表然后使用wrr工具分析注册表</p>
+<p><img src="/static/img/image-20241130185855947.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130185855947"
+	
+	
+></p>
+<p>将<code>10.0.18363DESKTOP-4N21ET2Ado</code>md5加密后得到flag</p>
+<p>然而提交不对,看官方wp里面是6.3.18362 , 不知道哪出了问题</p>
+<img src="./../../../static/img/20210919203338-d093492e-1945-1.png" alt="img" style="zoom:67%;" />
+<hr>
+<h2 id="问2">问2
+</h2><p>黑客入侵容器后曾通过木马控制端使用Messagebox发送过一段信息，该信息的内容是____________。（答案为Messagebox信息框内内容）。得到的flag请使用NSSCTF{}格式提交。</p>
+<p>挂起页面已经显示出来了, Best_hacker</p>
+<img src="./../../../static/img/image-20241130191502956.png" alt="image-20241130191502956" style="zoom:67%;" />
+<hr>
+<h2 id="问3">问3
+</h2><p>经过入侵分析发现该容器受到入侵的原因为容器使用人的违规进行游戏的行为，该使用人进行游戏程序的信息是__________。（答案为“32位小写md5(游戏程序注册邮箱+游戏程序登录用户名+游戏程序登录密码)，例如：注册邮箱为adol@163.com,登录用户名为user,密码为user1234，则该题答案为” <a class="link" href="mailto:adol@163.comuseruser1234" >adol@163.comuseruser1234</a>”的小写md5值5f4505b7734467bfed3b16d5d6e75c16)。得到的flag请使用NSSCTF{}格式提交。</p>
+<p>从快照和安装软件可以看到使用了steam</p>
+<img src="./../../../static/img/image-20241130192418200.png" alt="image-20241130192418200" style="zoom:67%;" />
+<img src="./../../../static/img/image-20241130192436684.png" alt="image-20241130192436684" style="zoom:67%;" />
+<p>拖到kali用正则搜索镜像中的邮箱</p>
+<p>命令:</p>
+<p><code>strings mem_secret-963a4663.vmem | grep -E &quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}&quot;</code></p>
+<p><img src="/static/img/image-20241130195337722.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130195337722"
+	
+	
+></p>
+<p>发现邮箱john@uuf.me多次在路径中出现而且存在该邮箱命名的文件夹,多半为用户邮箱</p>
+<p>使用命令查找账号密码,拿到notepad++搜一下找到账号密码请求</p>
+<p><code>strings mem_secret-963a4663.vmem -n 10 |grep -C 3 &quot;password&quot;&gt;mem_secret-963a4663_output.txt</code></p>
+<img src="./../../../static/img/image-20241130201542556.png" alt="image-20241130201542556" style="zoom:67%;" />
+<p>将john@uuf.mejock_you1jock.2021 md5加密即可得到flag</p>
+<h2 id="问4">问4
+</h2><p>经过入侵分析发现该容器曾被黑客植入木马控制的信息是_________。（答案为“32位小写md5(木马程序进程名+木马回连ip地址+木马回连ip端口）”，例如：木马程序进程名为svhost.exe，木马回连ip为1.1.1.1，木马回连端口为1234，则该题答案为“svhost.exe1.1.1.11234”的32位小写md5值f02da74a0d78a13e7944277c3531bbea)。得到的flag请使用NSSCTF{}格式提交</p>
+<p>根据第三题可以判断是攻击者通过映像劫持等技术造成机主在启动steam的时候马儿也生效了,我就直接先看异常对外连接再看进程了,因为进程多半伪装了没那么好找</p>
+<p>发现异常对外连接,确定ip为192.168.241.147,回连端口为8808</p>
+<img src="./../../../static/img/image-20241130210436029.png" alt="image-20241130210436029" style="zoom:67%;" />
+<p>进程列表搜索steam,玩过steam的都知道steam.exe还有很多其他服务比如steamhelper</p>
+<p><img src="/static/img/image-20241130203611397.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130203611397"
+	
+	
+></p>
+<p>第二个steam.exe单一个进程, 判断此进程为异常进程</p>
+<p><img src="/static/img/image-20241130203707366.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241130203707366"
+	
+	
+></p>
+<p>将<code>steam.exe192.168.241.1478808</code>MD5加密得到flag</p>
+<h2 id="问5">问5
+</h2><p>经过入侵分析，发现黑客曾经运行过痕迹清除工具，该工具运行的基本信息是________。（答案为“32为小写md5”(痕迹清除工具执行程序名+最后一次运行时间)，例如：黑客运行工具执行程序名为run.exe，运行时间为2021-07-10 10:10:13，则本题的答案为小写的32位md5(run.exe2021-07-10 10:10:13) 值为82d7aa7a3f1467b973505702beb35769，注意：本题中运行时间的格式为yy-mm-dd hh:mm:ss，时间时区为UTC+8）。得到的flag请使用NSSCTF{}格式提交。</p>
+<p>最后这个用vol3找不出,vol2.6跑不了,看官方wp用的2.61,直接丢答案了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python2 vol.py -f mem_secret-963a4663.vmem --profile=Win10x64_18362 userassist
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="./../../../static/img/20210919203608-29becd02-1946-1.png" alt="img" style="zoom:67%;" />
+<p>答案为md5(Wywz.exe2021-09-1021:10:13)</p>
+<p>d46586ca847e6be1004037bc288bf60c</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 gucheNg
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
