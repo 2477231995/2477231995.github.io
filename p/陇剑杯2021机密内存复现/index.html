@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\n知识了解之vmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\nvmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
 <title>[陇剑杯2021]机密内存复现</title>
 
 <link rel='canonical' href='http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="[陇剑杯2021]机密内存复现">
-<meta property='og:description' content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\n知识了解之vmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
+<meta property='og:description' content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\nvmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
 <meta property='og:url' content='http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/'>
 <meta property='og:site_name' content='gucheNg'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-30T12:56:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-30T12:56:25&#43;08:00'/>
 <meta name="twitter:title" content="[陇剑杯2021]机密内存复现">
-<meta name="twitter:description" content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\n知识了解之vmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
+<meta name="twitter:description" content="目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照\n复现地址:&lt;[陇剑杯 2021]机密内存（问1） | NSSCTF&gt;\nvmware虚拟机文件类型 思考过程 解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚. 先尝试提取发现果然是不行的\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -342,7 +342,7 @@
     <p>目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照</p>
 <p>复现地址:&lt;[<a class="link" href="https://www.nssctf.cn/problem/308"  target="_blank" rel="noopener"
     >陇剑杯 2021]机密内存（问1） | NSSCTF</a>&gt;</p>
-<h1 id="知识了解之vmware虚拟机文件类型">知识了解之vmware虚拟机文件类型
+<h1 id="vmware虚拟机文件类型">vmware虚拟机文件类型
 </h1><img src="./../../../static/img/1732942376871-186a304c-32a3-412a-bc67-bb7f291745fc.webp" alt="image.png" style="zoom:80%;" />
 <hr>
 <h1 id="思考过程">思考过程

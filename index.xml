@@ -16,7 +16,7 @@
         <description>&lt;p&gt;目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照&lt;/p&gt;
 &lt;p&gt;复现地址:&amp;lt;[&lt;a class=&#34;link&#34; href=&#34;https://www.nssctf.cn/problem/308&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;陇剑杯 2021]机密内存（问1） | NSSCTF&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;h1 id=&#34;知识了解之vmware虚拟机文件类型&#34;&gt;知识了解之vmware虚拟机文件类型
+&lt;h1 id=&#34;vmware虚拟机文件类型&#34;&gt;vmware虚拟机文件类型
 &lt;/h1&gt;&lt;img src=&#34;./../../../static/img/1732942376871-186a304c-32a3-412a-bc67-bb7f291745fc.webp&#34; alt=&#34;image.png&#34; style=&#34;zoom:80%;&#34; /&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;思考过程&#34;&gt;思考过程
