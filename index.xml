@@ -16,8 +16,8 @@
         <description>&lt;p&gt;目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照&lt;/p&gt;
 &lt;p&gt;复现地址:&amp;lt;[&lt;a class=&#34;link&#34; href=&#34;https://www.nssctf.cn/problem/308&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;陇剑杯 2021]机密内存（问1） | NSSCTF&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;h2 id=&#34;知识了解之vmware虚拟机文件类型&#34;&gt;知识了解之vmware虚拟机文件类型
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140759742.png&#34;
+&lt;h3 id=&#34;知识了解之vmware虚拟机文件类型&#34;&gt;知识了解之vmware虚拟机文件类型
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140759742.png&#34;
 	
 	
 	
@@ -28,8 +28,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;思考过程&#34;&gt;思考过程
-&lt;/h2&gt;&lt;p&gt;解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚.  先尝试提取发现果然是不行的&lt;/p&gt;
+&lt;h3 id=&#34;思考过程&#34;&gt;思考过程
+&lt;/h3&gt;&lt;p&gt;解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚.  先尝试提取发现果然是不行的&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130133414469.png&#34;
 	
 	
@@ -207,8 +207,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;解除密码保护&#34;&gt;解除密码保护
-&lt;/h2&gt;&lt;p&gt;吐了这里,开始少打了一个空格一直导不进去md&lt;/p&gt;
+&lt;h3 id=&#34;解除密码保护&#34;&gt;解除密码保护
+&lt;/h3&gt;&lt;p&gt;吐了这里,开始少打了一个空格一直导不进去md&lt;/p&gt;
 &lt;p&gt;vmx文件内容&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -271,8 +271,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;恢复vmdk&#34;&gt;恢复vmdk
-&lt;/h2&gt;&lt;p&gt;这个界面很明显是win10&lt;/p&gt;
+&lt;h3 id=&#34;恢复vmdk&#34;&gt;恢复vmdk
+&lt;/h3&gt;&lt;p&gt;这个界面很明显是win10&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141229907.png&#34;
 	
 	
@@ -329,8 +329,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;坑1&#34;&gt;坑1
-&lt;/h3&gt;&lt;p&gt;新建一个Win10虚拟机,&lt;strong&gt;这里有个坑，记录一下&lt;/strong&gt;：我们发现这里不能选择拆分成多个文件，否则会导致有多个vmdk，同时内部格式也会与单个vmdk有所不同，最后也试过无法移除加密。&lt;/p&gt;
+&lt;h4 id=&#34;坑1&#34;&gt;坑1
+&lt;/h4&gt;&lt;p&gt;新建一个Win10虚拟机,&lt;strong&gt;这里有个坑，记录一下&lt;/strong&gt;：我们发现这里不能选择拆分成多个文件，否则会导致有多个vmdk，同时内部格式也会与单个vmdk有所不同，最后也试过无法移除加密。&lt;/p&gt;
 &lt;p&gt;除了下面这个其他全部默认就好, 磁盘不够的话给个30就行,不用装系统&lt;/p&gt;
 &lt;p&gt;选择15系的&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141319398.png&#34;
@@ -447,8 +447,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这道题好像只能用vol3,vol2不行&lt;/p&gt;
-&lt;h3 id=&#34;问1&#34;&gt;问1
-&lt;/h3&gt;&lt;p&gt;取证人员首先对容器的基本信息进行核实，经过确定该容器的基本信息为________。（答案为32位小写md5(容器操作系统系统的版本号+容器主机名+系统用户名），例如：操作系统的版本号为10.0.22449，容器主机名为DESKTOP-0521,系统登录用户名为admin，则该题答案为32位小写md5(10.0.22449DESKTOP-0521admin) 的值ae278d9bc4aa5ee84a4aed858d17d52a)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
+&lt;h4 id=&#34;问1&#34;&gt;问1
+&lt;/h4&gt;&lt;p&gt;取证人员首先对容器的基本信息进行核实，经过确定该容器的基本信息为________。（答案为32位小写md5(容器操作系统系统的版本号+容器主机名+系统用户名），例如：操作系统的版本号为10.0.22449，容器主机名为DESKTOP-0521,系统登录用户名为admin，则该题答案为32位小写md5(10.0.22449DESKTOP-0521admin) 的值ae278d9bc4aa5ee84a4aed858d17d52a)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;利用一把梭工具得到主机名和用户&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141408809.png&#34;
 	
@@ -484,8 +484,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;问2&#34;&gt;问2
-&lt;/h3&gt;&lt;p&gt;黑客入侵容器后曾通过木马控制端使用Messagebox发送过一段信息，该信息的内容是____________。（答案为Messagebox信息框内内容）。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
+&lt;h4 id=&#34;问2&#34;&gt;问2
+&lt;/h4&gt;&lt;p&gt;黑客入侵容器后曾通过木马控制端使用Messagebox发送过一段信息，该信息的内容是____________。（答案为Messagebox信息框内内容）。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;挂起页面已经显示出来了, Best_hacker&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141422973.png&#34;
 	
@@ -498,8 +498,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;问3&#34;&gt;问3
-&lt;/h3&gt;&lt;p&gt;经过入侵分析发现该容器受到入侵的原因为容器使用人的违规进行游戏的行为，该使用人进行游戏程序的信息是__________。（答案为“32位小写md5(游戏程序注册邮箱+游戏程序登录用户名+游戏程序登录密码)，例如：注册邮箱为adol@163.com,登录用户名为user,密码为user1234，则该题答案为” &lt;a class=&#34;link&#34; href=&#34;mailto:adol@163.comuseruser1234&#34; &gt;adol@163.comuseruser1234&lt;/a&gt;”的小写md5值5f4505b7734467bfed3b16d5d6e75c16)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
+&lt;h4 id=&#34;问3&#34;&gt;问3
+&lt;/h4&gt;&lt;p&gt;经过入侵分析发现该容器受到入侵的原因为容器使用人的违规进行游戏的行为，该使用人进行游戏程序的信息是__________。（答案为“32位小写md5(游戏程序注册邮箱+游戏程序登录用户名+游戏程序登录密码)，例如：注册邮箱为adol@163.com,登录用户名为user,密码为user1234，则该题答案为” &lt;a class=&#34;link&#34; href=&#34;mailto:adol@163.comuseruser1234&#34; &gt;adol@163.comuseruser1234&lt;/a&gt;”的小写md5值5f4505b7734467bfed3b16d5d6e75c16)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;从快照和安装软件可以看到使用了steam&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141427595.png&#34;
 	
@@ -548,8 +548,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;将john@uuf.mejock_you1jock.2021 md5加密即可得到flag&lt;/p&gt;
-&lt;h3 id=&#34;问4&#34;&gt;问4
-&lt;/h3&gt;&lt;p&gt;经过入侵分析发现该容器曾被黑客植入木马控制的信息是_________。（答案为“32位小写md5(木马程序进程名+木马回连ip地址+木马回连ip端口）”，例如：木马程序进程名为svhost.exe，木马回连ip为1.1.1.1，木马回连端口为1234，则该题答案为“svhost.exe1.1.1.11234”的32位小写md5值f02da74a0d78a13e7944277c3531bbea)。得到的flag请使用NSSCTF{}格式提交&lt;/p&gt;
+&lt;h4 id=&#34;问4&#34;&gt;问4
+&lt;/h4&gt;&lt;p&gt;经过入侵分析发现该容器曾被黑客植入木马控制的信息是_________。（答案为“32位小写md5(木马程序进程名+木马回连ip地址+木马回连ip端口）”，例如：木马程序进程名为svhost.exe，木马回连ip为1.1.1.1，木马回连端口为1234，则该题答案为“svhost.exe1.1.1.11234”的32位小写md5值f02da74a0d78a13e7944277c3531bbea)。得到的flag请使用NSSCTF{}格式提交&lt;/p&gt;
 &lt;p&gt;根据第三题可以判断是攻击者通过映像劫持等技术造成机主在启动steam的时候马儿也生效了,我就直接先看异常对外连接再看进程了,因为进程多半伪装了没那么好找&lt;/p&gt;
 &lt;p&gt;发现异常对外连接,确定ip为192.168.241.147,回连端口为8808&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141450704.png&#34;
@@ -585,8 +585,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;将&lt;code&gt;steam.exe192.168.241.1478808&lt;/code&gt;MD5加密得到flag&lt;/p&gt;
-&lt;h3 id=&#34;问5&#34;&gt;问5
-&lt;/h3&gt;&lt;p&gt;经过入侵分析，发现黑客曾经运行过痕迹清除工具，该工具运行的基本信息是________。（答案为“32为小写md5”(痕迹清除工具执行程序名+最后一次运行时间)，例如：黑客运行工具执行程序名为run.exe，运行时间为2021-07-10 10:10:13，则本题的答案为小写的32位md5(run.exe2021-07-10 10:10:13) 值为82d7aa7a3f1467b973505702beb35769，注意：本题中运行时间的格式为yy-mm-dd hh:mm:ss，时间时区为UTC+8）。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
+&lt;h4 id=&#34;问5&#34;&gt;问5
+&lt;/h4&gt;&lt;p&gt;经过入侵分析，发现黑客曾经运行过痕迹清除工具，该工具运行的基本信息是________。（答案为“32为小写md5”(痕迹清除工具执行程序名+最后一次运行时间)，例如：黑客运行工具执行程序名为run.exe，运行时间为2021-07-10 10:10:13，则本题的答案为小写的32位md5(run.exe2021-07-10 10:10:13) 值为82d7aa7a3f1467b973505702beb35769，注意：本题中运行时间的格式为yy-mm-dd hh:mm:ss，时间时区为UTC+8）。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;最后这个用vol3找不出,vol2.6跑不了,看官方wp用的2.61,直接丢答案了&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
