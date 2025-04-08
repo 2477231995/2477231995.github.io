@@ -58,7 +58,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu16238301693240277511.png" width="300"
+                        <img src="/img/avatar_hu_31718c79dc4cf573.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -70,7 +70,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">gucheNg</a></h1>
-            <h2 class="site-description">欢迎来到我的博客，偶尔会分享一些关于CTF和渗透的东西，摸鱼选手一枚.</h2>
+            <h2 class="site-description">欢迎来到我的博客,偶尔会分享一些关于CTF和渗透的东西!目前主营考证业务CISP系列,cissp,软考,信创,pmp,iso27001等,欢迎咨询问价!人脉资源较多者或其他业务可联系我合作,邮箱gucheng2477@163.com</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -1229,8 +1229,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中，<code>Bearer</code>关键字告诉服务器，接下来的 <code>&lt;access_token&gt;</code> 是一个令牌，用于授权请求。<code>Bearer</code> 认证方式是OAuth 2.0标准的一部分，用于实现无状态的访问控制，令牌通常由身份验证服务器颁发，并在请求中传递，用于验证用户身份和权限。</p>
-<p>总的来说，<code>Bearer</code>前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。</p>
-</blockquote>
+<p>总的来说，<code>Bearer</code>前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。</p></blockquote>
 <p>所以我们构造出如下数据包即可获得flag</p>
 <p><img src="/img/image-20240912214738658.png"
 	
@@ -1302,8 +1301,7 @@
 </div><p>首先解决传参的问题，数据包中发现本题是php7，我们可以利用PHP的字符串解析特性Bypass</p>
 <blockquote>
 <p>当 php 版本⼩于 8 时，GET 请求的参数名含有 . ，会被转为 _ ，但是如果参数名中有 [ ，这个 [ 会被直接转为 _ ，但是后⾯如果有 . ，这个 . 就不会被转为 _</p>
-<p>例子：?Jail[by.Happy==?Jail_by.Happy</p>
-</blockquote>
+<p>例子：?Jail[by.Happy==?Jail_by.Happy</p></blockquote>
 <p>接着定义了一个函数Like_Jail过滤了`,$,a,c,s,require,include，并且忽略大小写。</p>
 <p>后面就是想办法绕过过滤打印flag，我想了下能够执行系统命令的system,shell_exec,exec都过不了过滤，只能尝试用php函数来进行读取。</p>
 <p>在源码中注释提示// 在HTML解析后再输出PHP源代码。找了找有这几个函数highlight_file()，highlight_string()，show_source()可以直接输出到浏览器。但是后两个过不了过滤，第一个可以</p>
@@ -2306,8 +2304,7 @@
 <li>首先便是构造pop利用链，这道题的是比较好构造的，有个以前不知道的知识点是__get方法中</li>
 </ol>
 <blockquote>
-<p>如果你没有为 <code>t</code> 属性赋值，或者将其设置为 <code>null</code>，那么在调用 <code>$this-&gt;t-&gt;t</code> 时将会抛出一个错误，因为你尝试在一个 <code>null</code> 值上访问属性</p>
-</blockquote>
+<p>如果你没有为 <code>t</code> 属性赋值，或者将其设置为 <code>null</code>，那么在调用 <code>$this-&gt;t-&gt;t</code> 时将会抛出一个错误，因为你尝试在一个 <code>null</code> 值上访问属性</p></blockquote>
 <p>以前只知道访问不可访问属性和未定义成员变量可以触发，其实没赋值定义访问属性也能触发</p>
 <p>到Hacker类前这么构造即可</p>
 <div class="highlight"><div class="chroma">
@@ -2734,7 +2731,9 @@
     <section class="copyright">
         &copy; 
         
-        2024 gucheNg
+            2024 - 
+        
+        2025 gucheNg
     </section>
     
     <section class="powerby">

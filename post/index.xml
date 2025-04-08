@@ -1191,8 +1191,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;通过之前的比对我们现在需要一个合法的文件头与填充。所以重新创建一个win10虚拟机，此时并不需要去安装win10系统（因为我们的目的只是获取到正确的vmdk文件，VMware在我们安装系统前便已经为我们生成），再用任意的密码加密这个win10虚拟机得到同一密码加密后的完整的vmdk文件，试着用得到的完整的vmdk文件修复原来那个分离出来的残缺vmdk&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;通过之前的比对我们现在需要一个合法的文件头与填充。所以重新创建一个win10虚拟机，此时并不需要去安装win10系统（因为我们的目的只是获取到正确的vmdk文件，VMware在我们安装系统前便已经为我们生成），再用任意的密码加密这个win10虚拟机得到同一密码加密后的完整的vmdk文件，试着用得到的完整的vmdk文件修复原来那个分离出来的残缺vmdk&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;win10 iso镜像下载点&lt;a class=&#34;link&#34; href=&#34;https://www.microsoft.com/zh-cn/software-download/windows10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.microsoft.com/zh-cn/software-download/windows10&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;下载步骤如下:&lt;/p&gt;
@@ -1328,8 +1327,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;接着重命名此vmdk文件，此时虚拟机修复完成，将其放到被加密的虚拟机目录下。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;这里还有个坑：修复完成后不要试图开启虚拟机，否则vmem文件会被删除。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;这里还有个坑：修复完成后不要试图开启虚拟机，否则vmem文件会被删除。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;在访问控制中移除加密成功&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141359201.png&#34;
 	
@@ -2399,8 +2397,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;其中，&lt;code&gt;Bearer&lt;/code&gt;关键字告诉服务器，接下来的 &lt;code&gt;&amp;lt;access_token&amp;gt;&lt;/code&gt; 是一个令牌，用于授权请求。&lt;code&gt;Bearer&lt;/code&gt; 认证方式是OAuth 2.0标准的一部分，用于实现无状态的访问控制，令牌通常由身份验证服务器颁发，并在请求中传递，用于验证用户身份和权限。&lt;/p&gt;
-&lt;p&gt;总的来说，&lt;code&gt;Bearer&lt;/code&gt;前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;总的来说，&lt;code&gt;Bearer&lt;/code&gt;前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;所以我们构造出如下数据包即可获得flag&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912214738658.png&#34;
 	
@@ -2472,8 +2469,7 @@
 &lt;/div&gt;&lt;p&gt;首先解决传参的问题，数据包中发现本题是php7，我们可以利用PHP的字符串解析特性Bypass&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;当 php 版本⼩于 8 时，GET 请求的参数名含有 . ，会被转为 _ ，但是如果参数名中有 [ ，这个 [ 会被直接转为 _ ，但是后⾯如果有 . ，这个 . 就不会被转为 _&lt;/p&gt;
-&lt;p&gt;例子：?Jail[by.Happy==?Jail_by.Happy&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;例子：?Jail[by.Happy==?Jail_by.Happy&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;接着定义了一个函数Like_Jail过滤了`,$,a,c,s,require,include，并且忽略大小写。&lt;/p&gt;
 &lt;p&gt;后面就是想办法绕过过滤打印flag，我想了下能够执行系统命令的system,shell_exec,exec都过不了过滤，只能尝试用php函数来进行读取。&lt;/p&gt;
 &lt;p&gt;在源码中注释提示// 在HTML解析后再输出PHP源代码。找了找有这几个函数highlight_file()，highlight_string()，show_source()可以直接输出到浏览器。但是后两个过不了过滤，第一个可以&lt;/p&gt;
@@ -3476,8 +3472,7 @@
 &lt;li&gt;首先便是构造pop利用链，这道题的是比较好构造的，有个以前不知道的知识点是__get方法中&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果你没有为 &lt;code&gt;t&lt;/code&gt; 属性赋值，或者将其设置为 &lt;code&gt;null&lt;/code&gt;，那么在调用 &lt;code&gt;$this-&amp;gt;t-&amp;gt;t&lt;/code&gt; 时将会抛出一个错误，因为你尝试在一个 &lt;code&gt;null&lt;/code&gt; 值上访问属性&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果你没有为 &lt;code&gt;t&lt;/code&gt; 属性赋值，或者将其设置为 &lt;code&gt;null&lt;/code&gt;，那么在调用 &lt;code&gt;$this-&amp;gt;t-&amp;gt;t&lt;/code&gt; 时将会抛出一个错误，因为你尝试在一个 &lt;code&gt;null&lt;/code&gt; 值上访问属性&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;以前只知道访问不可访问属性和未定义成员变量可以触发，其实没赋值定义访问属性也能触发&lt;/p&gt;
 &lt;p&gt;到Hacker类前这么构造即可&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4039,8 +4034,7 @@
         <guid>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;[!NOTE]&lt;/p&gt;
-&lt;p&gt;这里我就只写一些有价值点的和我当时不会的题目的wp了&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;这里我就只写一些有价值点的和我当时不会的题目的wp了&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h4 id=&#34;week1-捂住x只耳&#34;&gt;[Week1] 捂住X只耳
 &lt;/h4&gt;&lt;p&gt;下载音频后未发现频谱和音频波异常，听了下在音乐后半段有摩斯电码声音，所以我们需要将摩斯电码从音乐中分离出来以便识别&lt;/p&gt;
 &lt;ol&gt;
@@ -4286,8 +4280,7 @@
 说明：这是WordPress默认的媒体文件上传目录。虽然直接在这个文件夹中上传webshell可能受到WordPress的限制，但黑客可能会通过绕过安全检查或将webshell与合法文件捆绑上传的方式来达到目的。
 自定义上传目录：&lt;/p&gt;
 &lt;p&gt;路径示例：根据用户设置而定（如/wp-content/uploads/custom-directory/）
-说明：WordPress允许用户通过修改配置或安装特定插件来更改默认的上传目录。如果这些自定义目录的安全设置不当，就可能成为黑客上传webshell的潜在目标。&lt;/p&gt;
-&lt;/blockquote&gt;
+说明：WordPress允许用户通过修改配置或安装特定插件来更改默认的上传目录。如果这些自定义目录的安全设置不当，就可能成为黑客上传webshell的潜在目标。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;然后再插件目录下确实发现了&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/721257c325af60c1fad3c3bb319d6ec9.png&#34;
 	
