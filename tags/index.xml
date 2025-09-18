@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on gucheNg</title>
-        <link>http://gucheng.me/tags/</link>
+        <link>https://2477231995.github.io/tags/</link>
         <description>Recent content in Tags on gucheNg</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>gucheNg</copyright><atom:link href="http://gucheng.me/tags/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>gucheNg</copyright><atom:link href="https://2477231995.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

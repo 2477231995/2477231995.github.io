@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="计算机网络与协议 2.1. 网络基础 2.1.1. 计算机通信网的组成 计算机网络由通信子网和资源子网组成。其中通信子网负责数据的无差错和有序传递，其处理功能包括差错控制、流量控制、路由选择、网络互连等。\n">
+<title>Web安全学习笔记</title>
+
+<link rel='canonical' href='https://2477231995.github.io/p/web%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Web安全学习笔记">
+<meta property='og:description' content="计算机网络与协议 2.1. 网络基础 2.1.1. 计算机通信网的组成 计算机网络由通信子网和资源子网组成。其中通信子网负责数据的无差错和有序传递，其处理功能包括差错控制、流量控制、路由选择、网络互连等。\n">
+<meta property='og:url' content='https://2477231995.github.io/p/web%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='gucheNg'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-24T07:19:37&#43;08:00'/><meta property='article:modified_time' content='2025-05-24T07:19:37&#43;08:00'/>
+<meta name="twitter:title" content="Web安全学习笔记">
+<meta name="twitter:description" content="计算机网络与协议 2.1. 网络基础 2.1.1. 计算机通信网的组成 计算机网络由通信子网和资源子网组成。其中通信子网负责数据的无差错和有序传递，其处理功能包括差错控制、流量控制、路由选择、网络互连等。\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_31718c79dc4cf573.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">gucheNg</a></h1>
+            <h2 class="site-description">欢迎来到我的博客,偶尔会分享一些关于CTF和渗透的东西!需要考取证书和业务合作可以咨询邮箱:gucheng2477@163.com</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1778687393'
+                        target="_blank"
+                        title="bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/weixin_73399382'
+                        target="_blank"
+                        title="csdn"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1725886844926" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4556" width="32" height="32" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M530.9293681 431.99298667c12.69089853-1.39850077 32.17241993-2.81598184 58.96997255-2.81598184 44.75202505 0 80.92755642 7.8957922 103.33549032 24.51560657 20.13547797 15.48790009 33.52519552 40.55565997 29.81627827 76.89597458-3.43197786 33.81076231-20.74198383 57.48864879-45.99437 72.12071127C653.95861373 616.52261991 624.87825229 622.43066023 581.11147578 622.43066023c-25.78555916 0-50.402969-1.41748106-69.11147578-4.22397275l18.9293681-186.21370082z m36.98564379 149.2013121c4.29730562 0.85583762 9.97499448 1.70218509 21.16558896 1.7021851 44.76151521 0 76.3265665-22.32511089 79.51007536-53.69690853 4.60098993-45.34127616-23.40180983-61.20619343-70.57468202-60.93011679-6.10129397 0-14.59496468 0-19.09501409 0.83685734L567.90552174 581.20378891h0.0086274z m192.82056016-142.09665206c181.99921821-34.39915066 197.70797962 27.4144114 192.08550608 82.12331343L942.21024461 622.43066023h-57.75523531l9.67131017-92.30191443c2.08955515-20.32786888 15.10225553-60.09239669-47.74228028-58.59209265-21.7272324 0.52454563-32.53131957 3.50617346-32.53131957 3.50617347s-1.88594862 24.56133176-4.16875743 42.71768524L798.70560163 622.43066023h-56.64143855l11.23631967-103.16035419" fill="#231916" p-id="4557"></path><path d="M265.80433314 616.11799508c-10.67553898 3.74515232-32.81688637 6.31266516-63.76507889 6.31266515C113.06923991 622.43066023 65.05951037 580.09861956 70.72857184 524.15600002c6.80960313-66.67251112 77.93643846-104.18183779 155.82628898-104.18183779 30.17517791 0 47.92690654 2.46657234 64.58381871 6.58960456l-5.35588702 44.91767104c-11.06118355-3.78225011-37.00289858-7.25218852-58.00370429-7.25218852-45.84684153 0-84.76415912 13.84093033-89.22797347 57.59907945-3.97550376 39.12955153 23.3465945 57.8380583 74.89959531 57.8380583 17.94498229 0 44.41124294-2.60461066 56.64143856-6.35839035l-4.30679575 42.79188083 0.01898028 0.01725479z" fill="#C92027" p-id="4558"></path><path d="M305.55937083 570.68440578c16.63793189 5.83470746 51.32264935 11.65043465 79.37203705 11.65043465 30.2209031 0 47.04346126-8.05194806 48.39623685-20.53061266 1.22336465-11.39247553-11.15349668-12.92987738-45.28606084-20.71437619-47.16338205-11.12675175-77.25573697-28.3349545-74.3103442-55.82356149C317.17270769 453.32508436 361.6115583 429.17700483 429.80249098 429.17700483c33.26723639 0 65.49487164 2.25433839 82.19750902 7.51877503l-5.74239433 40.26060304c-10.84032224-3.62523151-52.34413295-8.65931669-80.41163819-8.65931669-28.46350268 0-43.19736842 8.60410136-44.21885202 18.04592281-1.28807011 11.94549158 13.50963835 12.49764488 50.49441939 21.95758387 50.06218689 12.2120781 71.95506527 29.41079069 69.09335825 56.07116773C497.85538535 595.77977332 457.87085896 622.43066023 378.02949161 622.43066023c-33.23962873 0-61.89638506-5.83470746-77.68796948-11.66855218l5.21784869-40.07770228z" fill="#231916" p-id="4559"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/2477231995/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#计算机网络与协议">计算机网络与协议</a>
+      <ol>
+        <li><a href="#21-网络基础">2.1. 网络基础</a>
+          <ol>
+            <li><a href="#211-计算机通信网的组成">2.1.1. 计算机通信网的组成</a></li>
+            <li><a href="#212-通信协议">2.1.2. 通信协议</a></li>
+            <li><a href="#213-osi七层模型">2.1.3. OSI七层模型</a></li>
+          </ol>
+        </li>
+        <li><a href="#22-udp协议">2.2. UDP协议</a>
+          <ol>
+            <li><a href="#221-主要特点">2.2.1. 主要特点</a></li>
+          </ol>
+        </li>
+        <li><a href="#23-tcp协议">2.3. TCP协议</a>
+          <ol>
+            <li><a href="#231-简介">2.3.1. 简介</a></li>
+            <li><a href="#232-拥塞控制">2.3.2. 拥塞控制</a></li>
+          </ol>
+        </li>
+        <li><a href="#24-dhcp协议">2.4. DHCP协议</a>
+          <ol>
+            <li><a href="#241-简介">2.4.1. 简介</a></li>
+            <li><a href="#242-dchp-报文格式">2.4.2. DCHP 报文格式</a></li>
+            <li><a href="#243-参考链接">2.4.3. 参考链接</a></li>
+          </ol>
+        </li>
+        <li><a href="#25-路由算法">2.5. 路由算法</a>
+          <ol>
+            <li><a href="#251-简介">2.5.1. 简介</a></li>
+            <li><a href="#252-路由选择算法的功能">2.5.2. 路由选择算法的功能</a></li>
+            <li><a href="#253-自治系统-as-autonomous-system">2.5.3. 自治系统 AS (Autonomous System)</a></li>
+            <li><a href="#254-两大类路由选择协议">2.5.4. 两大类路由选择协议</a></li>
+            <li><a href="#255-rip">2.5.5. RIP</a></li>
+            <li><a href="#256-ospf">2.5.6. OSPF</a></li>
+          </ol>
+        </li>
+        <li><a href="#26-域名系统">2.6. 域名系统</a>
+          <ol>
+            <li><a href="#261-简介">2.6.1. 简介</a></li>
+            <li><a href="#262-请求响应">2.6.2. 请求响应</a></li>
+            <li><a href="#263-域名系统工作原理">2.6.3. 域名系统工作原理</a></li>
+            <li><a href="#264-服务器类型">2.6.4. 服务器类型</a></li>
+            <li><a href="#265-加密方案">2.6.5. 加密方案</a></li>
+            <li><a href="#266-dns利用">2.6.6. DNS利用</a></li>
+            <li><a href="#267-rdap">2.6.7. RDAP</a></li>
+            <li><a href="#268-相关漏洞">2.6.8. 相关漏洞</a></li>
+            <li><a href="#269-相关机构">2.6.9. 相关机构</a></li>
+            <li><a href="#2610-术语">2.6.10. 术语</a></li>
+            <li><a href="#2611-参考链接">2.6.11. 参考链接</a></li>
+            <li><a href="#27-http协议簇">2.7. HTTP协议簇</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#27111-请求报文格式">2.7.1.1.1. 请求报文格式</a>
+      <ol>
+        <li><a href="#27112-响应报文格式">2.7.1.1.2. 响应报文格式</a></li>
+        <li><a href="#27113-字段解释">2.7.1.1.3. 字段解释</a></li>
+      </ol>
+    </li>
+    <li><a href="#2712-请求头列表">2.7.1.2. 请求头列表</a></li>
+    <li><a href="#2713-响应头列表">2.7.1.3. 响应头列表</a></li>
+    <li><a href="#2714-http状态返回代码-1xx临时响应">2.7.1.4. HTTP状态返回代码 1xx（临时响应）</a></li>
+    <li><a href="#2715-http状态返回代码-2xx-成功">2.7.1.5. HTTP状态返回代码 2xx （成功）</a></li>
+    <li><a href="#2716-http状态返回代码-3xx-重定向">2.7.1.6. HTTP状态返回代码 3xx （重定向）</a></li>
+    <li><a href="#2717-http状态返回代码-4xx请求错误">2.7.1.7. HTTP状态返回代码 4xx（请求错误）</a></li>
+    <li><a href="#2718-http状态返回代码-5xx服务器错误">2.7.1.8. HTTP状态返回代码 5xx（服务器错误）</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/web%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Web安全学习笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-05-24</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="计算机网络与协议">计算机网络与协议
+</h2><h3 id="21-网络基础">2.1. 网络基础
+</h3><h4 id="211-计算机通信网的组成">2.1.1. 计算机通信网的组成
+</h4><p>计算机网络由通信子网和资源子网组成。其中通信子网负责数据的无差错和有序传递，其处理功能包括差错控制、流量控制、路由选择、网络互连等。</p>
+<p>其中资源子网是计算机通信的本地系统环境，包括主机、终端和应用程序等， 资源子网的主要功能是用户资源配置、数据的处理和管理、软件和硬件共享以及负载 均衡等。</p>
+<p>总的来说，计算机通信网就是一个由通信子网承载的、传输和共享资源子网的各类信息的系统。</p>
+<h4 id="212-通信协议">2.1.2. 通信协议
+</h4><p>为了完成计算机之间有序的信息交换，提出了通信协议的概念，其定义是相互通信的双方（或多方）对如何进行信息交换所必须遵守的一整套规则。</p>
+<p>协议涉及到三个要素，分别为：</p>
+<ul>
+<li>语法：语法是用户数据与控制信息的结构与格式，以及数据出现顺序的意义</li>
+<li>语义：用于解释比特流的每一部分的意义</li>
+<li>时序：事件实现顺序的详细说明</li>
+</ul>
+<h4 id="213-osi七层模型">2.1.3. OSI七层模型
+</h4><h5 id="2131-简介">2.1.3.1. 简介
+</h5><p>OSI（Open System Interconnection）共分为物理层、数据链路层、网络层、传输层、会话层、表示层、应用层七层，其具体的功能如下。</p>
+<h5 id="2132-物理层">2.1.3.2. 物理层
+</h5><ul>
+<li>提供建立、维护和释放物理链路所需的机械、电气功能和规程等特性</li>
+<li>通过传输介质进行数据流(比特流)的物理传输、故障监测和物理层管理</li>
+<li>从数据链路层接收帧，将比特流转换成底层物理介质上的信号</li>
+</ul>
+<h5 id="2133-数据链路层">2.1.3.3. 数据链路层
+</h5><ul>
+<li>在物理链路的两端之间传输数据</li>
+<li>在网络层实体间提供数据传输功能和控制</li>
+<li>提供数据的流量控制</li>
+<li>检测和纠正物理链路产生的差错</li>
+<li>格式化的消息称为帧</li>
+</ul>
+<h5 id="2134-网络层">2.1.3.4. 网络层
+</h5><ul>
+<li>负责端到端的数据的路由或交换，为透明地传输数据建立连接</li>
+<li>寻址并解决与数据在异构网络间传输相关的所有问题</li>
+<li>使用上面的传输层和下面的数据链路层的功能</li>
+<li>格式化的消息称为分组</li>
+</ul>
+<h5 id="2135-传输层">2.1.3.5. 传输层
+</h5><ul>
+<li>提供无差错的数据传输</li>
+<li>接收来自会话层的数据，如果需要，将数据分割成更小的分组，向网络层传送分组并确保分组完整和正确到达它们的目的地</li>
+<li>在系统之间提供可靠的透明的数据传输,提供端到端的错误恢复和流量控制</li>
+</ul>
+<h5 id="2136-会话层">2.1.3.6. 会话层
+</h5><ul>
+<li>提供节点之间通信过程的协调</li>
+<li>负责执行会话规则（如：连接是否允许半双工或全双工通信）、同步数据流以及当故障发生时重新建立连接</li>
+<li>使用上面的表示层和下面的传输层的功能</li>
+</ul>
+<h5 id="2137-表示层">2.1.3.7. 表示层
+</h5><ul>
+<li>提供数据格式、变换和编码转换</li>
+<li>涉及正在传输数据的语法和语义</li>
+<li>将消息以合适电子传输的格式编码</li>
+<li>执行该层的数据压缩和加密</li>
+<li>从应用层接收消息，转换格式，并传送到会话层，该层常合并在应用层中</li>
+</ul>
+<h5 id="2138-应用层">2.1.3.8. 应用层
+</h5><ul>
+<li>包括各种协议，它们定义了具体的面向用户的应用：如电子邮件、文件传输等</li>
+</ul>
+<h5 id="2139-总结">2.1.3.9. 总结
+</h5><p>低三层模型属于通信子网，涉及为用户间提供透明连接，操作主要以每条链路（ hop-by-hop）为基础，在节点间的各条数据链路上进行通信。由网络层来控制各条链路上的通信，但要依赖于其他节点的协调操作。</p>
+<p>高三层属于资源子网，主要涉及保证信息以正确可理解形式传送。</p>
+<p>传输层是高三层和低三层之间的接口，它是第一个端到端的层次，保证透明的端到端连接，满足用户的服务质量（QoS）要求，并向高三层提供合适的信息形式。</p>
+<hr>
+<h3 id="22-udp协议">2.2. UDP协议
+</h3><h4 id="221-主要特点">2.2.1. 主要特点
+</h4><ul>
+<li>协议开销小、效率高。</li>
+<li>UDP是无连接的，即发送数据之前不需要建立连接。</li>
+<li>UDP使用尽最大努力交付，即不保证可靠交付。</li>
+<li>UDP没有拥塞控制。</li>
+<li>UDP支持一对一、一对多、多对一和多对多交互通信。</li>
+<li>UDP的首部开销小，只有8个字节。</li>
+</ul>
+<hr>
+<h3 id="23-tcp协议">2.3. TCP协议
+</h3><h4 id="231-简介">2.3.1. 简介
+</h4><p>TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由RFC 793定义。</p>
+<h5 id="2311-三次握手">2.3.1.1. 三次握手
+</h5><p>三次握手（Three-Way Handshake）是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。</p>
+<p>第一次握手客户端将标志位 SYN 置为1，随机产生一个值 seq=s ，并将该数据包发送给服务端，客户端进入 SYN_SENT 状态，等待服务端确认。</p>
+<p>第二次握手服务端收到数据包后由标志位 SYN=1 知道客户端请求建立连接，服务端将标志位 SYN 和 ACK 都置为1，ack=s+1，随机产生一个值 seq=k ，并将该数据包发送给客户端以确认连接请求，服务端进入 SYN_RCVD 状态。</p>
+<p>第三次握手客户端收到确认后，检查ack值是否为s+1，ACK标志位是否为1，如果正确则将标志位 ACK 置为1，ack=k+1，并将该数据包发送给服务端，服务端检查ack值是否为k+1，ACK标志位是否为1，如果正确则连接建立成功，客户端和服务端进入 ESTABLISHED 状态，完成三次握手。</p>
+<h5 id="2312-四次挥手">2.3.1.2. 四次挥手
+</h5><p>四次挥手（Four-Way Wavehand）指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。</p>
+<p>第一次挥手客户端发送一个 FIN ，用来关闭客户端到服务端的数据传送，客户端进入 FIN_WAIT_1 状态。</p>
+<p>第二次挥手服务端收到 FIN 后，发送一个 ACK 给客户端，确认序号为收到序号+1，服务端进入 CLOSE_WAIT 状态。</p>
+<p>第三次挥手服务端发送一个 FIN ，用来关闭服务端到客户端的数据传送，服务端进入 LAST_ACK 状态。</p>
+<p>第四次挥手客户端收到 FIN 后，客户端进入 TIME_WAIT 状态，接着发送一个 ACK 给服务端，确认序号为收到序号+1，服务端进入 CLOSED 状态，完成四次挥手。</p>
+<h4 id="232-拥塞控制">2.3.2. 拥塞控制
+</h4><p>拥塞是指网络中报文数量过多，使得服务端来不及处理，以致引起这部分乃至整个网络性能下降的现象，严重时甚至会导致网络通信业务陷入停顿即出现死锁现象。</p>
+<p>TCP采用拥塞控制算法来减少或者避免拥塞现象的发生，TCP的拥塞算法有过多种实现，包括Tahoe、Reno、NewReno、Vegas、Hybla、BIC 、CUBIC、SACK、Westwood、PRR、BBR等。</p>
+<hr>
+<h3 id="24-dhcp协议">2.4. DHCP协议
+</h3><h4 id="241-简介">2.4.1. 简介
+</h4><p>动态主机配置协议 (Dynamic Host Configuration Protocol，DHCP) 是一个用于局域网的网络协议，位于OSI模型的应用层，使用UDP协议工作，主要用于自动分配IP地址给用户，方便管理员进行统一管理。</p>
+<p>DHCP服务器端使用67/udp，客户端使用68/udp。DHCP运行分为四个基本过程，分别为请求IP租约、提供IP租约、选择IP租约和确认IP租约。客户端在获得了一个IP地址以后，就可以发送一个ARP请求来避免由于DHCP服务器地址池重叠而引发的IP冲突。</p>
+<h4 id="242-dchp-报文格式">2.4.2. DCHP 报文格式
+</h4><p><img src="D:%5cUsers%5c%e5%a4%a9%5cDesktop%5chugo%e5%8d%9a%e5%ae%a2%5cdev%5cstatic%5cimg%5cimage-20250524072710441.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250524072710441"
+	
+	
+></p>
+<h4 id="243-参考链接">2.4.3. 参考链接
+</h4><ul>
+<li><a class="link" href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol"  target="_blank" rel="noopener"
+    >DHCP Wiki</a></li>
+</ul>
+<h5 id="2431-rfc">2.4.3.1. RFC
+</h5><ul>
+<li><a class="link" href="https://tools.ietf.org/html/rfc2131"  target="_blank" rel="noopener"
+    >RFC 2131 Dynamic Host Configuration Protocol</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc2132"  target="_blank" rel="noopener"
+    >RFC 2132 DHCP Options and BOOTP Vendor Extensions</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3046"  target="_blank" rel="noopener"
+    >RFC 3046 DHCP Relay Agent Information Option</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3397"  target="_blank" rel="noopener"
+    >RFC 3397 Dynamic Host Configuration Protocol (DHCP) Domain Search Option</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3442"  target="_blank" rel="noopener"
+    >RFC 3442 Classless Static Route Option for Dynamic Host Configuration Protocol (DHCP) version 4</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3942"  target="_blank" rel="noopener"
+    >RFC 3942 Reclassifying Dynamic Host Configuration Protocol Version Four (DHCPv4) Options</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc4242"  target="_blank" rel="noopener"
+    >RFC 4242 Information Refresh Time Option for Dynamic Host Configuration Protocol for IPv6</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc4361"  target="_blank" rel="noopener"
+    >RFC 4361 Node-specific Client Identifiers for Dynamic Host Configuration Protocol Version Four (DHCPv4)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc4436"  target="_blank" rel="noopener"
+    >RFC 4436 Detecting Network Attachment in IPv4 (DNAv4)</a></li>
+</ul>
+<hr>
+<h3 id="25-路由算法">2.5. 路由算法
+</h3><h4 id="251-简介">2.5.1. 简介
+</h4><p>路由算法是用于找到一条从源路由器到目的路由器的最佳路径的算法。存在着多种路由算法，每种算法对网络和路由器资源的影响都不同；由于路由算法使用多种度量标准 (metric)，所以不同路由算法的最佳路径选择也有所不同。</p>
+<h4 id="252-路由选择算法的功能">2.5.2. 路由选择算法的功能
+</h4><p>源/宿对之间的路径选择，以及选定路由之后将报文传送到它们的目的地。</p>
+<p>路由选择算法的要求：</p>
+<ul>
+<li>正确性：确保分组从源节点传送到目的节点</li>
+<li>简单性：实现方便，软硬件开销小</li>
+<li>自适应性：也称健壮性，算法能够适应业务量和网络拓扑的变化</li>
+<li>稳定性：能长时间无故障运行</li>
+<li>公平性：每个节点都有机会传送信息</li>
+<li>最优性：尽量选取好的路由</li>
+</ul>
+<h4 id="253-自治系统-as-autonomous-system">2.5.3. 自治系统 AS (Autonomous System)
+</h4><p>经典定义：</p>
+<ul>
+<li>由一个组织管理的一整套路由器和网络。</li>
+<li>使用一种AS 内部的路由选择协议和共同的度量以确定分组在该 AS 内的路由。</li>
+<li>使用一种 AS 之间的路由选择协议用以确定分组在AS之间的路由。</li>
+</ul>
+<p>尽管一个 AS 使用了多种内部路由选择协议和度量，但对其他 AS 表现出的是一个单一的和一致的路由选择策略。</p>
+<h4 id="254-两大类路由选择协议">2.5.4. 两大类路由选择协议
+</h4><p>因特网的中，路由协议可以分为内部网关协议 IGP (Interior Gateway Protocol)和外部网关协议 EGP (External Gateway Protocol)。</p>
+<p>IGP是在一个AS内部使用的路由选择协议，如RIP和OSPF协议，是域内路由选择 (interdomain routing)。当源主机和目的主机处在不同的AS中，在数据报到达AS的边界时，使用外部网关协议 EGP 将路由选择信息传递到另一个自治系统中，如BGP-4，是域间路由选择 (intradomain routing)。</p>
+<h4 id="255-rip">2.5.5. RIP
+</h4><p>路由信息协议 (Routing Information Protocol, RIP) 是一种基于距离 向量的路由选择协议。RIP 协议要求网络中的每一个路由器都要维护从它自己到自治系统内其他每一个目的网络的距离和下一跳路由器地址。</p>
+<h4 id="256-ospf">2.5.6. OSPF
+</h4><p>开放最短路径优先(Open Shortest Path First，OSPF)，这个算法名为“最短路径优先”是因为使用了 Dijkstra 提出的最短路径算法SPF，只是一个协议的名字，它并不表示其他的路由选择协议不是“最短路径优先”。</p>
+<hr>
+<h3 id="26-域名系统">2.6. 域名系统
+</h3><h4 id="261-简介">2.6.1. 简介
+</h4><p>DNS是一个简单的请求-响应协议，是将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP协议的53端口。</p>
+<h4 id="262-请求响应">2.6.2. 请求响应
+</h4><h5 id="2621-dns记录">2.6.2.1. DNS记录
+</h5><ul>
+<li>
+<ul>
+<li>
+<p>A</p>
+<p>返回域名对应的IPv4地址</p>
+</li>
+</ul>
+</li>
+<li>
+<p>AAAA</p>
+</li>
+<li>
+<ul>
+<li>
+<p>NS</p>
+<p>域名服务器返回该域名由哪台域名服务器解析</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>PTR</p>
+<p>反向记录从IP地址到域名的记录</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>MX</p>
+<p>电子邮件交换记录记录邮件域名对应的IP地址</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2622-响应码">2.6.2.2. 响应码
+</h5><ul>
+<li>NOERROR</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">No error condition
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>FORMERR</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Format error - The name server was unable to interpret the query
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>SERVFAIL</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Server failure - The name server was unable to process this query due to a problem with the name server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>NXDOMAIN</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">this code signifies that the domain name referenced in the query does not exist
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>NOTIMP</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Not Implemented - The name server does not support the requested kind of query
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>REFUSED</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Refused - The name server refuses to perform the specified operation for policy reasons
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>NODATA</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A pseudo RCODE which indicates that the name is valid, for the given class, but [there] are no records of the given type A NODATA response has to be inferred from the answer.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="263-域名系统工作原理">2.6.3. 域名系统工作原理
+</h4><h5 id="2631-解析过程">2.6.3.1. 解析过程
+</h5><p>DNS解析过程是递归查询的，具体过程如下：</p>
+<ul>
+<li>用户要访问域名www.example.com时，先查看本机hosts是否有记录或者本机是否有DNS缓存，如果有，直接返回结果，否则向递归服务器查询该域名的IP地址</li>
+<li>递归缓存为空时，首先向根服务器查询com顶级域的IP地址</li>
+<li>根服务器告知递归服务器com顶级域名服务器的IP地址</li>
+<li>递归向com顶级域名服务器查询负责example.com的权威服务器的IP</li>
+<li>com顶级域名服务器返回相应的IP地址</li>
+<li>递归向example.com的权威服务器查询www.example.com的地址记录</li>
+<li>权威服务器告知www.example.com的地址记录</li>
+<li>递归服务器将查询结果返回客户端</li>
+</ul>
+<h5 id="2632-域传送">2.6.3.2. 域传送
+</h5><p>DNS服务器可以分为主服务器、备份服务器和缓存服务器。域传送是指备份服务器从主服务器拷贝数据，并使用得到的数据更新自身数据库。域传送是在主备服务器之间同步数据库的机制。</p>
+<h4 id="264-服务器类型">2.6.4. 服务器类型
+</h4><h5 id="2641-根服务器">2.6.4.1. 根服务器
+</h5><p>根服务器是DNS的核心，负责互联网顶级域名的解析，用于维护域的权威信息，并将DNS查询引导到相应的域名服务器。</p>
+<p>根服务器在域名树中代表最顶级的 <code>.</code> 域， 一般省略。</p>
+<p>13台IPv4根服务器的域名标号为a到m，即a.root-servers.org到m.root-servers.org，所有服务器存储的数据相同，仅包含ICANN批准的TLD域名权威信息。</p>
+<h5 id="2642-权威服务器">2.6.4.2. 权威服务器
+</h5><p>权威服务器上存储域名Zone文件，维护域内域名的权威信息，递归服务器可以从权威服务器获得DNS查询的资源记录。</p>
+<p>权威服务器需要在所承载的域名所属的TLD管理局注册，同一个权威服务器可以承载不同TLD域名，同一个域也可以有多个权威服务器。</p>
+<h5 id="2643-递归服务器">2.6.4.3. 递归服务器
+</h5><p>递归服务器负责接收用户的查询请求，进行递归查询并响应用户查询请求。在初始时递归服务器仅有记录了根域名的Hint文件。</p>
+<h4 id="265-加密方案">2.6.5. 加密方案
+</h4><p>作为主流的防御方案，DNS加密有五种方案，分别是 DNS-over-TLS (DoT)、DNS-over-DTLS、DNS-over-HTTPS (DoH)、DNS-over-QUIC以及DNSCrypt。</p>
+<h5 id="2651-dot">2.6.5.1. DoT
+</h5><p>DoT方案在2016年发表于RFC7858，使用853端口。主要思想是Client和Server通过TCP协议建立TLS会话后再进行DNS传输，Client通过SSL证书验证服务器身份。</p>
+<h5 id="2652-dns-over-dtls">2.6.5.2. DNS-over-DTLS
+</h5><p>DNS-over-DTLS和DoT类似，区别在于使用UDP协议而不是TCP协议。</p>
+<h5 id="2653-doh">2.6.5.3. DoH
+</h5><p>DoH方案在发表RFC8484，使用 <code>https://dns.example.com/dns-query{?dns}</code> 来查询服务器的IP，复用https的443端口，流量特征比较小。DoH会对DNS服务器进行加密认证，不提供fallback选项。目前Cloudflare、Google等服务商对DoH提供了支持。</p>
+<h5 id="2654-dns-over-quic">2.6.5.4. DNS-over-QUIC
+</h5><p>DNS-over-QUIC安全特性和DoT类似，但是性能更高，目前没有合适的软件实现。</p>
+<h5 id="2655-dnscrypt">2.6.5.5. DNSCrypt
+</h5><p>DNSCrypt使用X25519-XSalsa20Poly1305而非标准的TLS，且DNSCrypt的Client需要额外的软件，Server需要的专门的证书。</p>
+<h4 id="266-dns利用">2.6.6. DNS利用
+</h4><h5 id="2661-dga">2.6.6.1. DGA
+</h5><p>DGA（Domain Generate Algorithm，域名生成算法）是一种利用随机字符来生成C&amp;C域名，从而逃避域名黑名单检测的技术手段，常见于botnet中。一般来说，一个DGA域名的存活时间约在1-7天左右。</p>
+<p>通信时，客户端和服务端都运行同一套DGA算法，生成相同的备选域名列表，当需要发动攻击的时候，选择其中少量进行注册，便可以建立通信，并且可以对注册的域名应用速变IP技术，快速变换IP，从而域名和IP都可以进行快速变化。</p>
+<p>DGA域名有多种生成方式，根据种子类型可以分为确定性和不确定性的生成。不确定性的种子可能会选用当天的一些即时数据，如汇率信息等。</p>
+<h5 id="2662-dns隧道">2.6.6.2. DNS隧道
+</h5><p>DNS隧道工具将进入隧道的其他协议流量封装到DNS协议内，在隧道上传输。这些数据包出隧道时进行解封装，还原数据。</p>
+<h4 id="267-rdap">2.6.7. RDAP
+</h4><p>RDAP (Registration Data Access Protocol) 协议是Whois协议的后继，和 Whois 协议类似，RDAP协议提供了域名、自治系统、IP地址的信息查询。</p>
+<h4 id="268-相关漏洞">2.6.8. 相关漏洞
+</h4><h5 id="2681-dns劫持">2.6.8.1. DNS劫持
+</h5><p>DNS劫持有多种方式，比较早期的攻击方式是通过攻击域名解析服务器，或是伪造DNS响应的方法，来将域名解析到恶意的IP地址。</p>
+<p>随着互联网应用的不断发展，出现了基于废弃记录的劫持方式。这种方式发生的场景是次级域名的解析记录指向第三方资源，而第三方资源被释放后，解析记录并没有取消，在这种场景下，可以对应申请第三方资源，以获取控制解析记录的能力。</p>
+<h5 id="2682-拒绝服务">2.6.8.2. 拒绝服务
+</h5><p>DNS服务通常会开启UDP端口，当DNS服务器拥有大量二级域NS记录时，通过DNS的UDP反射攻击可以实现高倍的拒绝服务。</p>
+<h4 id="269-相关机构">2.6.9. 相关机构
+</h4><h5 id="2691-icann">2.6.9.1. ICANN
+</h5><p>互联网名称与数字地址分配机构 (Internet Corporation for Assigned Names and Numbers, ICANN) 创建于1998年9月18日，职能包括管理域名和IP地址的分配等与互联网相关的任务。</p>
+<h5 id="2692-iana">2.6.9.2. IANA
+</h5><p>互联网号码分配局 (Internet Assigned Numbers Authority, IANA) ，是一家互联网地址指派机构，管理国际互联网中使用的IP地址、域名和许多其它参数的机构。</p>
+<h4 id="2610-术语">2.6.10. 术语
+</h4><h5 id="26101-mdns">2.6.10.1. mDNS
+</h5><p>Multicast DNS (mDNS)，多播DNS，使用5353端口，组播地址为 <code>224.0.0.251</code> 或 <code>[FF02::FB]</code> 。在一个没有常规DNS服务器的小型网络内可以使用mDNS来实现类似DNS的编程接口、包格式和操作语义。mDNS协议的报文与DNS的报文结构相同，但有些字段对于mDNS来说有新的含义。</p>
+<p>启动mDNS的主机会在进入局域网后向所有主机组播消息，包含主机名、IP等信息，其他拥有相应服务的主机也会响应含有主机名和IP的信息。</p>
+<p>mDNS的域名是用 <code>.local</code> 和普通域名区分开的。</p>
+<h5 id="26102-fqdn">2.6.10.2. FQDN
+</h5><p>FQDN (Fully-Qualified Domain Name) 是域名的完全形态，主要是包含零长度的根标签，例如 <code>www.example.com.</code> 。</p>
+<h5 id="26103-tld">2.6.10.3. TLD
+</h5><p>Top-Level Domain (TLD) 是属于根域的一个域，例如 <code>com</code> 或 <code>jp</code> 。</p>
+<p>TLD一般可以分为 Country Code Top-Level Domains (ccTLDs) 、Generic Top-Level Domains (gTLDs) 以及其它。</p>
+<h5 id="26104-idn">2.6.10.4. IDN
+</h5><p>Internationalized Domain Names for Applications (IDNA) 是为了处理非ASCII字符的情况。</p>
+<h5 id="26105-cname">2.6.10.5. CNAME
+</h5><p>CNAME即Canonical name，又称alias，将域名指向另一个域名。</p>
+<h5 id="26106-ttl">2.6.10.6. TTL
+</h5><p>Time To Live，无符号整数，记录DNS记录过期的时间，最小是0，最大是2147483647 (2^31 - 1)。</p>
+<h4 id="2611-参考链接">2.6.11. 参考链接
+</h4><h5 id="26111-rfc">2.6.11.1. RFC
+</h5><ul>
+<li><a class="link" href="https://www.rfc-editor.org/rfc/rfc920"  target="_blank" rel="noopener"
+    >RFC 920 Domain Requirements</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc1034"  target="_blank" rel="noopener"
+    >RFC 1034 DOMAIN NAMES CONCEPTS AND FACILITIES</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc1035"  target="_blank" rel="noopener"
+    >RFC 1035 DOMAIN NAMES IMPLEMENTATION AND SPECIFICATION</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc1123"  target="_blank" rel="noopener"
+    >RFC 1123 Requirements for Internet Hosts &ndash; Application and Support</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc2535"  target="_blank" rel="noopener"
+    >RFC 2535 Domain Name System Security Extensions</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc2930"  target="_blank" rel="noopener"
+    >RFC 2930 Secret Key Establishment for DNS (TKEY RR)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc2931"  target="_blank" rel="noopener"
+    >RFC 2931 DNS Request and Transaction Signatures ( SIG(0)s )</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3596"  target="_blank" rel="noopener"
+    >RFC 3596 Legacy Resolver Compatibility for Delegation Signer (DS)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3755"  target="_blank" rel="noopener"
+    >RFC 3755 DNS Extensions to Support IP Version 6</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc5001"  target="_blank" rel="noopener"
+    >RFC 5001 Automated Updates of DNS Security (DNSSEC) Trust Anchors</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc5936"  target="_blank" rel="noopener"
+    >RFC 5936 DNS Zone Transfer Protocol</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc5966"  target="_blank" rel="noopener"
+    >RFC 5966 DNS Transport over TCP - Implementation Requirements</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc6376"  target="_blank" rel="noopener"
+    >RFC 6376 DomainKeys Identified Mail (DKIM) Signatures</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc6762"  target="_blank" rel="noopener"
+    >RFC 6762 Multicast DNS</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc6891"  target="_blank" rel="noopener"
+    >RFC 6891 Extension Mechanisms for DNS (EDNS(0))</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc6895"  target="_blank" rel="noopener"
+    >RFC 6895 DNS IANA Considerations</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7766"  target="_blank" rel="noopener"
+    >RFC 7766 DNS Transport over TCP - Implementation Requirements</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7858"  target="_blank" rel="noopener"
+    >RFC 7858 Specification for DNS over Transport Layer Security (TLS)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7871"  target="_blank" rel="noopener"
+    >RFC 7871 Client Subnet in DNS Queries</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc8082"  target="_blank" rel="noopener"
+    >RFC 8082 NXDOMAIN</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc8482"  target="_blank" rel="noopener"
+    >RFC 8482 Providing Minimal-Sized Responses to DNS Queries That Have QTYPE=ANY</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc8484"  target="_blank" rel="noopener"
+    >RFC 8484 DNS Queries over HTTPS (DoH)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc8490"  target="_blank" rel="noopener"
+    >RFC 8490 DNS Stateful Operations</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc8499"  target="_blank" rel="noopener"
+    >RFC 8499 DNS Terminology</a></li>
+</ul>
+<h5 id="261111-whois-相关">2.6.11.1.1. Whois 相关
+</h5><ul>
+<li><a class="link" href="https://tools.ietf.org/html/rfc812"  target="_blank" rel="noopener"
+    >RFC 812 NICNAME/WHOIS</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc954"  target="_blank" rel="noopener"
+    >RFC 954 NICNAME/WHOIS</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc2167"  target="_blank" rel="noopener"
+    >RFC 2167 Referral Whois (RWhois) Protocol V1.5</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc3912"  target="_blank" rel="noopener"
+    >RFC 3912 WHOIS Protocol Specification</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7485"  target="_blank" rel="noopener"
+    >RFC 7485 Inventory and Analysis of WHOIS Registration Objects</a></li>
+</ul>
+<h5 id="261112-rdap-相关">2.6.11.1.2. RDAP 相关
+</h5><ul>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7480"  target="_blank" rel="noopener"
+    >RFC7480 HTTP Usage in the Registration Data Access Protocol (RDAP)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7481"  target="_blank" rel="noopener"
+    >RFC7481 Security Services for the Registration Data Access Protocol (RDAP)</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc7484"  target="_blank" rel="noopener"
+    >RFC7484 Finding the Authoritative Registration Data (RDAP) Service</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc8056"  target="_blank" rel="noopener"
+    >RFC8056 Registration Data Access Protocol (RDAP) Object Tagging</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc9082"  target="_blank" rel="noopener"
+    >RFC9082 Registration Data Access Protocol (RDAP) Query Format</a></li>
+<li><a class="link" href="https://tools.ietf.org/html/rfc9083"  target="_blank" rel="noopener"
+    >RFC9083 JSON Responses for the Registration Data Access Protocol (RDAP)</a></li>
+</ul>
+<h5 id="26112-相关标准">2.6.11.2. 相关标准
+</h5><ul>
+<li><a class="link" href="https://about.rdap.org/"  target="_blank" rel="noopener"
+    >Registration Data Access Protocol (RDAP)</a></li>
+</ul>
+<h5 id="26113-工具">2.6.11.3. 工具
+</h5><ul>
+<li><a class="link" href="https://github.com/NLnetLabs/unbound"  target="_blank" rel="noopener"
+    >Unbound</a></li>
+<li><a class="link" href="https://github.com/isc-projects/bind9"  target="_blank" rel="noopener"
+    >bind9</a></li>
+</ul>
+<h5 id="26114-研究文章">2.6.11.4. 研究文章
+</h5><ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/xbf0Qbppk8R0nx89Pb4YTg"  target="_blank" rel="noopener"
+    >DGA域名的今生前世：缘起、检测、与发展</a></li>
+<li><a class="link" href="https://blog.thecjw.me/?p=1221"  target="_blank" rel="noopener"
+    >DNSSEC原理和分析</a></li>
+<li>Plohmann D, Yakdan K, Klatt M, et al. A comprehensive measurement study of domain generating malware[C]//25th {USENIX} Security Symposium ({USENIX} Security 16). 2016: 263-278.</li>
+<li>An End-to-End Large-Scale Measurement of DNS-over-Encryption: How Far Have We Come?</li>
+</ul>
+<h5 id="26115-相关cve">2.6.11.5. 相关CVE
+</h5><ul>
+<li><a class="link" href="https://research.checkpoint.com/2020/resolving-your-way-into-domain-admin-exploiting-a-17-year-old-bug-in-windows-dns-servers/"  target="_blank" rel="noopener"
+    >SIGRed – Resolving Your Way into Domain Admin: Exploiting a 17 Year-old Bug in Windows DNS Servers</a></li>
+</ul>
+<hr>
+<h4 id="27-http协议簇">2.7. HTTP协议簇
+</h4><h5 id="271-http标准">2.7.1. HTTP标准
+</h5><h6 id="2711-报文格式">2.7.1.1. 报文格式
+</h6><h2 id="27111-请求报文格式">2.7.1.1.1. 请求报文格式
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;method&gt;&lt;request-URL&gt;&lt;version&gt;
+</span></span><span class="line"><span class="cl">&lt;headers&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;entity-body&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="27112-响应报文格式">2.7.1.1.2. 响应报文格式
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;version&gt;&lt;status&gt;&lt;reason-phrase&gt;
+</span></span><span class="line"><span class="cl">&lt;headers&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;entity-body&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="27113-字段解释">2.7.1.1.3. 字段解释
+</h3><ul>
+<li>
+<ul>
+<li>
+<p>method</p>
+<p>HTTP动词常见方法：HEAD / GET / POST / PUT / DELETE / PATCH / OPTIONS / TRACE扩展方法：LOCK / MKCOL / COPY / MOVE</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>version</p>
+<p>报文使用的HTTP版本格式为HTTP/<major>.<minor></p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>url</p>
+<p><code>&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2712-请求头列表">2.7.1.2. 请求头列表
+</h2><ul>
+<li>
+<ul>
+<li>
+<p>Accept</p>
+<p>指定客户端能够接收的内容类型Accept: text/plain, text/html</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Accept-Charset</p>
+<p>浏览器可以接受的字符编码集Accept-Charset: iso-8859-5</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Accept-Encoding</p>
+<p>指定浏览器可以支持的web服务器返回内容压缩编码类型Accept-Encoding: compress, gzip</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Accept-Language</p>
+<p>浏览器可接受的语言Accept-Language: en,zh</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Accept-Ranges</p>
+<p>可以请求网页实体的一个或者多个子范围字段Accept-Ranges: bytes</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Authorization</p>
+<p>HTTP授权的授权证书Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Cache-Control</p>
+<p>指定请求和响应遵循的缓存机制 Cache-Control: no-cache</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Connection</p>
+<p>表示是否需要持久连接 // HTTP 1.1默认进行持久连接Connection: close</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Cookie</p>
+<p>HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器Cookie: role=admin;ssid=1</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Length</p>
+<p>请求的内容长度Content-Length: 348</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Type</p>
+<p>请求的与实体对应的MIME信息Content-Type: application/x-www-form-urlencoded</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Date</p>
+<p>请求发送的日期和时间Date: Tue, 15 Nov 2010 08:12:31 GMT</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Expect</p>
+<p>请求的特定的服务器行为Expect: 100-continue</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>From</p>
+<p>发出请求的用户的EmailFrom: <a class="link" href="mailto:user@email.com" >user@email.com</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Host</p>
+<p>指定请求的服务器的域名和端口号Host: <a class="link" href="https://www.github.com"  target="_blank" rel="noopener"
+    >www.github.com</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>If-Match</p>
+<p>只有请求内容与实体相匹配才有效If-Match: &ldquo;737060cd8c284d8af7ad3082f209582d&rdquo;</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>If-Modified-Since</p>
+<p>如果请求的部分在指定时间之后被修改则请求成功，未被修改则返回304代码If-Modified-Since: Sat, 29 Oct 2018 19:43:31 GMT</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>If-None-Match</p>
+<p>如果内容未改变返回304代码，参数为服务器先前发送的Etag，与服务器回应的Etag比较判断是否改变If-None-Match: &ldquo;737060cd8c284d8af7ad3082f209582d&rdquo;</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>If-Range</p>
+<p>如果实体未改变，服务器发送客户端丢失的部分，否则发送整个实体。参数也为EtagIf-Range: &ldquo;737060cd8c284d8af7ad3082f209582d&rdquo;</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>If-Unmodified-Since</p>
+<p>只在实体在指定时间之后未被修改才请求成功If-Unmodified-Since: Sat, 29 Oct 2010 19:43:31 GMT</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Max-Forwards</p>
+<p>限制信息通过代理和网关传送的时间Max-Forwards: 10</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Pragma</p>
+<p>用来包含实现特定的指令Pragma: no-cache</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Proxy-Authorization</p>
+<p>连接到代理的授权证书Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Range</p>
+<p>只请求实体的一部分，指定范围Range: bytes=500-999</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Referer</p>
+<p>先前网页的地址，当前请求网页紧随其后,即来路Referer: <a class="link" href="http://www.zcmhi.com/archives/71.html"  target="_blank" rel="noopener"
+    >http://www.zcmhi.com/archives/71.html</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>TE</p>
+<p>客户端愿意接受的传输编码，并通知服务器接受接受尾加头信息TE: trailers,deflate;q=0.5</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Upgrade</p>
+<p>向服务器指定某种传输协议以便服务器进行转换（如果支持）Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>User-Agent</p>
+<p>User-Agent的内容包含发出请求的用户信息User-Agent: Mozilla/5.0 (Linux; X11)</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Via</p>
+<p>通知中间网关或代理服务器地址，通信协议Via: 1.0 fred, 1.1 nowhere.com (Apache/1.1)</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Warning</p>
+<p>关于消息实体的警告信息Warn: 199 Miscellaneous warning</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2713-响应头列表">2.7.1.3. 响应头列表
+</h2><ul>
+<li>
+<ul>
+<li>
+<p>Accept-Ranges</p>
+<p>表明服务器是否支持指定范围请求及哪种类型的分段请求Accept-Ranges: bytes</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Access-Control-Allow-Origin</p>
+<p>配置有权限访问资源的域Access-Control-Allow-Origin: <origin>|*</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Age</p>
+<p>从原始服务器到代理缓存形成的估算时间（以秒计，非负）Age: 12</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Allow</p>
+<p>对某网络资源的有效的请求行为，不允许则返回405Allow: GET, HEAD</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Cache-Control</p>
+<p>告诉所有的缓存机制是否可以缓存及哪种类型Cache-Control: no-cache</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Encoding</p>
+<p>web服务器支持的返回内容压缩编码类型。Content-Encoding: gzip</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Language</p>
+<p>响应体的语言Content-Language: en,zh</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Length</p>
+<p>响应体的长度Content-Length: 348</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Location</p>
+<p>请求资源可替代的备用的另一地址Content-Location: /index.htm</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-MD5</p>
+<p>返回资源的MD5校验值Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Range</p>
+<p>在整个返回体中本部分的字节位置Content-Range: bytes 21010-47021/47022</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Content-Type</p>
+<p>返回内容的MIME类型Content-Type: text/html; charset=utf-8</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Date</p>
+<p>原始服务器消息发出的时间Date: Tue, 15 Nov 2010 08:12:31 GMT</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>ETag</p>
+<p>请求变量的实体标签的当前值ETag: &ldquo;737060cd8c284d8af7ad3082f209582d&rdquo;</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Expires</p>
+<p>响应过期的日期和时间Expires: Thu, 01 Dec 2010 16:00:00 GMT</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Last-Modified</p>
+<p>请求资源的最后修改时间Last-Modified: Tue, 15 Nov 2010 12:45:26 GMT</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Location</p>
+<p>用来重定向接收方到非请求URL的位置来完成请求或标识新的资源Location: <a class="link" href="http://www.zcmhi.com/archives/94.html"  target="_blank" rel="noopener"
+    >http://www.zcmhi.com/archives/94.html</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Pragma</p>
+<p>包括实现特定的指令，它可应用到响应链上的任何接收方Pragma: no-cache</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Proxy-Authenticate</p>
+<p>它指出认证方案和可应用到代理的该URL上的参数Proxy-Authenticate: Basic</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Refresh</p>
+<p>应用于重定向或一个新的资源被创造，在5秒之后重定向（由网景提出，被大部分浏览器支持）Refresh: 5; url=http://www.zcmhi.com/archives/94.html</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Retry-After</p>
+<p>如果实体暂时不可取，通知客户端在指定时间之后再次尝试Retry-After: 120</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Server</p>
+<p>web服务器软件名称Server: Apache/1.3.27 (Unix) (Red-Hat/Linux)</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Set-Cookie</p>
+<p>设置Http Cookie Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Strict-Transport-Security</p>
+<p>设置浏览器强制使用HTTPS访问max-age: x秒的时间内 访问对应域名都使用HTTPS请求includeSubDomains: 网站的子域名也启用规则Strict-Transport-Security: max-age=1000; includeSubDomains</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Trailer</p>
+<p>指出头域在分块传输编码的尾部存在 Trailer: Max-Forwards</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Transfer-Encoding</p>
+<p>文件传输编码Transfer-Encoding:chunked</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Vary</p>
+<p>告诉下游代理是使用缓存响应还是从原始服务器请求Vary: *</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Via</p>
+<p>告知代理客户端响应是通过哪里发送的Via: 1.0 fred, 1.1 nowhere.com (Apache/1.1)</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Warning</p>
+<p>警告实体可能存在的问题Warning: 199 Miscellaneous warning</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>WWW-Authenticate</p>
+<p>表明客户端请求实体应该使用的授权方案WWW-Authenticate: Basic</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>X-Content-Type-Options</p>
+<p>配置禁止MIME类型嗅探X-Content-Type-Options: nosniff</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>X-Frame-Options</p>
+<p>配置页面是否能出现在 <frame>, <iframe>, <embed>, <object> 等标签中，防止点击劫持X-Frame-Options: deny</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>X-XSS-Protection</p>
+<p>配置XSS防护机制X-XSS-Protection: 1; mode=block</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2714-http状态返回代码-1xx临时响应">2.7.1.4. HTTP状态返回代码 1xx（临时响应）
+</h2><p>表示临时响应并需要请求者继续执行操作的状态代码。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Code</th>
+          <th>代码</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>100</td>
+          <td>继续</td>
+          <td>服务器返回此代码表示已收到请求的第一部分，正在等待其余部分</td>
+      </tr>
+      <tr>
+          <td>101</td>
+          <td>切换协议</td>
+          <td>请求者已要求服务器切换协议，服务器已确认并准备切换</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="2715-http状态返回代码-2xx-成功">2.7.1.5. HTTP状态返回代码 2xx （成功）
+</h2><p>表示成功处理了请求的状态代码。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Code</th>
+          <th>代码</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>200</td>
+          <td>成功</td>
+          <td>服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页</td>
+      </tr>
+      <tr>
+          <td>201</td>
+          <td>已创建</td>
+          <td>请求成功并且服务器创建了新的资源</td>
+      </tr>
+      <tr>
+          <td>202</td>
+          <td>已接受</td>
+          <td>服务器已接受请求，但尚未处理</td>
+      </tr>
+      <tr>
+          <td>203</td>
+          <td>非授权信息</td>
+          <td>服务器已成功处理了请求，但返回的信息可能来自另一来源</td>
+      </tr>
+      <tr>
+          <td>204</td>
+          <td>无内容</td>
+          <td>服务器成功处理了请求，但没有返回任何内容</td>
+      </tr>
+      <tr>
+          <td>205</td>
+          <td>重置内容</td>
+          <td>m服务器成功处理了请求，但没有返回任何内容</td>
+      </tr>
+      <tr>
+          <td>206</td>
+          <td>部分内容</td>
+          <td>服务器成功处理了部分GET请求</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="2716-http状态返回代码-3xx-重定向">2.7.1.6. HTTP状态返回代码 3xx （重定向）
+</h2><p>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Code</th>
+          <th>代码</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>300</td>
+          <td>多种选择</td>
+          <td>针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</td>
+      </tr>
+      <tr>
+          <td>301</td>
+          <td>永久移动</td>
+          <td>请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。</td>
+      </tr>
+      <tr>
+          <td>302</td>
+          <td>临时移动</td>
+          <td>服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</td>
+      </tr>
+      <tr>
+          <td>303</td>
+          <td>查看其他位置</td>
+          <td>请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。</td>
+      </tr>
+      <tr>
+          <td>304</td>
+          <td>未修改</td>
+          <td>自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。</td>
+      </tr>
+      <tr>
+          <td>305</td>
+          <td>使用代理</td>
+          <td>请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。</td>
+      </tr>
+      <tr>
+          <td>307</td>
+          <td>临时重定向</td>
+          <td>服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="2717-http状态返回代码-4xx请求错误">2.7.1.7. HTTP状态返回代码 4xx（请求错误）
+</h2><p>这些状态代码表示请求可能出错，妨碍了服务器的处理。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Code</th>
+          <th>代码</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>错误请求</td>
+          <td>服务器不理解请求的语法。</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>未授权</td>
+          <td>请求要求身份验证。对于需要登录的网页，服务器可能返回此响应。</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>禁止</td>
+          <td>服务器拒绝请求。</td>
+      </tr>
+      <tr>
+          <td>404</td>
+          <td>未找到</td>
+          <td>服务器找不到请求的网页。</td>
+      </tr>
+      <tr>
+          <td>405</td>
+          <td>方法禁用</td>
+          <td>禁用请求中指定的方法。</td>
+      </tr>
+      <tr>
+          <td>406</td>
+          <td>不接受</td>
+          <td>无法使用请求的内容特性响应请求的网页。</td>
+      </tr>
+      <tr>
+          <td>407</td>
+          <td>需要代理授权</td>
+          <td>此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。</td>
+      </tr>
+      <tr>
+          <td>408</td>
+          <td>请求超时</td>
+          <td>服务器等候请求时发生超时。</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>冲突</td>
+          <td>服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。</td>
+      </tr>
+      <tr>
+          <td>410</td>
+          <td>已删除</td>
+          <td>如果请求的资源已永久删除，服务器就会返回此响应。</td>
+      </tr>
+      <tr>
+          <td>411</td>
+          <td>需要有效长度</td>
+          <td>服务器不接受不含有效内容长度标头字段的请求。</td>
+      </tr>
+      <tr>
+          <td>412</td>
+          <td>未满足前提条件</td>
+          <td>服务器未满足请求者在请求中设置的其中一个前提条件。</td>
+      </tr>
+      <tr>
+          <td>413</td>
+          <td>请求实体过大</td>
+          <td>服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</td>
+      </tr>
+      <tr>
+          <td>414</td>
+          <td>请求的 URI 过长</td>
+          <td>请求的 URI（通常为网址）过长，服务器无法处理。</td>
+      </tr>
+      <tr>
+          <td>415</td>
+          <td>不支持的媒体类型</td>
+          <td>请求的格式不受请求页面的支持。</td>
+      </tr>
+      <tr>
+          <td>416</td>
+          <td>请求范围不符合要求</td>
+          <td>如果页面无法提供请求的范围，则服务器会返回此状态代码。</td>
+      </tr>
+      <tr>
+          <td>417</td>
+          <td>未满足期望值</td>
+          <td>服务器未满足&quot;期望&quot;请求标头字段的要求。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="2718-http状态返回代码-5xx服务器错误">2.7.1.8. HTTP状态返回代码 5xx（服务器错误）
+</h2><p>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Code</th>
+          <th>代码</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>500</td>
+          <td>服务器内部错误</td>
+          <td>服务器遇到错误，无法完成请求。</td>
+      </tr>
+      <tr>
+          <td>501</td>
+          <td>尚未实施</td>
+          <td>服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。</td>
+      </tr>
+      <tr>
+          <td>502</td>
+          <td>错误网关</td>
+          <td>服务器作为网关或代理，从上游服务器收到无效响应。</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>服务不可用</td>
+          <td>服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。</td>
+      </tr>
+      <tr>
+          <td>504</td>
+          <td>网关超时</td>
+          <td>服务器作为网关或代理，但是没有及时从上游服务器收到请求。</td>
+      </tr>
+      <tr>
+          <td>505</td>
+          <td>HTTP 版本不受支持</td>
+          <td>服务器不支持请求中所用的 HTTP 协议版本。</td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 gucheNg
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
